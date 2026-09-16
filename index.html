@@ -1,2622 +1,1494 @@
+Dashboard do Fornecedor — PRODUTIVA
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>Dashboard - Fornecedor | PRODUTIVA</title>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<title>Dashboard | PRODUTIVA</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
+  <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
->
+  >
 
-<link
-    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet"
->
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-    rel="stylesheet"
->
-
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./js/supabase.js"></script>
-
-<!-- AUTENTICAÇÃO -->
-<script src="./js/auth.js"></script>
-
-
-<style>
-
-/* =================================
-   RESET
-================================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-
-/* =================================
-   VARIÁVEIS
-================================= */
-
-:root{
-
-    --body-bg:#000;
-
-    --card-bg:#0A0A0A;
-
-    --input-bg:#111;
-
-    --border:#242424;
-
-    --text:#fff;
-
-    --muted:#777;
-
-    --placeholder:#666;
-
-    --green:#6EDC82;
-
-    --yellow:#F5C542;
-}
-
-
-/* =================================
-   MODO CLARO
-================================= */
-
-body.light{
-
-    --body-bg:#F5F5F5;
-
-    --card-bg:#FFFFFF;
-
-    --input-bg:#F1F1F1;
-
-    --border:transparent;
-
-    --text:#111;
-
-    --muted:#666;
-
-    --placeholder:#888;
-}
-
-
-/* =================================
-   BODY
-================================= */
-
-body{
-
-    background:var(--body-bg);
-
-    font-family:'Plus Jakarta Sans',sans-serif;
-
-    color:var(--text);
-
-    padding:80px 16px 20px;
-
-    transition:
-        background .25s ease,
-        color .25s ease;
-}
-
-
-/* =================================
-   MENU LATERAL
-================================= */
-
-.side-menu{
-
-    position:fixed !important;
-
-    top:0 !important;
-
-    left:0 !important;
-
-    width:240px !important;
-
-    height:100vh !important;
-
-    background:var(--card-bg) !important;
-
-    border-right:1px solid var(--border);
-
-    z-index:99999 !important;
-
-    transform:translateX(-100%) !important;
-
-    transition:transform .25s ease;
-
-    padding:24px 16px;
-
-    overflow-y:auto !important;
-
-    overflow-x:hidden !important;
-
-    display:block !important;
-
-    visibility:hidden;
-
-    opacity:1;
-
-    isolation:isolate;
-}
-
-
-.side-menu.open{
-
-    transform:translateX(0) !important;
-
-    visibility:visible !important;
-
-    opacity:1 !important;
-}
-
-
-.side-menu .side-menu-header{
-
-    display:flex !important;
-
-    visibility:visible !important;
-
-    opacity:1 !important;
-}
-
-
-.side-menu .menu-section{
-
-    display:block !important;
-
-    visibility:visible !important;
-
-    opacity:1 !important;
-
-    position:relative !important;
-}
-
-
-.side-menu .menu-section-title{
-
-    display:block !important;
-
-    visibility:visible !important;
-
-    opacity:1 !important;
-}
-
-
-.side-menu .menu-item{
-
-    display:flex !important;
-
-    visibility:visible !important;
-
-    opacity:1 !important;
-}
-
-
-/* =================================
-   OVERLAY
-================================= */
-
-.menu-overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.55);
-
-    z-index:99998;
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:
-        opacity .25s ease,
-        visibility .25s ease;
-}
-
-
-.menu-overlay.open{
-
-    opacity:1;
-
-    visibility:visible;
-}
-
-
-/* =================================
-   CABEÇALHO DO MENU
-================================= */
-
-.side-menu-header{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:30px;
-}
-
-
-.side-menu-logo{
-
-    display:flex;
-
-    align-items:center;
-}
-
-
-.side-menu-logo img{
-
-    width:110px;
-
-    height:auto;
-
-    display:block;
-
-    object-fit:contain;
-}
-
-
-.close-menu{
-
-    width:40px;
-
-    height:40px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:transparent !important;
-
-    border:0 !important;
-
-    color:var(--muted);
-
-    cursor:pointer;
-
-    padding:0;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.close-menu .material-icons-round{
-
-    font-size:24px;
-}
-
-
-/* =================================
-   SEÇÕES DO MENU
-================================= */
-
-.menu-section{
-
-    margin-bottom:27px;
-}
-
-
-.menu-section-title{
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    font-weight:800;
-
-    text-transform:uppercase;
-
-    letter-spacing:.7px;
-
-    margin:0 10px 9px;
-}
-
-
-.menu-item{
-
-    width:100%;
-
-    height:46px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    background:transparent;
-
-    border:0;
-
-    border-radius:9px;
-
-    color:var(--text);
-
-    font-family:'Plus Jakarta Sans',sans-serif;
-
-    font-size:12px;
-
-    font-weight:700;
-
-    text-align:left;
-
-    padding:0 10px;
-
-    cursor:pointer;
-
-    outline:0;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.menu-item .material-icons-round{
-
-    color:var(--muted);
-
-    font-size:21px;
-}
-
-
-.menu-item.active{
-
-    background:var(--input-bg);
-}
-
-
-.menu-item.active .material-icons-round{
-
-    color:var(--text);
-}
-
-
-.menu-item:hover,
-.menu-item:active,
-.menu-item:focus{
-
-    background:var(--input-bg);
-
-    color:var(--text);
-
-    outline:0;
-}
-
-
-/* =================================
-   BOTÃO HAMBÚRGUER
-================================= */
-
-.menu-btn{
-
-    position:absolute;
-
-    top:20px;
-
-    left:16px;
-
-    width:50px;
-
-    height:50px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:transparent !important;
-
-    border:0 !important;
-
-    border-radius:11px;
-
-    color:var(--muted);
-
-    cursor:pointer;
-
-    padding:0;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-
-    filter:none !important;
-
-    text-shadow:none !important;
-
-    appearance:none;
-
-    -webkit-appearance:none;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.menu-btn:hover,
-.menu-btn:active,
-.menu-btn:focus,
-.menu-btn:focus-visible{
-
-    background:transparent !important;
-
-    border:0 !important;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-}
-
-
-.menu-btn .material-icons-round{
-
-    color:var(--muted);
-
-    font-size:28px;
-
-    line-height:1;
-}
-
-
-/* =================================
-   BOTÕES SUPERIORES
-================================= */
-
-.notification-btn,
-.theme-btn{
-
-    width:44px;
-
-    height:44px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:transparent !important;
-
-    border:0 !important;
-
-    border-radius:11px;
-
-    color:var(--muted);
-
-    cursor:pointer;
-
-    padding:0;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-
-    filter:none !important;
-
-    text-shadow:none !important;
-
-    appearance:none;
-
-    -webkit-appearance:none;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.notification-btn:hover,
-.notification-btn:active,
-.notification-btn:focus,
-.notification-btn:focus-visible,
-.theme-btn:hover,
-.theme-btn:active,
-.theme-btn:focus,
-.theme-btn:focus-visible{
-
-    background:transparent !important;
-
-    border:0 !important;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-}
-
-
-.notification-btn .material-icons-round{
-
-    color:var(--muted);
-
-    font-size:24px;
-}
-
-
-.theme-btn .material-symbols-outlined{
-
-    color:var(--muted);
-
-    font-size:24px;
-}
-
-
-.top-actions{
-
-    position:absolute;
-
-    top:20px;
-
-    right:16px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-}
-
-
-/* =================================
-   CARTÃO DO SALDO
-================================= */
-
-.balance-card{
-
-    width:100%;
-
-    max-width:600px;
-
-    background:var(--card-bg);
-
-    border:2px solid var(--border);
-
-    border-radius:11px;
-
-    padding:28px 22px;
-
-    position:relative;
-
-    margin:auto;
-
-    box-shadow:none !important;
-}
-
-
-.wallet-icon{
-
-    position:absolute;
-
-    top:22px;
-
-    right:22px;
-
-    width:32px;
-
-    height:32px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--muted);
-}
-
-
-.wallet-icon .material-icons-round{
-
-    font-size:29px;
-}
-
-
-.balance-label{
-
-    color:var(--text);
-
-    font-size:15px;
-
-    font-weight:900;
-}
-
-
-.balance-value-row{
-
-    display:flex;
-
-    align-items:center;
-
-    margin-top:12px;
-}
-
-
-.eye-btn{
-
-    width:30px;
-
-    height:30px;
-
-    margin-right:12px;
-
-    flex-shrink:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:transparent !important;
-
-    color:var(--muted);
-
-    border:0 !important;
-
-    padding:0;
-
-    cursor:pointer;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.eye-btn:hover,
-.eye-btn:active,
-.eye-btn:focus{
-
-    background:transparent !important;
-
-    color:var(--muted);
-
-    border:0 !important;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-}
-
-
-.eye-btn .material-icons-round{
-
-    font-size:21px;
-}
-
-
-.balance-value{
-
-    width:150px;
-
-    flex-shrink:0;
-
-    font-size:21px;
-
-    font-weight:900;
-
-    color:var(--green);
-
-    white-space:nowrap;
-}
-
-
-.withdraw-btn{
-
-    margin-top:16px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:3px;
-
-    background:transparent !important;
-
-    border:0 !important;
-
-    padding:0;
-
-    color:var(--yellow);
-
-    font-family:'Plus Jakarta Sans',sans-serif;
-
-    font-size:14px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.withdraw-btn:hover,
-.withdraw-btn:active,
-.withdraw-btn:focus{
-
-    background:transparent !important;
-
-    color:var(--yellow);
-
-    border:0 !important;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-}
-
-
-.withdraw-btn .material-icons-round{
-
-    font-size:18px;
-}
-
-
-/* =================================
-   PESQUISA
-================================= */
-
-.search-card{
-
-    width:100%;
-
-    max-width:600px;
-
-    margin:16px auto 0;
-
-    background:var(--card-bg);
-
-    border:2px solid var(--border);
-
-    border-radius:11px;
-
-    padding:18px 16px;
-
-    box-shadow:none !important;
-}
-
-
-.search-box{
-
-    width:100%;
-
-    height:48px;
-
-    display:flex;
-
-    align-items:center;
-
-    background:var(--input-bg);
-
-    border:2px solid var(--border);
-
-    border-radius:10px;
-
-    padding:0 14px;
-
-    gap:10px;
-}
-
-
-.search-box .material-icons-round{
-
-    font-size:21px;
-
-    color:var(--muted);
-}
-
-
-.search-box input{
-
-    width:100%;
-
-    background:transparent;
-
-    border:0;
-
-    outline:none;
-
-    color:var(--text);
-
-    font-family:'Plus Jakarta Sans',sans-serif;
-
-    font-size:13px;
-}
-
-
-.search-box input::placeholder{
-
-    color:var(--placeholder);
-}
-
-
-/* =================================
-   VITRINE
-================================= */
-
-.vitrine-header{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-top:20px;
-}
-
-
-.vitrine-title{
-
-    color:var(--text);
-
-    font-size:17px;
-
-    font-weight:800;
-}
-
-
-.category-btn{
-
-    height:34px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:4px;
-
-    padding:0 10px;
-
-    background:var(--input-bg);
-
-    border:2px solid var(--border);
-
-    border-radius:9px;
-
-    color:var(--text);
-
-    font-family:'Plus Jakarta Sans',sans-serif;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-
-    -webkit-tap-highlight-color:transparent;
-}
-
-
-.category-btn:hover,
-.category-btn:active,
-.category-btn:focus{
-
-    background:var(--input-bg);
-
-    color:var(--text);
-
-    outline:0 !important;
-
-    box-shadow:none !important;
-}
-
-
-.category-btn .material-icons-round{
-
-    font-size:17px;
-}
-
-
-/* =================================
-   LISTA DE PRODUTOS
-================================= */
-
-.products-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:14px;
-
-    margin-top:18px;
-
-    width:100%;
-}
-
-
-/* =================================
-   LINHA DE PRODUTOS
-================================= */
-
-.product-row{
-
-    display:flex;
-
-    flex-wrap:nowrap;
-
-    gap:10px;
-
-    width:100%;
-
-    overflow-x:auto;
-
-    overflow-y:hidden;
-
-    scrollbar-width:none;
-
-    -webkit-overflow-scrolling:touch;
-
-    touch-action:pan-x;
-}
-
-
-.product-row::-webkit-scrollbar{
-
-    display:none;
-}
-
-
-/* =================================
-   CARD DO PRODUTO
-================================= */
-
-.product-item{
-
-    display:flex;
-
-    flex-direction:column;
-
-    flex:0 0 calc((100% - 20px) / 3);
-
-    width:calc((100% - 20px) / 3);
-
-    min-width:0;
-
-    padding:6px;
-
-    background:var(--input-bg);
-
-    border:2px solid var(--border);
-
-    border-radius:9px;
-
-    box-shadow:none !important;
-}
-
-
-/* =================================
-   FOTO
-================================= */
-
-.product-image{
-
-    width:100%;
-
-    height:105px;
-
-    flex-shrink:0;
-
-    border-radius:7px;
-
-    overflow:hidden;
-
-    background:#222;
-
-    cursor:pointer;
-}
-
-
-.product-image img{
-
-    width:100%;
-
-    height:100%;
-
-    display:block;
-
-    object-fit:cover;
-}
-
-
-/* =================================
-   INFORMAÇÕES
-================================= */
-
-.product-info{
-
-    width:100%;
-
-    min-width:0;
-
-    padding:7px 1px 3px;
-}
-
-
-.product-name{
-
-    display:none;
-}
-
-
-/* =================================
-   PROVÍNCIA + UNIDADES
-================================= */
-
-.product-location{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:flex-start;
-
-    gap:3px;
-
-    color:var(--muted);
-
-    font-size:8px;
-
-    font-weight:700;
-
-    line-height:1.2;
-}
-
-
-.product-location > span:first-child{
-
-    display:flex;
-
-    align-items:center;
-
-    min-width:0;
-
-    max-width:100%;
-
-    overflow:hidden;
-
-    white-space:nowrap;
-
-    text-overflow:ellipsis;
-}
-
-
-.product-location .material-icons-round{
-
-    font-size:12px;
-
-    flex-shrink:0;
-
-    margin-right:2px;
-}
-
-
-.product-stock{
-
-    white-space:nowrap;
-}
-
-
-.product-stock.sold-out{
-
-    color:#ff5555;
-
-    font-weight:800;
-}
-
-
-/* Preço e botões não aparecem */
-
-.product-price,
-.product-actions{
-
-    display:none;
-}
-
-
-/* =================================
-   MODO CLARO
-================================= */
-
-body.light .search-box{
-
-    border:2px solid #666;
-}
-
-
-body.light .category-btn{
-
-    border:2px solid #666;
-}
-
-
-/* =================================
-   RESPONSIVO — CELULAR
-================================= */
-
-@media(max-width:480px){
-
-    body{
-
-        padding:80px 14px 20px;
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-
-    .menu-btn{
-
-        left:14px;
+    :root {
+      --black: #000000;
+      --panel: #0a0a0a;
+      --panel-2: #101010;
+      --border: #242424;
+      --text: #ffffff;
+      --muted: #777777;
+      --yellow: #f5c400;
+      --yellow-dark: #dcae00;
+      --danger: #ff4d4d;
     }
 
-
-    .top-actions{
-
-        right:14px;
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
+    /* =========================
+       HEADER
+    ========================= */
 
-    .balance-card{
-
-        padding:26px 20px;
+    .topbar {
+      height: 68px;
+      width: 100%;
+      background: #050505;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
     }
 
-
-    .search-card{
-
-        padding:16px 14px;
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
-
-    .product-row{
-
-        gap:8px;
-
-        overflow-x:auto;
-
-        overflow-y:hidden;
-
-        scrollbar-width:none;
-
-        -webkit-overflow-scrolling:touch;
-
-        touch-action:pan-x;
+    .menu-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #0d0d0d;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
-
-    .product-row::-webkit-scrollbar{
-
-        display:none;
+    .menu-button:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
     }
 
-
-    .product-item{
-
-        flex:0 0 calc((100% - 16px) / 3);
-
-        width:calc((100% - 16px) / 3);
-
-        min-width:0;
-
-        padding:5px;
+    .menu-button .material-icons {
+      font-size: 24px;
     }
 
-
-    .product-image{
-
-        height:85px;
+    .brand {
+      display: flex;
+      align-items: center;
     }
 
-
-    .product-info{
-
-        padding:6px 1px 2px;
+    .brand img {
+      width: 112px;
+      height: auto;
+      display: block;
     }
 
-
-    .product-location{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:3px;
-
-        font-size:7px;
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 9px;
     }
 
-
-    .product-location .material-icons-round{
-
-        font-size:11px;
+    .notification {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #0d0d0d;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
     }
 
-}
-
-
-/* =================================
-   DESKTOP / NOTEBOOK
-   MENU PERMANENTEMENTE ABERTO
-================================= */
-
-@media(min-width:768px){
-
-    /*
-       Reserva espaço para o
-       menu lateral de 240px
-    */
-
-    body{
-
-        padding-left:280px;
-
-        padding-right:40px;
+    .notification:hover {
+      color: var(--yellow);
+      border-color: var(--yellow);
     }
 
-
-    /*
-       MENU SEMPRE ABERTO
-    */
-
-    .side-menu{
-
-        transform:translateX(0) !important;
-
-        visibility:visible !important;
-
-        opacity:1 !important;
+    .notification .material-icons {
+      font-size: 21px;
     }
 
-
-    /*
-       Não existe overlay no PC
-    */
-
-    .menu-overlay{
-
-        display:none !important;
-
-        opacity:0 !important;
-
-        visibility:hidden !important;
+    .notification-badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--yellow);
     }
 
+    /* =========================
+       SIDEBAR
+    ========================= */
 
-    /*
-       Esconde botão hamburger
-    */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 275px;
+      height: 100vh;
+      background: #080808;
+      border-right: 1px solid var(--border);
+      z-index: 1200;
 
-    .menu-btn{
+      transform: translateX(-100%);
+      transition: transform 0.28s ease;
 
-        display:none !important;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 14px;
     }
 
-
-    /*
-       Esconde botão X
-       porque o menu é permanente
-    */
-
-    .close-menu{
-
-        display:none !important;
+    .sidebar.open {
+      transform: translateX(0);
     }
 
-
-    /*
-       Ações do topo
-    */
-
-    .top-actions{
-
-        right:40px;
+    .sidebar-header {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
     }
 
-
-    /*
-       Conteúdo maior
-    */
-
-    .balance-card,
-    .search-card{
-
-        max-width:1100px;
+    .sidebar-logo {
+      width: 115px;
     }
 
-
-    .balance-card{
-
-        padding:30px 26px;
+    .sidebar-user {
+      background: #101010;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 20px;
     }
 
-
-    .search-card{
-
-        padding:20px;
+    .user-avatar {
+      width: 39px;
+      height: 39px;
+      border-radius: 11px;
+      background: var(--yellow);
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
     }
 
-
-    .search-box{
-
-        height:52px;
+    .user-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
     }
 
-
-    .vitrine-title{
-
-        font-size:19px;
+    .user-avatar .material-icons {
+      font-size: 21px;
     }
 
-
-    .category-btn{
-
-        height:36px;
+    .user-info {
+      min-width: 0;
     }
 
-
-    .products-list{
-
-        gap:16px;
+    .user-name {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-
-    /*
-       5 produtos por linha
-    */
-
-    .product-row{
-
-        display:grid;
-
-        grid-template-columns:
-            repeat(5, minmax(0, 1fr));
-
-        gap:12px;
-
-        overflow:visible;
-
-        touch-action:auto;
+    .user-role {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
     }
 
-
-    .product-item{
-
-        width:100%;
-
-        min-width:0;
-
-        flex:none;
-
-        padding:7px;
+    .nav-title {
+      color: #555;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 0 10px;
+      margin: 5px 0 8px;
+      text-transform: uppercase;
     }
 
-
-    .product-image{
-
-        height:160px;
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-
-    .product-info{
-
-        padding:8px 1px 4px;
+    .nav a {
+      min-height: 45px;
+      padding: 0 11px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #999;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      position: relative;
+      transition: 0.2s;
     }
 
-
-    .product-location{
-
-        font-size:9px;
+    .nav a .material-icons {
+      font-size: 21px;
     }
 
-
-    .product-location .material-icons-round{
-
-        font-size:13px;
+    .nav a:hover {
+      color: #fff;
+      background: #111;
     }
 
-}
-
-
-/* =================================
-   DESKTOP GRANDE
-================================= */
-
-@media(min-width:1400px){
-
-    .balance-card,
-    .search-card{
-
-        max-width:1200px;
+    .nav a.active {
+      background: rgba(245, 196, 0, 0.10);
+      color: var(--yellow);
     }
 
-
-    .product-row{
-
-        gap:14px;
+    .nav a.active::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 3px;
+      height: 22px;
+      border-radius: 0 4px 4px 0;
+      background: var(--yellow);
     }
 
-
-    .product-image{
-
-        height:180px;
+    .nav-count {
+      margin-left: auto;
+      min-width: 21px;
+      height: 21px;
+      padding: 0 6px;
+      border-radius: 7px;
+      background: var(--yellow);
+      color: #111;
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-}
+    .sidebar-bottom {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      padding-top: 13px;
+    }
 
+    .logout {
+      width: 100%;
+      height: 44px;
+      border: none;
+      background: transparent;
+      color: #888;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 11px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-/* =================================
-   PROTEÇÃO CONTRA QUEBRA
-================================= */
+    .logout:hover {
+      background: rgba(255, 77, 77, 0.08);
+      color: var(--danger);
+    }
 
-.product-item,
-.product-image,
-.product-info{
+    .logout .material-icons {
+      font-size: 21px;
+    }
 
-    min-width:0;
-}
+    /* =========================
+       OVERLAY
+    ========================= */
 
-</style>
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1100;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s;
+      backdrop-filter: blur(2px);
+    }
 
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      padding: 94px 18px 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .welcome {
+      margin-bottom: 22px;
+    }
+
+    .welcome-small {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .welcome h1 {
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .welcome h1 span {
+      color: var(--yellow);
+    }
+
+    .welcome-text {
+      color: #666;
+      font-size: 12px;
+      margin-top: 7px;
+    }
+
+    /* =========================
+       CARDS
+    ========================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 125px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 17px;
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(245, 196, 0, 0.10);
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon .material-icons {
+      font-size: 20px;
+    }
+
+    .card-label {
+      color: #777;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .card-value {
+      color: #fff;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .card-info {
+      color: #555;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* =========================
+       CONTENT GRID
+    ========================= */
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 14px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .panel-header {
+      min-height: 61px;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .panel-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .panel-link {
+      color: var(--yellow);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .empty {
+      padding: 38px 18px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 12px;
+      border-radius: 15px;
+      background: #111;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+    }
+
+    .empty-icon .material-icons {
+      font-size: 25px;
+    }
+
+    .empty-title {
+      color: #aaa;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .empty-text {
+      color: #555;
+      font-size: 11px;
+      line-height: 1.5;
+      margin-top: 5px;
+    }
+
+    .quick-actions {
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .action {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: #0d0d0d;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .action:hover {
+      border-color: #444;
+      transform: translateY(-1px);
+    }
+
+    .action-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(245,196,0,0.09);
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .action-icon .material-icons {
+      font-size: 20px;
+    }
+
+    .action-text strong {
+      display: block;
+      color: #ddd;
+      font-size: 12px;
+    }
+
+    .action-text span {
+      display: block;
+      color: #555;
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .topbar {
+        height: 64px;
+        padding: 0 13px;
+      }
+
+      .brand img {
+        width: 105px;
+      }
+
+      .menu-button {
+        width: 40px;
+        height: 40px;
+      }
+
+      .notification {
+        width: 38px;
+        height: 38px;
+      }
+
+      main {
+        padding: 84px 13px 25px;
+      }
+
+      .welcome h1 {
+        font-size: 21px;
+      }
+
+      .cards {
+        gap: 9px;
+      }
+
+      .card {
+        min-height: 116px;
+        padding: 13px;
+      }
+
+      .card-value {
+        font-size: 20px;
+      }
+
+      .sidebar {
+        width: min(285px, 86vw);
+      }
+    }
+
+    @media (min-width: 1000px) {
+
+      .sidebar {
+        transform: translateX(0);
+      }
+
+      .menu-button {
+        display: none;
+      }
+
+      .overlay {
+        display: none;
+      }
+
+      main {
+        margin-left: 275px;
+        max-width: none;
+      }
+
+      .topbar {
+        padding-left: 295px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <!-- =========================
+       TOPO
+  ========================== -->
 
-<!-- =================================
-     OVERLAY
-================================= -->
+  <header class="topbar">
 
-<div
-    class="menu-overlay"
-    id="menuOverlay"
-    onclick="closeMenu()"
-></div>
+    <div class="topbar-left">
+
+      <button
+        class="menu-button"
+        id="openMenu"
+        aria-label="Abrir menu"
+      >
+        <span class="material-icons">menu</span>
+      </button>
+
+      <div class="brand">
+        <img
+          src="../img/logo.png"
+          alt="PRODUTIVA"
+        >
+      </div>
+
+    </div>
+
+    <div class="topbar-right">
+
+      <button
+        class="notification"
+        aria-label="Notificações"
+      >
+        <span class="material-icons">
+          notifications
+        </span>
+
+        <span class="notification-badge"></span>
+      </button>
+
+    </div>
+
+  </header>
 
 
-<!-- =================================
-     MENU LATERAL
-================================= -->
+  <!-- =========================
+       OVERLAY
+  ========================== -->
 
-<aside
-    class="side-menu"
-    id="sideMenu"
->
-
-    <div class="side-menu-header">
-
-        <div class="side-menu-logo">
-
-            <img
-                src="./assets/logo.png"
-                alt="PRODUTIVA"
-            >
-
-        </div>
+  <div
+    class="overlay"
+    id="overlay"
+  ></div>
 
 
-        <button
-            class="close-menu"
-            onclick="closeMenu()"
-            aria-label="Fechar menu"
+  <!-- =========================
+       MENU LATERAL
+  ========================== -->
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
+
+    <div class="sidebar-header">
+
+      <img
+        class="sidebar-logo"
+        src="../img/logo.png"
+        alt="PRODUTIVA"
+      >
+
+    </div>
+
+
+    <!-- USUÁRIO -->
+
+    <div class="sidebar-user">
+
+      <div class="user-avatar">
+
+        <img
+          id="supplierPhoto"
+          src=""
+          alt="Foto do fornecedor"
         >
 
-            <span class="material-icons-round">
-                close
-            </span>
+        <span
+          class="material-icons"
+          id="supplierDefaultIcon"
+        >
+          account_circle
+        </span>
 
-        </button>
+      </div>
+
+      <div class="user-info">
+
+        <div
+          class="user-name"
+          id="supplierName"
+        >
+          Fornecedor
+        </div>
+
+        <div class="user-role">
+          Painel do fornecedor
+        </div>
+
+      </div>
 
     </div>
 
 
     <!-- PRINCIPAL -->
 
-    <div class="menu-section">
-
-        <div class="menu-section-title">
-            Principal
-        </div>
-
-
-        <button
-            class="menu-item active"
-            onclick="menuAction('Dashboard')"
-        >
-
-            <span class="material-icons-round">
-                dashboard
-            </span>
-
-            <span>
-                Dashboard
-            </span>
-
-        </button>
-
+    <div class="nav-title">
+      Principal
     </div>
 
+    <nav class="nav">
 
-    <!-- PRODUTOS -->
+      <a
+        href="dashboard.html"
+        class="active"
+      >
 
-    <div class="menu-section">
+        <span class="material-icons">
+          dashboard
+        </span>
 
-        <div class="menu-section-title">
-            Produtos
-        </div>
+        <span>
+          Dashboard
+        </span>
 
+      </a>
 
-        <button
-            class="menu-item"
-            onclick="menuAction('Cadastrar produtos')"
-        >
-
-            <span class="material-icons-round">
-                add_box
-            </span>
-
-            <span>
-                Cadastrar produtos
-            </span>
-
-        </button>
+    </nav>
 
 
-        <button
-            class="menu-item"
-            onclick="menuAction('Meus produtos')"
-        >
+    <!-- GESTÃO -->
 
-            <span class="material-icons-round">
-                inventory_2
-            </span>
-
-            <span>
-                Meus produtos
-            </span>
-
-        </button>
-
-
-        <button
-            class="menu-item"
-            onclick="menuAction('Pedidos')"
-        >
-
-            <span class="material-icons-round">
-                shopping_bag
-            </span>
-
-            <span>
-                Pedidos
-            </span>
-
-        </button>
-
+    <div class="nav-title">
+      Gestão
     </div>
 
+    <nav class="nav">
 
-    <!-- FINANCEIRO -->
+      <a href="produtos.html">
 
-    <div class="menu-section">
+        <span class="material-icons">
+          inventory_2
+        </span>
 
-        <div class="menu-section-title">
-            Financeiro
-        </div>
+        <span>
+          Produtos
+        </span>
 
-
-        <button
-            class="menu-item"
-            onclick="menuAction('Saques')"
-        >
-
-            <span class="material-icons-round">
-                payments
-            </span>
-
-            <span>
-                Saques
-            </span>
-
-        </button>
+      </a>
 
 
-        <button
-            class="menu-item"
-            onclick="menuAction('Relatórios')"
-        >
+      <a href="adicionar-produto.html">
 
-            <span class="material-icons-round">
-                bar_chart
-            </span>
+        <span class="material-icons">
+          add_box
+        </span>
 
-            <span>
-                Relatórios
-            </span>
+        <span>
+          Adicionar produto
+        </span>
 
-        </button>
+      </a>
 
-    </div>
+
+      <a href="estoque.html">
+
+        <span class="material-icons">
+          warehouse
+        </span>
+
+        <span>
+          Estoque
+        </span>
+
+      </a>
+
+
+      <a href="pedidos.html">
+
+        <span class="material-icons">
+          shopping_bag
+        </span>
+
+        <span>
+          Pedidos
+        </span>
+
+        <span class="nav-count">
+          0
+        </span>
+
+      </a>
+
+    </nav>
 
 
     <!-- CONTA -->
 
-    <div class="menu-section">
-
-        <div class="menu-section-title">
-            Conta
-        </div>
-
-
-        <button
-            class="menu-item"
-            onclick="menuAction('Perfil')"
-        >
-
-            <span class="material-icons-round">
-                person_outline
-            </span>
-
-            <span>
-                Perfil
-            </span>
-
-        </button>
-
+    <div class="nav-title">
+      Conta
     </div>
 
-</aside>
+    <nav class="nav">
 
+      <a href="perfil.html">
 
-<!-- =================================
-     BOTÃO MENU
-================================= -->
-
-<button
-    class="menu-btn"
-    onclick="openMenu()"
-    aria-label="Abrir menu"
->
-
-    <span class="material-icons-round">
-        menu
-    </span>
-
-</button>
-
-
-<!-- =================================
-     AÇÕES DO TOPO
-================================= -->
-
-<div class="top-actions">
-
-
-    <button
-        class="notification-btn"
-        onclick="openNotifications()"
-        aria-label="Notificações"
-    >
-
-        <span class="material-icons-round">
-            notifications_none
+        <span class="material-icons">
+          account_circle
         </span>
-
-    </button>
-
-
-    <button
-        class="theme-btn"
-        onclick="toggleTheme()"
-        aria-label="Alterar tema"
-    >
-
-        <span
-            class="material-symbols-outlined"
-            id="themeIcon"
-        >
-            wb_sunny
-        </span>
-
-    </button>
-
-</div>
-
-
-<!-- =================================
-     SALDO
-================================= -->
-
-<div class="balance-card">
-
-
-    <div class="wallet-icon">
-
-        <span class="material-icons-round">
-            account_balance_wallet
-        </span>
-
-    </div>
-
-
-    <div class="balance-label">
-
-        Saldo Disponível
-
-    </div>
-
-
-    <div class="balance-value-row">
-
-
-        <button
-            class="eye-btn"
-            onclick="toggleBalance()"
-            aria-label="Mostrar ou ocultar saldo"
-        >
-
-            <span
-                class="material-icons-round"
-                id="eye"
-            >
-                visibility
-            </span>
-
-        </button>
-
-
-        <div
-            class="balance-value"
-            id="balance"
-        >
-
-            25.000 MT
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="withdraw-btn"
-        onclick="withdraw()"
-    >
 
         <span>
-            Sacar
+          Meu perfil
         </span>
 
-        <span class="material-icons-round">
-            chevron_right
+      </a>
+
+    </nav>
+
+
+    <!-- RODAPÉ -->
+
+    <div class="sidebar-bottom">
+
+      <button
+        class="logout"
+        id="logoutButton"
+      >
+
+        <span class="material-icons">
+          logout
         </span>
 
-    </button>
-
-</div>
-
-
-<!-- =================================
-     PESQUISA / VITRINE
-================================= -->
-
-<div class="search-card">
-
-
-    <div class="search-box">
-
-        <span class="material-icons-round">
-            search
+        <span>
+          Sair da conta
         </span>
 
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Pesquisar produtos..."
-        >
+      </button>
 
     </div>
 
+  </aside>
 
-    <div class="vitrine-header">
+
+  <!-- =========================
+       CONTEÚDO
+  ========================== -->
+
+  <main>
+
+    <section class="welcome">
+
+      <div class="welcome-small">
+        PAINEL DO FORNECEDOR
+      </div>
+
+      <h1>
+        Olá, <span id="welcomeName">Fornecedor</span>
+      </h1>
+
+      <p class="welcome-text">
+        Acompanhe os seus produtos, pedidos e estoque.
+      </p>
+
+    </section>
 
 
-        <div class="vitrine-title">
-            Vitrine
+    <!-- CARDS -->
+
+    <section class="cards">
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-label">
+            Produtos
+          </div>
+
+          <div class="card-icon">
+
+            <span class="material-icons">
+              inventory_2
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="card-value">
+          0
+        </div>
+
+        <div class="card-info">
+          Produtos cadastrados
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-label">
+            Pedidos
+          </div>
+
+          <div class="card-icon">
+
+            <span class="material-icons">
+              shopping_bag
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="card-value">
+          0
+        </div>
+
+        <div class="card-info">
+          Pedidos recebidos
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-label">
+            Estoque
+          </div>
+
+          <div class="card-icon">
+
+            <span class="material-icons">
+              warehouse
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="card-value">
+          0
+        </div>
+
+        <div class="card-info">
+          Produtos em estoque
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div class="card-label">
+            Vendas
+          </div>
+
+          <div class="card-icon">
+
+            <span class="material-icons">
+              payments
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="card-value">
+          0 MT
+        </div>
+
+        <div class="card-info">
+          Total de vendas
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTEÚDO INFERIOR -->
+
+    <section class="content-grid">
+
+
+      <!-- PEDIDOS RECENTES -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div class="panel-title">
+            Pedidos recentes
+          </div>
+
+          <a
+            href="pedidos.html"
+            class="panel-link"
+          >
+            Ver todos
+          </a>
+
         </div>
 
 
-        <button
-            class="category-btn"
-            onclick="openCategories()"
-        >
+        <div class="empty">
 
-            <span>
-                Categorias
+          <div class="empty-icon">
+
+            <span class="material-icons">
+              shopping_bag
             </span>
 
-            <span class="material-icons-round">
-                expand_more
-            </span>
+          </div>
 
-        </button>
+          <div class="empty-title">
+            Nenhum pedido ainda
+          </div>
 
-    </div>
+          <div class="empty-text">
+            Quando receber pedidos,
+            eles aparecerão aqui.
+          </div>
 
+        </div>
 
-    <div
-        class="products-list"
-        id="productsList"
-    ></div>
-
-
-</div>
+      </div>
 
 
-<script>
+      <!-- AÇÕES RÁPIDAS -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div class="panel-title">
+            Ações rápidas
+          </div>
+
+        </div>
 
 
-/* =================================
-   SALDO
-================================= */
-
-let balanceVisible = true;
+        <div class="quick-actions">
 
 
-function toggleBalance(){
+          <a
+            href="adicionar-produto.html"
+            class="action"
+          >
 
-    const balance =
-        document.getElementById("balance");
+            <div class="action-icon">
 
-    const eye =
-        document.getElementById("eye");
+              <span class="material-icons">
+                add_box
+              </span>
+
+            </div>
+
+            <div class="action-text">
+
+              <strong>
+                Adicionar produto
+              </strong>
+
+              <span>
+                Cadastre um novo produto
+              </span>
+
+            </div>
+
+          </a>
 
 
-    balanceVisible =
-        !balanceVisible;
+          <a
+            href="produtos.html"
+            class="action"
+          >
+
+            <div class="action-icon">
+
+              <span class="material-icons">
+                inventory_2
+              </span>
+
+            </div>
+
+            <div class="action-text">
+
+              <strong>
+                Ver produtos
+              </strong>
+
+              <span>
+                Gerencie seu catálogo
+              </span>
+
+            </div>
+
+          </a>
 
 
-    if(balanceVisible){
+          <a
+            href="estoque.html"
+            class="action"
+          >
 
-        balance.textContent =
-            "25.000 MT";
+            <div class="action-icon">
 
-        eye.textContent =
-            "visibility";
+              <span class="material-icons">
+                warehouse
+              </span>
 
-    }else{
+            </div>
 
-        balance.textContent =
-            "******";
+            <div class="action-text">
 
-        eye.textContent =
-            "visibility_off";
+              <strong>
+                Ver estoque
+              </strong>
+
+              <span>
+                Controle seus produtos
+              </span>
+
+            </div>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script type="module">
+
+    import { supabase }
+      from "../js/supabase.js";
+
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const overlay =
+      document.getElementById("overlay");
+
+    const openMenu =
+      document.getElementById("openMenu");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+    const supplierPhoto =
+      document.getElementById("supplierPhoto");
+
+    const supplierDefaultIcon =
+      document.getElementById(
+        "supplierDefaultIcon"
+      );
+
+    const supplierName =
+      document.getElementById(
+        "supplierName"
+      );
+
+    const welcomeName =
+      document.getElementById(
+        "welcomeName"
+      );
+
+
+    /* =========================
+       ABRIR MENU
+    ========================== */
+
+    function abrirMenu() {
+
+      sidebar.classList.add("open");
+
+      overlay.classList.add("show");
+
+      document.body.style.overflow =
+        "hidden";
+
+      openMenu.style.visibility =
+        "hidden";
 
     }
 
-}
 
+    /* =========================
+       FECHAR MENU
+    ========================== */
 
-/* =================================
-   SAQUE
-================================= */
+    function fecharMenu() {
 
-function withdraw(){
+      sidebar.classList.remove("open");
 
-    alert("Área de saque");
+      overlay.classList.remove("show");
 
-}
+      document.body.style.overflow =
+        "";
 
-
-/* =================================
-   MENU
-================================= */
-
-function openMenu(){
-
-    const sideMenu =
-        document.getElementById("sideMenu");
-
-    const overlay =
-        document.getElementById("menuOverlay");
-
-
-    sideMenu.style.visibility =
+      openMenu.style.visibility =
         "visible";
 
-    sideMenu.style.opacity =
-        "1";
-
-    sideMenu.classList.add("open");
-
-    overlay.classList.add("open");
-
-}
-
-
-function closeMenu(){
-
-    const sideMenu =
-        document.getElementById("sideMenu");
-
-    const overlay =
-        document.getElementById("menuOverlay");
-
-
-    sideMenu.classList.remove("open");
-
-    overlay.classList.remove("open");
-
-
-    /*
-       No PC o menu deve continuar aberto.
-       Por isso não fechamos o menu quando
-       a tela for desktop.
-    */
-
-    if(window.innerWidth >= 768){
-
-        sideMenu.classList.add("open");
-
-        sideMenu.style.visibility =
-            "visible";
-
-        sideMenu.style.opacity =
-            "1";
-
-        return;
     }
 
 
-    setTimeout(function(){
+    openMenu.addEventListener(
+      "click",
+      abrirMenu
+    );
 
-        if(!sideMenu.classList.contains("open")){
 
-            sideMenu.style.visibility =
-                "hidden";
+    overlay.addEventListener(
+      "click",
+      fecharMenu
+    );
+
+
+    /* =========================
+       ESC FECHA MENU
+    ========================== */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          fecharMenu();
 
         }
 
-    },260);
+      }
+    );
 
-}
 
+    /* =========================
+       FECHAR AO CLICAR NO LINK
+    ========================== */
 
-/* =================================
-   AÇÕES DO MENU
-================================= */
+    document
+      .querySelectorAll(".nav a")
+      .forEach(function(link) {
 
-function menuAction(item){
+        link.addEventListener(
+          "click",
+          function() {
 
-    if(item === "Dashboard"){
+            if (
+              window.innerWidth < 1000
+            ) {
 
-        closeMenu();
-
-        return;
-    }
-
-
-    if(item === "Cadastrar produtos"){
-
-        window.location.href =
-            "cadastrar-produto.html";
-
-        return;
-    }
-
-
-    if(item === "Meus produtos"){
-
-        window.location.href =
-            "meus-produtos.html";
-
-        return;
-    }
-
-
-    if(item === "Pedidos"){
-
-        window.location.href =
-            "pedidos.html";
-
-        return;
-    }
-
-
-    if(item === "Saques"){
-
-        window.location.href =
-            "saques.html";
-
-        return;
-    }
-
-
-    if(item === "Relatórios"){
-
-        window.location.href =
-            "relatorios.html";
-
-        return;
-    }
-
-
-    if(item === "Perfil"){
-
-        window.location.href =
-            "perfil.html";
-
-        return;
-    }
-
-}
-
-
-/* =================================
-   NOTIFICAÇÕES
-================================= */
-
-function openNotifications(){
-
-    alert("Notificações");
-
-}
-
-
-/* =================================
-   CATEGORIAS
-================================= */
-
-function openCategories(){
-
-    alert("Categorias");
-
-}
-
-
-/* =================================
-   DETALHES DO PRODUTO
-================================= */
-
-function productDetails(id){
-
-    window.location.href =
-        "detalhes-produto.html?id=" +
-        encodeURIComponent(id);
-
-}
-
-
-/* =================================
-   PESQUISA
-================================= */
-
-document
-.getElementById("searchInput")
-.addEventListener("input", function(){
-
-    const search =
-        this.value
-        .toLowerCase()
-        .trim();
-
-
-    const products =
-        document.querySelectorAll(
-            ".product-item"
-        );
-
-
-    products.forEach(function(product){
-
-        const nameElement =
-            product.querySelector(
-                ".product-name"
-            );
-
-
-        const name =
-            nameElement
-            ? nameElement.textContent.toLowerCase()
-            : "";
-
-
-        if(name.includes(search)){
-
-            product.style.display =
-                "flex";
-
-        }else{
-
-            product.style.display =
-                "none";
-
-        }
-
-    });
-
-});
-
-
-/* =================================
-   MODO CLARO / ESCURO
-================================= */
-
-function toggleTheme(){
-
-    const body =
-        document.body;
-
-    const icon =
-        document.getElementById(
-            "themeIcon"
-        );
-
-
-    if(body.classList.contains("light")){
-
-        body.classList.remove("light");
-
-        icon.textContent =
-            "wb_sunny";
-
-        localStorage.setItem(
-            "theme",
-            "dark"
-        );
-
-    }else{
-
-        body.classList.add("light");
-
-        icon.textContent =
-            "dark_mode";
-
-        localStorage.setItem(
-            "theme",
-            "light"
-        );
-
-    }
-
-}
-
-
-/* =================================
-   CARREGAR TEMA
-================================= */
-
-function loadTheme(){
-
-    const savedTheme =
-        localStorage.getItem(
-            "theme"
-        );
-
-
-    const icon =
-        document.getElementById(
-            "themeIcon"
-        );
-
-
-    if(savedTheme === "light"){
-
-        document.body.classList.add(
-            "light"
-        );
-
-        icon.textContent =
-            "dark_mode";
-
-    }else{
-
-        document.body.classList.remove(
-            "light"
-        );
-
-        icon.textContent =
-            "wb_sunny";
-
-    }
-
-}
-
-
-/* =================================
-   CARREGAR PRODUTOS
-================================= */
-
-async function loadProducts(){
-
-    const productsList =
-        document.getElementById(
-            "productsList"
-        );
-
-
-    productsList.innerHTML = `
-
-        <div style="
-            width:100%;
-            text-align:center;
-            color:var(--muted);
-            font-size:12px;
-            padding:25px 0;
-        ">
-
-            Carregando produtos...
-
-        </div>
-
-    `;
-
-
-    const {
-
-        data,
-
-        error
-
-    } =
-
-        await supabaseClient
-
-        .from("products")
-
-        .select("*")
-
-        .order("created_at", {
-
-            ascending:false
-
-        });
-
-
-    if(error){
-
-        console.error(
-
-            "Erro ao carregar produtos:",
-
-            error
-
-        );
-
-
-        productsList.innerHTML = `
-
-            <div style="
-                width:100%;
-                text-align:center;
-                color:var(--muted);
-                font-size:12px;
-                padding:25px 0;
-            ">
-
-                Não foi possível carregar os produtos.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    if(!data || data.length === 0){
-
-        productsList.innerHTML = `
-
-            <div style="
-                width:100%;
-                text-align:center;
-                color:var(--muted);
-                font-size:12px;
-                padding:25px 0;
-            ">
-
-                Nenhum produto disponível.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    productsList.innerHTML = "";
-
-
-    /*
-       Divide os produtos em grupos de 5.
-
-       Linha 1 = produtos 1 a 5
-       Linha 2 = produtos 6 a 10
-       Linha 3 = produtos 11 a 15
-    */
-
-    for(
-
-        let i = 0;
-
-        i < data.length;
-
-        i += 5
-
-    ){
-
-        const row =
-            document.createElement(
-                "div"
-            );
-
-
-        row.className =
-            "product-row";
-
-
-        const rowProducts =
-            data.slice(
-                i,
-                i + 5
-            );
-
-
-        rowProducts.forEach(
-            function(product){
-
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                item.className =
-                    "product-item";
-
-
-                const image =
-                    product.imagem ||
-                    "./assets/product-placeholder.png";
-
-
-                const name =
-                    product.nome ||
-                    "Produto";
-
-
-                const province =
-                    product.provincia ||
-                    "Moçambique";
-
-
-                const stock =
-                    Number(
-                        product.estoque || 0
-                    );
-
-
-                item.innerHTML = `
-
-                    <div
-                        class="product-image"
-                        onclick="productDetails('${escapeJS(product.id)}')"
-                    >
-
-                        <img
-                            src="${escapeHTML(image)}"
-                            alt="${escapeHTML(name)}"
-                        >
-
-                    </div>
-
-
-                    <div class="product-info">
-
-
-                        <div class="product-name">
-
-                            ${escapeHTML(name)}
-
-                        </div>
-
-
-                        <div class="product-location">
-
-
-                            <span>
-
-                                <span class="material-icons-round">
-                                    location_on
-                                </span>
-
-                                ${escapeHTML(province)}
-
-                            </span>
-
-
-                            <span
-                                class="product-stock ${
-                                    stock <= 0
-                                    ? "sold-out"
-                                    : ""
-                                }"
-                            >
-
-                                ${
-                                    stock <= 0
-                                    ? "ESGOTADO"
-                                    : stock + " unidades"
-                                }
-
-                            </span>
-
-
-                        </div>
-
-                    </div>
-
-                `;
-
-
-                row.appendChild(
-                    item
-                );
+              fecharMenu();
 
             }
+
+          }
         );
 
+      });
 
-        productsList.appendChild(
-            row
-        );
+
+    /* =========================
+       VERIFICAR LOGIN
+    ========================== */
+
+    const {
+      data: {
+        session
+      }
+    } =
+      await supabase.auth.getSession();
+
+
+    if (!session) {
+
+      window.location.href =
+        "../login.html";
 
     }
 
-}
+
+    /* =========================
+       DADOS DO FORNECEDOR
+    ========================== */
+
+    if (
+      session &&
+      session.user
+    ) {
+
+      const user =
+        session.user;
 
 
-/* =================================
-   PROTEÇÃO CONTRA HTML
-================================= */
+      /* =========================
+         NOME
+      ========================== */
 
-function escapeHTML(value){
-
-    return String(value)
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
-
-}
+      const nomeFornecedor =
+        user.user_metadata?.name ||
+        user.user_metadata?.full_name ||
+        user.user_metadata?.nome ||
+        "Fornecedor";
 
 
-function escapeJS(value){
-
-    return String(value)
-
-        .replace(/\\/g,"\\\\")
-
-        .replace(/'/g,"\\'");
-
-}
+      supplierName.textContent =
+        nomeFornecedor;
 
 
-/* =================================
-   GARANTIR MENU ABERTO NO PC
-================================= */
-
-function checkDesktopMenu(){
-
-    const sideMenu =
-        document.getElementById(
-            "sideMenu"
-        );
-
-    const overlay =
-        document.getElementById(
-            "menuOverlay"
-        );
+      welcomeName.textContent =
+        nomeFornecedor;
 
 
-    if(window.innerWidth >= 768){
+      /* =========================
+         FOTO
+      ========================== */
 
-        sideMenu.classList.add("open");
+      const avatarUrl =
+        user.user_metadata?.avatar_url ||
+        user.user_metadata?.picture ||
+        "";
 
-        sideMenu.style.visibility =
-            "visible";
 
-        sideMenu.style.opacity =
-            "1";
+      if (avatarUrl) {
 
-        overlay.classList.remove("open");
+        supplierPhoto.src =
+          avatarUrl;
 
-    }else{
+        supplierPhoto.style.display =
+          "block";
 
-        /*
-           No celular o menu começa fechado.
-        */
+        supplierDefaultIcon.style.display =
+          "none";
 
-        if(!sideMenu.classList.contains("open")){
+      }
 
-            sideMenu.style.visibility =
-                "hidden";
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================== */
+
+    logoutButton.addEventListener(
+      "click",
+      async function() {
+
+        logoutButton.disabled =
+          true;
+
+        logoutButton.innerHTML = `
+          <span class="material-icons">
+            progress_activity
+          </span>
+          <span>Saindo...</span>
+        `;
+
+
+        const { error } =
+          await supabase.auth.signOut();
+
+
+        if (error) {
+
+          console.error(
+            "Erro ao sair:",
+            error
+          );
+
+
+          logoutButton.disabled =
+            false;
+
+
+          logoutButton.innerHTML = `
+            <span class="material-icons">
+              logout
+            </span>
+            <span>Sair da conta</span>
+          `;
+
+
+          return;
 
         }
 
-    }
 
-}
+        window.location.href =
+          "../login.html";
 
+      }
+    );
 
-/* =================================
-   INICIAR
-================================= */
-
-loadTheme();
-
-loadProducts();
-
-checkDesktopMenu();
-
-
-/* =================================
-   QUANDO A JANELA MUDA DE TAMANHO
-================================= */
-
-window.addEventListener(
-    "resize",
-    checkDesktopMenu
-);
-
-</script>
-
+  </script>
 
 </body>
 </html>
