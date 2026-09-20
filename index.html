@@ -1,7 +1,3 @@
-
-https://gtavc.armdev.cn/?fbclid=IwcGRvZgRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8yNzUyNTQ2OTI1OTgyNzkAAR7TPw3qdaIqlMMm1mxxS0hfKi7okHSdCc1CDtefNp-WRLaH72kj94tEFfzXYw_aem_I_ckgy2e4KRlAl5vI6KEtw
-
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -9,16 +5,25 @@ https://gtavc.armdev.cn/?fbclid=IwcGRvZgRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8yNzUyNT
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>InfroPay - Dashboard</title>
+<title>Dashboard | PRODUTIVA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./js/supabase.js"></script>
+
+<!-- AUTENTICAÇÃO -->
+<script src="./js/auth.js"></script>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
     margin:0;
@@ -26,866 +31,1196 @@ https://gtavc.armdev.cn/?fbclid=IwcGRvZgRleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8yNzUyNT
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+
+:root{
+
+    --body-bg:#000;
+    --card-bg:#0A0A0A;
+    --input-bg:#111;
+
+    --border:#242424;
+
+    --text:#fff;
+    --muted:#777;
+    --placeholder:#666;
+
+    --green:#6EDC82;
+    --yellow:#F5C542;
+
 }
+
+
+body.light{
+
+    --body-bg:#F5F5F5;
+    --card-bg:#FFFFFF;
+    --input-bg:#F1F1F1;
+
+    --border:transparent;
+
+    --text:#111;
+    --muted:#666;
+    --placeholder:#888;
+
+}
+
 
 body{
-    min-height:100vh;
-    padding:20px;
-    background:#000;
-    color:#fff;
+
+    background:var(--body-bg);
+
     font-family:'Plus Jakarta Sans',sans-serif;
+
+    color:var(--text);
+
+    padding:80px 16px 20px;
+
+    transition:
+        background .25s ease,
+        color .25s ease;
+
 }
 
 
-/* =========================
-   TOP BAR
-========================= */
+/* =================================
+   MENU LATERAL
+================================= */
 
-.top-bar{
-    width:100%;
-    max-width:1000px;
-    margin:0 auto 20px;
+.side-menu{
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    position:fixed !important;
+
+    top:0 !important;
+    left:0 !important;
+
+    width:240px !important;
+    height:100vh !important;
+
+    background:var(--card-bg) !important;
+
+    border-right:1px solid var(--border);
+
+    z-index:99999 !important;
+
+    transform:translateX(-100%) !important;
+
+    transition:transform .25s ease;
+
+    padding:24px 16px;
+
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+
+    display:block !important;
+
+    visibility:hidden;
+
+    opacity:1;
+
+    isolation:isolate;
+
 }
 
-.left-menu,
-.right-actions{
-    display:flex;
-    align-items:center;
-    gap:18px;
-}
 
-.top-icon{
-    font-size:27px;
-    cursor:pointer;
-    user-select:none;
-    transition:.2s;
-}
+.side-menu.open{
 
-.top-icon:hover{
-    transform:scale(1.08);
+    transform:translateX(0) !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
 }
 
 
-/* =========================
-   SIDEBAR
-========================= */
+.side-menu .side-menu-header{
 
-.sidebar{
+    display:flex !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+}
+
+
+.side-menu .menu-section{
+
+    display:block !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+    position:relative !important;
+
+}
+
+
+.side-menu .menu-section-title{
+
+    display:block !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+}
+
+
+.side-menu .menu-item{
+
+    display:flex !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+}
+
+
+.menu-overlay{
+
     position:fixed;
 
-    top:0;
-    left:-280px;
+    inset:0;
 
-    width:250px;
-    height:100vh;
+    background:rgba(0,0,0,.55);
 
-    padding:22px 14px;
+    z-index:99998;
 
-    background:#0d0d0d;
+    opacity:0;
 
-    border-right:1px solid #1c1c1c;
+    visibility:hidden;
 
-    transition:.3s;
+    transition:
+        opacity .25s ease,
+        visibility .25s ease;
 
-    z-index:1000;
-
-    overflow-y:auto;
 }
 
-.sidebar.active{
-    left:0;
+
+.menu-overlay.open{
+
+    opacity:1;
+
+    visibility:visible;
+
 }
 
-.sidebar-header{
+
+/* =================================
+   CABEÇALHO DO MENU
+================================= */
+
+.side-menu-header{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    padding:0 8px;
+    margin-bottom:30px;
 
-    margin-bottom:35px;
 }
 
-.brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
 
-.brand-icon{
-    width:35px;
-    height:35px;
+.side-menu-logo{
 
     display:flex;
-    align-items:center;
-    justify-content:center;
 
-    border-radius:10px;
-
-    background:#00e676;
-    color:#000;
-
-    font-size:17px;
-    font-weight:800;
-}
-
-.brand-name{
-    font-size:18px;
-    font-weight:800;
-}
-
-.close-button{
-    font-size:25px;
-    color:#777;
-    cursor:pointer;
-}
-
-.menu-label{
-    padding:0 11px;
-
-    margin:22px 0 9px;
-
-    color:#555;
-
-    font-size:9px;
-    font-weight:800;
-
-    text-transform:uppercase;
-    letter-spacing:.8px;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:3px;
-}
-
-.sidebar-item{
-    width:100%;
-
-    display:flex;
     align-items:center;
 
-    gap:11px;
-
-    padding:11px;
-
-    border-radius:9px;
-
-    color:#888;
-
-    font-size:12px;
-    font-weight:600;
-
-    text-decoration:none;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.sidebar-item:hover{
-    background:#151515;
-    color:#fff;
-}
-
-.sidebar-item.active{
-    background:#112319;
-    color:#00e676;
-}
-
-.menu-icon{
-    width:19px;
-    min-width:19px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:20px;
 }
 
 
-/* =========================
-   CONTEÚDO
-========================= */
+.side-menu-logo img{
 
-main{
-    width:100%;
-    max-width:1000px;
-    margin:0 auto;
+    width:110px;
+
+    height:auto;
+
+    display:block;
+
+    object-fit:contain;
+
 }
 
 
-/* =========================
-   TÍTULO + PERÍODO
-========================= */
+.close-menu{
 
-.title-area{
-    width:100%;
+    width:40px;
 
-    margin:25px 0 18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:20px;
-}
-
-.dashboard-title{
-    font-size:40px;
-    font-weight:900;
-    color:#fff;
-    transform:translateY(10px)
-}
-
-
-/* =========================
-   FILTRO
-========================= */
-
-.date-filter{
-    width:220px;
     height:40px;
 
     display:flex;
+
     align-items:center;
 
-    gap:8px;
+    justify-content:center;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:0;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.close-menu .material-icons-round{
+
+    font-size:24px;
+
+}
+
+
+/* =================================
+   SEÇÕES DO MENU
+================================= */
+
+.menu-section{
+
+    margin-bottom:27px;
+
+}
+
+
+.menu-section-title{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+
+    margin:0 10px 9px;
+
+}
+
+
+.menu-item{
+
+    width:100%;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:transparent;
+
+    border:0;
+
+    border-radius:9px;
+
+    color:var(--text);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-align:left;
 
     padding:0 10px;
 
-    border:2px solid #454852;
+    cursor:pointer;
+
+    outline:0;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.menu-item .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:21px;
+
+}
+
+
+.menu-item.active{
+
+    background:var(--input-bg);
+
+}
+
+
+.menu-item.active .material-icons-round{
+
+    color:var(--text);
+
+}
+
+
+.menu-item:hover,
+.menu-item:active,
+.menu-item:focus{
+
+    background:var(--input-bg);
+
+    color:var(--text);
+
+    outline:0;
+
+}
+
+
+/* =================================
+   BOTÃO HAMBÚRGUER
+================================= */
+
+.menu-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:16px;
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    border:0 !important;
 
     border-radius:11px;
 
-    background:#000;
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:0;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    filter:none !important;
+
+    text-shadow:none !important;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.menu-btn:hover,
+.menu-btn:active,
+.menu-btn:focus,
+.menu-btn:focus-visible{
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.menu-btn .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:28px;
+
+    line-height:1;
+
+}
+
+
+/* =================================
+   BOTÕES SUPERIORES
+================================= */
+
+.notification-btn,
+.theme-btn{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    border-radius:11px;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:0;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    filter:none !important;
+
+    text-shadow:none !important;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.notification-btn:hover,
+.notification-btn:active,
+.notification-btn:focus,
+.notification-btn:focus-visible,
+.theme-btn:hover,
+.theme-btn:active,
+.theme-btn:focus,
+.theme-btn:focus-visible{
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.notification-btn .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:24px;
+
+}
+
+
+.theme-btn .material-symbols-outlined{
+
+    color:var(--muted);
+
+    font-size:24px;
+
+}
+
+
+.top-actions{
+
+    position:absolute;
+
+    top:20px;
+
+    right:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+
+/* =================================
+   CONTAINER DOS CARDS
+================================= */
+
+.dashboard-cards{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:0 auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+
+/* =================================
+   CARD
+================================= */
+
+.dashboard-card{
+
+    width:100%;
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:28px 22px;
 
     position:relative;
 
-    cursor:pointer;
+    box-shadow:none !important;
 
-    margin-left:auto;
-
-    transform:translateY(-2px);
 }
 
-.date-filter > .material-icons-outlined{
-    font-size:20px;
-}
 
-.selected-date{
-    flex:1;
-    font-size:12px;
-    font-weight:900;
-    color:#blue;
-}
+/* =================================
+   ÍCONE DO CARD
+================================= */
 
-.date-menu{
+.card-icon{
+
     position:absolute;
 
-    top:48px;
-    right:0;
+    top:22px;
 
-    width:170px;
+    right:22px;
 
-    background:#141414;
-
-    border:2px solid #454852;
-
-    border-radius:10px;
-
-    overflow:hidden;
-
-    display:none;
-
-    z-index:100;
-}
-
-.date-menu.active{
-    display:block;
-}
-
-.date-option{
-    padding:11px 13px;
-
-    font-size:12px;
-    font-weight:600;
-
-    color:#aaa;
-
-    cursor:pointer;
-}
-
-.date-option:hover{
-    background:#222;
-    color:#fff;
-}
-
-
-/* =========================
-   4 CARDS
-========================= */
-
-.container{
-    width:100%;
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:10px;
-    margin-top:10px;
-
-    margin-bottom:10px;
-}
-
-.card{
-    height:140px;
-
-    padding:30px;
-
-    background:#141414;
-
-    border:0px solid #202020;
-
-    border-radius:13px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    transition:.25s;
-}
-
-.card:hover{
-    border-color:#333;
-}
-
-.icon{
-    display:flex;
-    align-items:center;
-
-    margin-bottom:7px;
-}
-
-.icon .material-icons-outlined{
-    font-size:24px;
-    font-weight:500;
-}
-
-.titulo{
-    font-size:15px;
-    font-weight:650;
-
-    color:#d9d9d9;
-
-    margin-bottom:5px;
-}
-
-.valor{
-    font-size:22px;
-    font-weight:750;
-}
-
-.verde .valor{
-    color:#00e676;
-}
-
-.laranja .valor{
-    color:#ff9800;
-}
-
-.vermelho .valor{
-    color:#ff1744;
-}
-
-
-/* =========================
-   PARTE INFERIOR
-========================= */
-
-.bottom-grid{
-    width:100%;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:10px;
-
-    margin-top:10px;
-}
-
-
-/* =========================
-   MEIOS DE PAGAMENTO
-========================= */
-
-.payment-card,
-.chart-card{
-    background:#141414;
-
-    border:px solid #202020;
-
-    
-    transform:translateY(10px);
-
-    
-    border-radius:13px;
-
-    padding:25px;
-
-    min-height:330px;
-}
-
-.section-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    margin-bottom:25px;
-}
-
-.section-title{
-    font-size:16px;
-    font-weight:800;
-    color:#fff;
-}
-
-.see-all{
-    display:flex;
-    align-items:center;
-    gap:3px;
-
-    padding:8px 10px;
-
-    border:1px solid #292929;
-
-    border-radius:8px;
-
-    color:#aaa;
-
-    font-size:11px;
-    font-weight:600;
-}
-
-
-/* =========================
-   TABELA
-========================= */
-
-.table-header,
-.payment-row{
-    display:grid;
-
-    grid-template-columns:1.6fr 1fr 1fr;
-
-    align-items:center;
-
-    column-gap:15px;
-}
-
-.table-header{
-    padding-bottom:13px;
-
-    border-bottom:1px solid #292929;
-
-    color:#888;
-
-    font-size:12px;
-    font-weight:750;
-}
-
-.payment-row{
-    min-height:72px;
-
-    border-bottom:1px solid #252525;
-}
-
-.payment-row:last-child{
-    border-bottom:none;
-}
-
-.payment-method{
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-}
-
-.payment-method span{
-    font-size:130px;
-    font-weight:750;
-    color:#ddd;
-}
-
-.icon-box{
     width:32px;
+
     height:32px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    flex-shrink:0;
+    color:var(--muted);
+
 }
 
-.icon-box img{
+
+.card-icon .material-icons-round{
+
+    font-size:29px;
+
+}
+
+
+/* =================================
+   TÍTULO DO CARD
+================================= */
+
+.card-label{
+
+    color:var(--text);
+
+    font-size:15px;
+
+    font-weight:900;
+
+}
+
+
+/* =================================
+   VALOR
+================================= */
+
+.card-value{
+
+    margin-top:12px;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    line-height:1.2;
+
+}
+
+
+/* =================================
+   SALDO
+================================= */
+
+.balance-value-row{
+
+    display:flex;
+
+    align-items:center;
+
+    margin-top:12px;
+
+}
+
+
+.eye-btn{
+
     width:30px;
+
     height:30px;
 
-    object-fit:contain;
+    margin-right:12px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    color:var(--muted);
+
+    border:0 !important;
+
+    padding:0;
+
+    cursor:pointer;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
 }
 
-.approval,
-.value{
-    text-align:center;
 
-    font-size:130px;
-    font-weight:600;
+.eye-btn:hover,
+.eye-btn:active,
+.eye-btn:focus{
 
-    color:#ddd;
+    background:transparent !important;
+
+    color:var(--muted);
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
 }
 
-.approval{
+
+.eye-btn .material-icons-round{
+
+    font-size:21px;
+
+}
+
+
+.balance-value{
+
+    width:150px;
+
+    flex-shrink:0;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    color:var(--green);
+
+    white-space:nowrap;
+
+}
+
+
+/* =================================
+   BOTÃO SACAR
+================================= */
+
+.withdraw-btn{
+
+    margin-top:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    padding:0;
+
+    color:var(--yellow);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.withdraw-btn:hover,
+.withdraw-btn:active,
+.withdraw-btn:focus{
+
+    background:transparent !important;
+
+    color:var(--yellow);
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.withdraw-btn .material-icons-round{
+
+    font-size:18px;
+
+}
+
+
+/* =================================
+   CORES DOS VALORES
+================================= */
+
+.sales-value{
+
+    color:var(--text);
+
+}
+
+
+.failed-value{
+
+    color:#ff5555;
+
+}
+
+
+.conversion-value{
+
+    color:var(--text);
+
+}
+
+
+/* =================================
+   MEIOS DE PAGAMENTO
+================================= */
+
+.payment-card{
+
+    width:100%;
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:22px;
+
     position:relative;
+
+    box-shadow:none !important;
+
 }
 
-.approval::after{
-    content:"";
+
+.payment-header{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    margin-bottom:18px;
+
+}
+
+
+.payment-title{
+
+    color:var(--text);
+
+    font-size:15px;
+
+    font-weight:900;
+
+}
+
+
+.payment-icon{
+
+    color:var(--muted);
+
+    font-size:29px;
+
+}
+
+
+/* MÉTODO DE PAGAMENTO */
+
+.payment-method{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:13px;
+
+}
+
+
+.payment-method:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+.payment-logo{
+
+    width:36px;
+
+    height:36px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:7px;
+
+}
+
+
+.payment-logo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
 
     display:block;
 
-    width:75px;
-    height:5px;
-
-    margin:6px auto 0;
-
-    background:#242932;
-
-    border-radius:10px;
 }
 
 
-/* =========================
-   GRÁFICO
-========================= */
+.payment-content{
 
-.chart-header{
+    flex:1;
+
+    min-width:0;
+
+}
+
+
+.payment-top{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    margin-bottom:20px;
+    margin-bottom:5px;
+
 }
 
-.chart-title{
-    font-size:16px;
-    font-weight:700;
+
+.payment-name{
+
+    color:var(--text);
+
+    font-size:12px;
+
+    font-weight:800;
+
 }
 
-.chart-filter{
-    padding:8px 10px;
 
-    background:#141414;
+.payment-percent{
 
-    border:1px solid #292929;
+    color:var(--text);
 
-    border-radius:8px;
+    font-size:12px;
 
-    color:#aaa;
+    font-weight:900;
 
-    font-size:11px;
-    font-weight:600;
 }
 
-.chart{
-    position:relative;
 
-    height:210px;
+.payment-progress{
 
-    padding:15px 0 0 38px;
-}
-
-.chart-grid{
-    position:absolute;
-
-    top:15px;
-    left:38px;
-    right:0;
-    bottom:35px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
-
-.grid-line{
     width:100%;
 
-    border-top:1px dashed #292929;
-}
+    height:6px;
 
-.chart-labels{
-    position:absolute;
+    background:var(--input-bg);
 
-    left:0;
-    top:7px;
-    bottom:35px;
+    border-radius:20px;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    overflow:hidden;
 
-    color:#777;
-
-    font-size:9px;
-}
-
-.chart-area{
-    position:absolute;
-
-    left:38px;
-    right:0;
-    top:15px;
-    bottom:35px;
-}
-
-.chart-line{
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    bottom:8px;
-
-    height:2px;
-
-    background:#00e676;
-}
-
-.chart-points{
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    bottom:3px;
-
-    display:flex;
-    justify-content:space-between;
-}
-
-.point{
-    width:8px;
-    height:8px;
-
-    background:#00e676;
-
-    border-radius:50%;
-
-    box-shadow:0 0 0 3px rgba(0,230,118,.08);
-}
-
-.chart-days{
-    position:absolute;
-
-    left:38px;
-    right:0;
-
-    bottom:0;
-
-    display:flex;
-    justify-content:space-between;
-
-    color:#777;
-
-    font-size:9px;
-}
-
-.chart-legend{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    gap:8px;
-
-    margin-top:10px;
-
-    font-size:11px;
-    color:#aaa;
-}
-
-.legend-dot{
-    width:9px;
-    height:9px;
-
-    background:#00e676;
-
-    border-radius:50%;
 }
 
 
-/* =========================
-   TEMA CLARO
-========================= */
+.payment-progress-bar{
 
-.light-mode{
-    background:#f5f5f5;
-    color:#454852;
-}
+    height:100%;
 
-.light-mode .card,
-.light-mode .payment-card,
-.light-mode .chart-card{
-    background:#fff;
-    border-color:#e5e5e5;
-}
+    border-radius:20px;
 
-.light-mode .dashboard-title,
-.light-mode .section-title,
-.light-mode .chart-title{
-    color:#454852;
-}
-
-.light-mode .date-filter{
-    background:#fff;
-}
-
-.light-mode .date-menu{
-    background:#fff;
-    border-color:#ddd;
-}
-
-.light-mode .date-option{
-    color:#666;
-}
-
-.light-mode .date-option:hover{
-    background:#f2f2f2;
-}
-
-.light-mode .titulo{
-    color:#666;
-}
-
-.light-mode .payment-method span,
-.light-mode .approval,
-.light-mode .value{
-    color:#454852;
-}
-
-.light-mode .payment-row,
-.light-mode .table-header{
-    border-color:#ddd;
-}
-
-.light-mode .sidebar{
-    background:#fff;
-    border-color:#ddd;
 }
 
 
-/* =========================
-   RESPONSIVO
-========================= */
+.emola-progress{
 
-@media(max-width:768px){
+    width:62%;
+
+    background:var(--yellow);
+
+}
+
+
+.mpesa-progress{
+
+    width:38%;
+
+    background:var(--green);
+
+}
+
+
+/* =================================
+   MODO CLARO
+================================= */
+
+body.light .dashboard-card,
+body.light .payment-card{
+
+    border:2px solid transparent;
+
+}
+
+
+/* =================================
+   RESPONSIVO — CELULAR
+================================= */
+
+@media(max-width:767px){
 
     body{
-        padding:15px;
+
+        padding:80px 14px 20px;
+
     }
 
-    .top-bar{
-        margin-bottom:15px;
+
+    .menu-btn{
+
+        left:14px;
+
     }
 
-    main{
-        width:100%;
+
+    .top-actions{
+
+        right:14px;
+
     }
 
-    .title-area{
-        margin-top:20px;
+
+    .dashboard-cards{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:14px;
+
     }
 
-    .dashboard-title{
-        font-size:90px;
+
+    .dashboard-card{
+
+        padding:26px 20px;
+
     }
 
-    .date-filter{
-        width:210px;
-        flex-shrink:0;
-        transform:translateY(10px);
-    }
 
-    .container{
-        grid-template-columns:1fr;
-        gap:10px;
-    }
+    .payment-card{
 
-    .card{
-        height:130px;
-    }
+        padding:26px 20px;
 
-    .bottom-grid{
-        grid-template-columns:1fr;
-    }
-
-    .payment-card,
-    .chart-card{
-        padding:18px;
     }
 
 }
 
 
-/* =========================
-   TELAS MUITO PEQUENAS
-========================= */
+/* =================================
+   DESKTOP / NOTEBOOK
+================================= */
 
-@media(max-width:450px){
+@media(min-width:768px){
 
-    .title-area{
-        gap:8px;
+    body{
+
+        padding-left:40px;
+
+        padding-right:40px;
+
     }
 
-    .dashboard-title{
-        font-size:23px;
+
+    .dashboard-cards{
+
+        max-width:1100px;
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(6, minmax(0, 1fr));
+
+        gap:16px;
+
     }
 
-    .date-filter{
-        width:180px;
+
+    /* PRIMEIRA LINHA */
+
+    .dashboard-cards > .dashboard-card:nth-child(1){
+
+        grid-column:span 3;
+
     }
 
-    .table-header,
-    .payment-row{
-        grid-template-columns:1.5fr 1fr 1fr;
-        column-gap:5px;
+
+    .dashboard-cards > .dashboard-card:nth-child(2){
+
+        grid-column:span 3;
+
     }
 
-    .payment-method{
-        gap:6px;
+
+    /* SEGUNDA LINHA */
+
+    .dashboard-cards > .dashboard-card:nth-child(3){
+
+        grid-column:span 2;
+
     }
 
-    .payment-method span,
-    .approval,
-    .value{
-        font-size:10px;
+
+    .dashboard-cards > .dashboard-card:nth-child(4){
+
+        grid-column:span 2;
+
     }
 
-    .icon-box,
-    .icon-box img{
-        width:27px;
-        height:27px;
+
+    .dashboard-cards > .payment-card{
+
+        grid-column:span 2;
+
     }
+
+
+    .dashboard-card{
+
+        padding:28px 26px;
+
+    }
+
+}
+
+
+/* =================================
+   DESKTOP GRANDE
+================================= */
+
+@media(min-width:1400px){
+
+    .dashboard-cards{
+
+        max-width:1200px;
+
+    }
+
+}
+
+
+/* =================================
+   PROTEÇÃO
+================================= */
+
+.dashboard-card,
+.payment-card{
+
+    min-width:0;
 
 }
 
@@ -896,71 +1231,63 @@ main{
 <body>
 
 
-<!-- =========================
-     TOP BAR
-========================= -->
+<!-- =================================
+     MENU LATERAL
+================================= -->
 
-<div class="top-bar">
-
-    <div class="left-menu">
-
-        <span class="material-icons-outlined top-icon menu-button">
-            menu
-        </span>
-
-    </div>
-
-    <div class="right-actions">
-
-        <span class="material-icons-outlined top-icon theme-button">
-            dark_mode
-        </span>
-
-        <span class="material-icons-outlined top-icon">
-            notifications
-        </span>
-
-    </div>
-
+<div
+    class="menu-overlay"
+    id="menuOverlay"
+    onclick="closeMenu()">
 </div>
 
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+<aside
+    class="side-menu"
+    id="sideMenu">
 
-<aside class="sidebar">
 
-    <div class="sidebar-header">
+    <div class="side-menu-header">
 
-        <div class="brand">
 
-            <div class="brand-icon">
-                I
-            </div>
+        <div class="side-menu-logo">
 
-            <div class="brand-name">
-                InfroPay
-            </div>
+            <img
+                src="./assets/logo.png"
+                alt="PRODUTIVA">
 
         </div>
 
-        <span class="material-icons-outlined close-button">
-            close
-        </span>
+
+        <button
+            class="close-menu"
+            onclick="closeMenu()"
+            aria-label="Fechar menu">
+
+            <span class="material-icons-round">
+                close
+            </span>
+
+        </button>
+
 
     </div>
 
 
-    <div class="menu-label">
-        Principal
-    </div>
+    <!-- PRINCIPAL -->
 
-    <nav class="menu">
+    <div class="menu-section">
 
-        <a href="dashboard.html" class="sidebar-item active">
+        <div class="menu-section-title">
+            Principal
+        </div>
 
-            <span class="material-icons-outlined menu-icon">
+
+        <button
+            class="menu-item active"
+            onclick="menuAction('Dashboard')">
+
+            <span class="material-icons-round">
                 dashboard
             </span>
 
@@ -968,80 +1295,96 @@ main{
                 Dashboard
             </span>
 
-        </a>
+        </button>
 
-        <a href="produtos.html" class="sidebar-item">
+    </div>
 
-            <span class="material-icons-outlined menu-icon">
+
+    <!-- PRODUTOS -->
+
+    <div class="menu-section">
+
+        <div class="menu-section-title">
+            Produtos
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Cadastrar produtos')">
+
+            <span class="material-icons-round">
+                add_box
+            </span>
+
+            <span>
+                Cadastrar produtos
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Meus produtos')">
+
+            <span class="material-icons-round">
                 inventory_2
             </span>
 
             <span>
-                Produtos
+                Meus produtos
             </span>
 
-        </a>
+        </button>
 
-        <a href="pedidos.html" class="sidebar-item">
 
-            <span class="material-icons-outlined menu-icon">
-                shopping_cart
+        <button
+            class="menu-item"
+            onclick="menuAction('Pedidos')">
+
+            <span class="material-icons-round">
+                shopping_bag
             </span>
 
             <span>
                 Pedidos
             </span>
 
-        </a>
+        </button>
 
-        <a href="clientes.html" class="sidebar-item">
-
-            <span class="material-icons-outlined menu-icon">
-                person
-            </span>
-
-            <span>
-                Clientes
-            </span>
-
-        </a>
-
-    </nav>
-
-
-    <div class="menu-label">
-        Vendas
     </div>
 
-    <nav class="menu">
 
-        <a href="checkout.html" class="sidebar-item">
+    <!-- FINANCEIRO -->
 
-            <span class="material-icons-outlined menu-icon">
-                open_in_new
+    <div class="menu-section">
+
+        <div class="menu-section-title">
+            Financeiro
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Saques')">
+
+            <span class="material-icons-round">
+                payments
             </span>
 
             <span>
-                Checkout
+                Saques
             </span>
 
-        </a>
+        </button>
 
-        <a href="marketing.html" class="sidebar-item">
 
-            <span class="material-icons-outlined menu-icon">
-                campaign
-            </span>
+        <button
+            class="menu-item"
+            onclick="menuAction('Relatórios')">
 
-            <span>
-                Marketing
-            </span>
-
-        </a>
-
-        <a href="relatorios.html" class="sidebar-item">
-
-            <span class="material-icons-outlined menu-icon">
+            <span class="material-icons-round">
                 bar_chart
             </span>
 
@@ -1049,502 +1392,692 @@ main{
                 Relatórios
             </span>
 
-        </a>
+        </button>
 
-    </nav>
-
-
-    <div class="menu-label">
-        Sistema
     </div>
 
-    <nav class="menu">
 
-        <a href="configuracoes.html" class="sidebar-item">
+    <!-- CONTA -->
 
-            <span class="material-icons-outlined menu-icon">
-                settings
+    <div class="menu-section">
+
+        <div class="menu-section-title">
+            Conta
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Perfil')">
+
+            <span class="material-icons-round">
+                person_outline
             </span>
 
             <span>
-                Configurações
+                Perfil
             </span>
 
-        </a>
+        </button>
 
-    </nav>
+    </div>
 
 </aside>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- =================================
+     BOTÃO MENU
+================================= -->
 
-<main>
+<button
+    class="menu-btn"
+    onclick="openMenu()"
+    aria-label="Abrir menu">
+
+    <span class="material-icons-round">
+        menu
+    </span>
+
+</button>
 
 
-    <!-- TÍTULO -->
+<!-- =================================
+     AÇÕES DO TOPO
+================================= -->
 
-    <div class="title-area">
+<div class="top-actions">
 
-        <h1 class="dashboard-title">
-            Dashboard
-        </h1>
 
-        <div class="date-filter">
+    <button
+        class="notification-btn"
+        onclick="openNotifications()"
+        aria-label="Notificações">
 
-            <span class="material-icons-outlined">
-                calendar_month
+        <span class="material-icons-round">
+            notifications_none
+        </span>
+
+    </button>
+
+
+    <button
+        class="theme-btn"
+        onclick="toggleTheme()"
+        aria-label="Alterar tema">
+
+        <span
+            class="material-symbols-outlined"
+            id="themeIcon">
+
+            wb_sunny
+
+        </span>
+
+    </button>
+
+
+</div>
+
+
+<!-- =================================
+     CARDS DO DASHBOARD
+================================= -->
+
+<div class="dashboard-cards">
+
+
+    <!-- CARD 1 — SALDO -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                account_balance_wallet
             </span>
 
-            <span class="selected-date">
-                Hoje
-            </span>
+        </div>
 
-            <div class="date-menu">
 
-                <div class="date-option">
-                    Hoje
-                </div>
+        <div class="card-label">
+            Saldo Disponível
+        </div>
 
-                <div class="date-option">
-                    Ontem
-                </div>
 
-                <div class="date-option">
-                    Últimos 7 dias
-                </div>
+        <div class="balance-value-row">
 
-                <div class="date-option">
-                    Últimos 30 dias
-                </div>
+
+            <button
+                class="eye-btn"
+                onclick="toggleBalance()"
+                aria-label="Mostrar ou ocultar saldo">
+
+                <span
+                    class="material-icons-round"
+                    id="eye">
+
+                    visibility
+
+                </span>
+
+            </button>
+
+
+            <div
+                class="balance-value"
+                id="balance">
+
+                25.000 MT
 
             </div>
 
+
         </div>
+
+
+        <button
+            class="withdraw-btn"
+            onclick="withdraw()">
+
+            <span>
+                Sacar
+            </span>
+
+
+            <span class="material-icons-round">
+                chevron_right
+            </span>
+
+        </button>
+
 
     </div>
 
 
-    <!-- =========================
-         4 CARDS
-    ========================= -->
+    <!-- CARD 2 — VENDAS REALIZADAS -->
 
-    <div class="container">
+    <div class="dashboard-card">
 
 
-        <div class="card verde">
+        <div class="card-icon">
 
-            <div class="icon">
-
-                <span class="material-icons-outlined">
-                    trending_up
-                </span>
-
-            </div>
-
-            <div class="titulo">
-                Receita Total
-            </div>
-
-            <div class="valor">
-                100.000,00 MT
-            </div>
+            <span class="material-icons-round">
+                shopping_cart
+            </span>
 
         </div>
 
 
-        <div class="card laranja">
-
-            <div class="icon">
-
-                <span class="material-icons-outlined">
-                    shopping_cart
-                </span>
-
-            </div>
-
-            <div class="titulo">
-                Vendas Realizadas
-            </div>
-
-            <div class="valor">
-                46
-            </div>
-
+        <div class="card-label">
+            Vendas realizadas
         </div>
 
 
-        <div class="card vermelho">
+        <div
+            class="card-value sales-value"
+            id="salesCount">
 
-            <div class="icon">
-
-                <span class="material-icons-outlined">
-                    error
-                </span>
-
-            </div>
-
-            <div class="titulo">
-                Vendas Falhadas
-            </div>
-
-            <div class="valor">
-                13
-            </div>
+            0
 
         </div>
 
-
-        <div class="card verde">
-
-            <div class="icon">
-
-                <span class="material-icons-outlined">
-                    account_balance_wallet
-                </span>
-
-            </div>
-
-            <div class="titulo">
-                Saldo Disponível
-            </div>
-
-            <div class="valor">
-                95.000,00 MT
-            </div>
-
-        </div>
 
     </div>
 
 
-    <!-- =========================
-         PAGAMENTOS + GRÁFICO
-    ========================= -->
+    <!-- CARD 3 — VENDAS FALHADAS -->
 
-    <div class="bottom-grid">
+    <div class="dashboard-card">
 
 
-        <!-- MEIOS DE PAGAMENTO -->
+        <div class="card-icon">
 
-        <section class="payment-card">
+            <span class="material-icons-round">
+                cancel
+            </span>
 
-            <div class="section-header">
+        </div>
 
-                <div class="section-title">
-                    Meios de pagamento
-                </div>
 
-                <div class="see-all">
+        <div class="card-label">
+            Vendas falhadas
+        </div>
 
-                    Ver todos
 
-                    <span class="material-icons-outlined" style="font-size:15px;">
-                        chevron_right
-                    </span>
+        <div
+            class="card-value failed-value"
+            id="failedCount">
 
-                </div>
+            0
+
+        </div>
+
+
+    </div>
+
+
+    <!-- CARD 4 — TAXA DE CONVERSÃO -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                percent
+            </span>
+
+        </div>
+
+
+        <div class="card-label">
+            Taxa de conversão
+        </div>
+
+
+        <div
+            class="card-value conversion-value"
+            id="conversionRate">
+
+            0%
+
+        </div>
+
+
+    </div>
+
+
+    <!-- CARD 5 — MEIOS DE PAGAMENTO -->
+
+    <div class="payment-card">
+
+
+        <div class="payment-header">
+
+
+            <div class="payment-title">
+                Meios de pagamento
+            </div>
+
+
+            <span class="material-icons-round payment-icon">
+                payments
+            </span>
+
+
+        </div>
+
+
+        <!-- E-MOLA -->
+
+        <div class="payment-method">
+
+
+            <div class="payment-logo">
+
+                <img
+                    src="./assets/emola.png"
+                    alt="e-Mola">
 
             </div>
 
 
-            <div class="table-header">
-
-                <div>
-                    Método
-                </div>
-
-                <div>
-                    Aprovação
-                </div>
-
-                <div>
-                    Valor
-                </div>
-
-            </div>
+            <div class="payment-content">
 
 
-            <!-- MPESA -->
+                <div class="payment-top">
 
-            <div class="payment-row">
-
-                <div class="payment-method">
-
-                    <div class="icon-box">
-
-                        <img
-                            src="imagens/mpesa.png"
-                            alt="M-Pesa"
-                        >
-
-                    </div>
-
-                    <span>
-                        M-Pesa
-                    </span>
-
-                </div>
-
-                <div class="approval">
-                    0%
-                </div>
-
-                <div class="value">
-                    0,00 MT
-                </div>
-
-            </div>
-
-
-            <!-- EMOLA -->
-
-            <div class="payment-row">
-
-                <div class="payment-method">
-
-                    <div class="icon-box">
-
-                        <img
-                            src="imagens/emola.png"
-                            alt="e-Mola"
-                        >
-
-                    </div>
-
-                    <span>
+                    <span class="payment-name">
                         e-Mola
                     </span>
 
-                </div>
+                    <span
+                        class="payment-percent"
+                        id="emolaPercent">
 
-                <div class="approval">
-                    0%
-                </div>
+                        62%
 
-                <div class="value">
-                    0,00 MT
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             GRÁFICO
-        ========================= -->
-
-        <section class="chart-card">
-
-            <div class="chart-header">
-
-                <div class="chart-title">
-                    Desempenho de vendas
-                </div>
-
-                <div class="chart-filter">
-                    Últimos 7 dias
-                </div>
-
-            </div>
-
-
-            <div class="chart">
-
-                <div class="chart-labels">
-
-                    <span>1000</span>
-                    <span>750</span>
-                    <span>500</span>
-                    <span>250</span>
-                    <span>0</span>
+                    </span>
 
                 </div>
 
 
-                <div class="chart-grid">
+                <div class="payment-progress">
 
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-
-                </div>
-
-
-                <div class="chart-area">
-
-                    <div class="chart-line"></div>
-
-                    <div class="chart-points">
-
-                        <span class="point"></span>
-                        <span class="point"></span>
-                        <span class="point"></span>
-                        <span class="point"></span>
-                        <span class="point"></span>
-                        <span class="point"></span>
-                        <span class="point"></span>
-
+                    <div
+                        class="payment-progress-bar emola-progress"
+                        id="emolaProgress">
                     </div>
 
                 </div>
 
 
-                <div class="chart-days">
+            </div>
 
-                    <span>27 Jul</span>
-                    <span>28 Jul</span>
-                    <span>29 Jul</span>
-                    <span>30 Jul</span>
-                    <span>31 Jul</span>
-                    <span>01 Ago</span>
-                    <span>02 Ago</span>
+        </div>
+
+
+        <!-- M-PESA -->
+
+        <div class="payment-method">
+
+
+            <div class="payment-logo">
+
+                <img
+                    src="./assets/mpesa.png"
+                    alt="M-Pesa">
+
+            </div>
+
+
+            <div class="payment-content">
+
+
+                <div class="payment-top">
+
+                    <span class="payment-name">
+                        M-Pesa
+                    </span>
+
+                    <span
+                        class="payment-percent"
+                        id="mpesaPercent">
+
+                        38%
+
+                    </span>
 
                 </div>
 
+
+                <div class="payment-progress">
+
+                    <div
+                        class="payment-progress-bar mpesa-progress"
+                        id="mpesaProgress">
+                    </div>
+
+                </div>
+
+
             </div>
 
+        </div>
 
-            <div class="chart-legend">
-
-                <span class="legend-dot"></span>
-
-                <span>
-                    Vendas (MT)
-                </span>
-
-            </div>
-
-        </section>
 
     </div>
 
-</main>
+
+</div>
 
 
 <script>
 
-/* =========================
-   SIDEBAR
-========================= */
 
-const sidebar =
-    document.querySelector(".sidebar");
+/* =================================
+   SALDO
+================================= */
 
-const menuButton =
-    document.querySelector(".menu-button");
-
-const closeButton =
-    document.querySelector(".close-button");
+let balanceVisible = true;
 
 
-menuButton.addEventListener("click", () => {
+function toggleBalance(){
 
-    sidebar.classList.add("active");
-
-});
-
-
-closeButton.addEventListener("click", () => {
-
-    sidebar.classList.remove("active");
-
-});
+    const balance =
+        document.getElementById("balance");
 
 
-/* =========================
-   TEMA
-========================= */
-
-const themeButton =
-    document.querySelector(".theme-button");
+    const eye =
+        document.getElementById("eye");
 
 
-themeButton.addEventListener("click", () => {
+    balanceVisible =
+        !balanceVisible;
 
-    document.body.classList.toggle("light-mode");
 
-    if(
-        document.body.classList.contains("light-mode")
-    ){
+    if(balanceVisible){
 
-        themeButton.textContent =
-            "light_mode";
+        balance.textContent =
+            "25.000 MT";
+
+
+        eye.textContent =
+            "visibility";
+
 
     }else{
 
-        themeButton.textContent =
-            "dark_mode";
+        balance.textContent =
+            "******";
+
+
+        eye.textContent =
+            "visibility_off";
 
     }
 
-});
+}
 
 
-/* =========================
-   FILTRO DE DATA
-========================= */
+/* =================================
+   SAQUE
+================================= */
 
-const dateFilter =
-    document.querySelector(".date-filter");
+function withdraw(){
 
-const dateMenu =
-    document.querySelector(".date-menu");
+    alert("Área de saque");
 
-const selectedDate =
-    document.querySelector(".selected-date");
-
-const dateOptions =
-    document.querySelectorAll(".date-option");
+}
 
 
-dateFilter.addEventListener("click", (e) => {
+/* =================================
+   MENU
+================================= */
 
-    if(
-        e.target.classList.contains("date-option")
-    ){
+function openMenu(){
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+
+    sideMenu.style.visibility =
+        "visible";
+
+
+    sideMenu.style.opacity =
+        "1";
+
+
+    sideMenu.classList.add("open");
+
+
+    overlay.classList.add("open");
+
+}
+
+
+function closeMenu(){
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+
+    sideMenu.classList.remove("open");
+
+
+    overlay.classList.remove("open");
+
+
+    setTimeout(function(){
+
+        if(!sideMenu.classList.contains("open")){
+
+            sideMenu.style.visibility =
+                "hidden";
+
+        }
+
+    },260);
+
+}
+
+
+function menuAction(item){
+
+    if(item === "Dashboard"){
+
+        closeMenu();
 
         return;
 
     }
 
-    dateMenu.classList.toggle("active");
 
-});
+    if(item === "Cadastrar produtos"){
 
+        window.location.href =
+            "cadastrar-produto.html";
 
-dateOptions.forEach(option => {
-
-    option.addEventListener("click", () => {
-
-        selectedDate.textContent =
-            option.textContent;
-
-        dateMenu.classList.remove("active");
-
-    });
-
-});
-
-
-document.addEventListener("click", (e) => {
-
-    if(
-        !dateFilter.contains(e.target)
-    ){
-
-        dateMenu.classList.remove("active");
+        return;
 
     }
 
-});
+
+    if(item === "Meus produtos"){
+
+        window.location.href =
+            "meus-produtos.html";
+
+        return;
+
+    }
+
+
+    if(item === "Pedidos"){
+
+        window.location.href =
+            "pedidos.html";
+
+        return;
+
+    }
+
+
+    if(item === "Saques"){
+
+        window.location.href =
+            "saques.html";
+
+        return;
+
+    }
+
+
+    if(item === "Relatórios"){
+
+        window.location.href =
+            "relatorios.html";
+
+        return;
+
+    }
+
+
+    if(item === "Perfil"){
+
+        window.location.href =
+            "perfil.html";
+
+        return;
+
+    }
+
+}
+
+
+/* =================================
+   NOTIFICAÇÕES
+================================= */
+
+function openNotifications(){
+
+    alert("Notificações");
+
+}
+
+
+/* =================================
+   MODO CLARO / ESCURO
+================================= */
+
+function toggleTheme(){
+
+    const body =
+        document.body;
+
+
+    const icon =
+        document.getElementById(
+            "themeIcon"
+        );
+
+
+    if(body.classList.contains("light")){
+
+        body.classList.remove("light");
+
+
+        icon.textContent =
+            "wb_sunny";
+
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+
+
+    }else{
+
+        body.classList.add("light");
+
+
+        icon.textContent =
+            "dark_mode";
+
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+    }
+
+}
+
+
+/* =================================
+   CARREGAR TEMA
+================================= */
+
+function loadTheme(){
+
+    const savedTheme =
+        localStorage.getItem(
+            "theme"
+        );
+
+
+    const icon =
+        document.getElementById(
+            "themeIcon"
+        );
+
+
+    if(savedTheme === "light"){
+
+        document.body.classList.add(
+            "light"
+        );
+
+
+        icon.textContent =
+            "dark_mode";
+
+
+    }else{
+
+        document.body.classList.remove(
+            "light"
+        );
+
+
+        icon.textContent =
+            "wb_sunny";
+
+    }
+
+}
+
+
+/* =================================
+   INICIAR
+================================= */
+
+loadTheme();
 
 </script>
 
+
 </body>
-</html>    
+</html>
