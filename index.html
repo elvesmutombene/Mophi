@@ -13,19 +13,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="./js/supabase.js"></script>
 <script src="./js/auth.js"></script>
 
+
 <style>
 
+/* =================================
+   RESET
+================================= */
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -33,202 +40,328 @@ html{
 }
 
 body{
+
     font-family:'Plus Jakarta Sans',sans-serif;
+
     background:#000;
+
     color:#fff;
-    padding:80px 16px 30px;
+
+    padding:80px 16px 20px;
+
     transition:.2s;
-}
 
-:root{
-    --bg:#000;
-    --card-bg:#0A0A0A;
-    --input-bg:#111;
-    --border:#242424;
-    --text:#fff;
-    --muted:#777;
-    --placeholder:#666;
-    --green:#6EDC82;
-    --yellow:#F5C542;
-}
-
-/* =========================
-   TEMA CLARO
-========================= */
-
-body.light{
-    --bg:#F5F5F5;
-    --card-bg:#fff;
-    --input-bg:#F1F1F1;
-    --border:transparent;
-    --text:#111;
-    --muted:#666;
-    --placeholder:#888;
-}
-
-/* =========================
-   BOTÕES
-========================= */
-
-button,
-a{
     -webkit-tap-highlight-color:transparent;
 }
 
+
+/* =================================
+   VARIÁVEIS
+================================= */
+
+:root{
+
+    --bg:#000;
+
+    --card-bg:#0A0A0A;
+
+    --input-bg:#111;
+
+    --border:#242424;
+
+    --text:#fff;
+
+    --muted:#777;
+
+    --placeholder:#666;
+
+    --green:#6EDC82;
+
+    --yellow:#F5C542;
+}
+
+
+/* =================================
+   TEMA CLARO
+================================= */
+
+body.light{
+
+    --bg:#F5F5F5;
+
+    --card-bg:#FFFFFF;
+
+    --input-bg:#F1F1F1;
+
+    --border:transparent;
+
+    --text:#111;
+
+    --muted:#666;
+
+    --placeholder:#888;
+
+    background:#F5F5F5;
+
+    color:#111;
+}
+
+
+/* =================================
+   RESET DE BOTÕES
+================================= */
+
 button{
+
     font-family:inherit;
+
     outline:0 !important;
+
     box-shadow:none !important;
+
+    border:0;
+
+    -webkit-tap-highlight-color:transparent;
+
 }
 
 button:hover,
 button:focus,
 button:active{
+
     outline:0 !important;
+
     box-shadow:none !important;
+
     filter:none !important;
+
+    text-shadow:none !important;
+
 }
 
-/* =========================
-   MENU
-========================= */
+
+/* =================================
+   BOTÃO MENU
+================================= */
 
 .menu-btn{
+
     position:fixed;
+
     top:20px;
     left:16px;
 
     width:50px;
     height:50px;
 
-    border:0;
     background:transparent;
+
     color:var(--text);
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     cursor:pointer;
+
     z-index:100001;
+
 }
 
 .menu-btn .material-icons-round{
+
     font-size:28px;
+
 }
 
+
+/* =================================
+   MENU LATERAL
+================================= */
+
 .side-menu{
+
     position:fixed;
+
     top:0;
     left:0;
 
     width:240px;
+
     height:100vh;
 
     background:var(--card-bg);
+
     border-right:1px solid var(--border);
 
     z-index:100000;
 
     transform:translateX(-100%);
+
     transition:transform .25s ease;
 
     overflow-y:auto;
-    padding:22px 14px;
+
+    padding:20px 14px;
+
 }
+
+
+/* MENU ABERTO */
 
 .side-menu.open{
+
     transform:translateX(0);
+
 }
 
-.menu-close{
+
+/* =================================
+   CABEÇALHO DO MENU
+================================= */
+
+.side-menu-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:28px;
+
+}
+
+
+.side-menu-logo{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+.side-menu-logo img{
+
+    width:110px;
+
+    height:auto;
+
+    display:block;
+
+}
+
+
+.close-menu{
+
     width:42px;
+
     height:42px;
 
-    border:0;
     background:transparent;
+
     color:var(--text);
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     cursor:pointer;
 
-    margin-left:auto;
-    margin-bottom:10px;
 }
 
-.menu-close .material-icons-round{
+
+.close-menu .material-icons-round{
+
     font-size:25px;
+
 }
 
-.menu-logo{
-    display:flex;
-    justify-content:center;
-    align-items:center;
 
-    margin:4px 0 28px;
-}
-
-.menu-logo img{
-    width:110px;
-    height:auto;
-    display:block;
-}
+/* =================================
+   SEÇÕES DO MENU
+================================= */
 
 .menu-section{
+
     margin-bottom:24px;
+
 }
 
-.menu-title{
+
+.menu-section-title{
+
     font-size:11px;
+
     font-weight:700;
+
     color:var(--muted);
 
     text-transform:uppercase;
+
     letter-spacing:.5px;
 
     margin:0 10px 8px;
+
 }
 
+
 .menu-item{
+
     width:100%;
 
     display:flex;
+
     align-items:center;
+
     gap:12px;
 
     padding:12px 10px;
 
-    border:0;
     background:transparent;
+
     color:var(--text);
 
     border-radius:8px;
 
     font-size:13px;
+
     font-weight:600;
 
     text-align:left;
+
     cursor:pointer;
 
-    transition:none;
 }
 
-.menu-item:hover,
-.menu-item:focus,
-.menu-item:active{
-    background:transparent;
-    color:var(--text);
-}
 
 .menu-item .material-icons-round{
+
     font-size:21px;
+
 }
 
+
+.menu-item.active{
+
+    color:var(--text);
+
+}
+
+
+/* =================================
+   OVERLAY
+================================= */
+
 .overlay{
+
     position:fixed;
+
     inset:0;
 
     background:rgba(0,0,0,.55);
@@ -236,658 +369,946 @@ button:active{
     z-index:99998;
 
     opacity:0;
+
     visibility:hidden;
 
     transition:.2s;
+
 }
+
 
 .overlay.show{
+
     opacity:1;
+
     visibility:visible;
+
 }
 
-/* =========================
-   TOPO
-========================= */
+
+/* =================================
+   AÇÕES DO TOPO
+================================= */
 
 .top-actions{
+
     position:fixed;
+
     top:20px;
+
     right:16px;
 
     display:flex;
+
     align-items:center;
+
     gap:9px;
 
     z-index:99997;
+
 }
 
-.top-action{
+
+.notification-btn,
+.theme-btn{
+
     width:44px;
+
     height:44px;
 
-    border:0;
     background:transparent;
 
     color:var(--text);
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     cursor:pointer;
+
 }
 
-.top-action .material-icons-round,
-.top-action .material-symbols-outlined{
+
+.notification-btn .material-icons-round{
+
     font-size:24px;
+
 }
 
-/* =========================
+
+.theme-btn .material-symbols-outlined{
+
+    font-size:24px;
+
+}
+
+
+/* =================================
    CONTEÚDO
-========================= */
+================================= */
 
 .main-content{
+
     width:100%;
-    max-width:1200px;
+
+    max-width:1100px;
+
     margin:0 auto;
+
 }
 
-/* =========================
-   GRID PRINCIPAL
-========================= */
+
+/* =================================
+   GRID DO DASHBOARD
+================================= */
 
 .dashboard-grid{
+
     width:100%;
 
     display:grid;
+
     grid-template-columns:repeat(6,1fr);
+
     gap:16px;
 
     align-items:start;
+
 }
 
-/* =========================
-   CARDS
-========================= */
 
-.dashboard-card,
-.payment-card,
-.chart-card{
+/* =================================
+   CARDS
+================================= */
+
+.dashboard-card{
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:25px;
+
+    box-shadow:none !important;
+
+}
+
+
+/* =================================
+   ÍCONE DOS CARDS
+================================= */
+
+.card-icon{
+
+    width:42px;
+    height:42px;
+
+    border-radius:9px;
+
+    background:var(--input-bg);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:20px;
+
+}
+
+
+.card-icon .material-icons-round{
+
+    font-size:22px;
+
+}
+
+
+/* =================================
+   LABEL
+================================= */
+
+.card-label{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:var(--muted);
+
+    margin-bottom:10px;
+
+}
+
+
+/* =================================
+   VALOR
+================================= */
+
+.card-value{
+
+    font-size:28px;
+
+    font-weight:800;
+
+}
+
+
+/* =================================
+   SALDO
+================================= */
+
+.balance-value-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.balance-value{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:var(--green);
+
+}
+
+
+.eye-btn{
+
+    width:28px;
+
+    height:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+}
+
+
+.eye-btn .material-icons-round{
+
+    font-size:20px;
+
+}
+
+
+.withdraw-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:11px 14px;
+
+    border-radius:7px;
+
+    background:var(--yellow);
+
+    color:#000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+.withdraw-btn .material-icons-round{
+
+    font-size:18px;
+
+}
+
+
+/* =================================
+   MEIOS DE PAGAMENTO
+================================= */
+
+.payment-card{
+
     width:100%;
 
     background:var(--card-bg);
 
     border:2px solid var(--border);
+
     border-radius:11px;
-
-    box-shadow:none !important;
-}
-
-/* Saldo */
-
-.balance-card{
-    grid-column:span 2;
-
-    position:relative;
-
-    padding:28px 22px;
-    min-height:190px;
-}
-
-.balance-title{
-    font-size:13px;
-    color:var(--muted);
-    font-weight:600;
-
-    margin-bottom:12px;
-}
-
-.balance-value{
-    font-size:30px;
-    font-weight:800;
-    letter-spacing:-1px;
-
-    margin-bottom:22px;
-}
-
-.balance-value span{
-    color:var(--green);
-}
-
-.balance-bottom{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.eye-btn{
-    border:0;
-    background:transparent;
-    color:var(--muted);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
-}
-
-.eye-btn .material-icons-round{
-    font-size:22px;
-}
-
-.withdraw-btn{
-    border:0;
-    background:var(--yellow);
-    color:#000;
-
-    padding:10px 18px;
-
-    border-radius:7px;
-
-    font-size:12px;
-    font-weight:800;
-
-    cursor:pointer;
-}
-
-.wallet-icon{
-    position:absolute;
-    top:22px;
-    right:20px;
-
-    color:var(--yellow);
-}
-
-.wallet-icon .material-icons-round{
-    font-size:25px;
-}
-
-/* =========================
-   CARDS DE MÉTRICAS
-========================= */
-
-.metric-card{
-    grid-column:span 2;
-
-    padding:25px;
-
-    min-height:190px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-}
-
-.metric-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.metric-title{
-    color:var(--muted);
-    font-size:13px;
-    font-weight:600;
-}
-
-.metric-icon{
-    width:38px;
-    height:38px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:8px;
-
-    background:var(--input-bg);
-}
-
-.metric-icon .material-icons-round{
-    font-size:21px;
-}
-
-.metric-value{
-    font-size:28px;
-    font-weight:800;
-
-    margin-top:18px;
-}
-
-.metric-sub{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:6px;
-}
-
-/* =========================
-   MEIOS DE PAGAMENTO
-========================= */
-
-.payment-card{
-    grid-column:5 / 7;
-    grid-row:1 / 3;
 
     padding:25px;
 
     height:auto;
-    min-height:396px;
 
-    align-self:stretch;
+    min-height:0;
+
+    box-shadow:none !important;
+
 }
 
-.card-header{
+
+.section-header{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     margin-bottom:25px;
+
 }
 
-.card-title{
+
+.section-title{
+
     font-size:15px;
+
     font-weight:700;
+
 }
+
 
 .see-all{
-    display:flex;
-    align-items:center;
-    gap:4px;
 
-    border:0;
-    background:transparent;
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
 
     color:var(--muted);
 
     font-size:11px;
+
     font-weight:600;
 
     cursor:pointer;
+
 }
 
-.see-all .material-icons-round{
-    font-size:17px;
-}
 
-.payment-table{
-    width:100%;
-}
+.table-header{
 
-.payment-head,
-.payment-row{
     display:grid;
-    grid-template-columns:1.5fr 1fr 1fr;
-    align-items:center;
-    gap:10px;
-}
 
-.payment-head{
+    grid-template-columns:1.5fr 1fr 1fr;
+
+    gap:10px;
+
+    padding-bottom:12px;
+
     color:var(--muted);
+
     font-size:10px;
+
     font-weight:600;
 
-    padding:0 0 12px;
-
     border-bottom:1px solid var(--border);
+
 }
+
 
 .payment-row{
-    padding:17px 0;
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr 1fr;
+
+    gap:10px;
+
+    align-items:center;
+
+    padding:15px 0;
 
     border-bottom:1px solid var(--border);
+
 }
+
 
 .payment-row:last-child{
+
     border-bottom:0;
+
 }
+
 
 .payment-method{
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
+    font-size:12px;
+
+    font-weight:700;
+
 }
 
-.payment-logo{
+
+.icon-box{
+
     width:34px;
+
+    height:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.icon-box img{
+
+    width:34px;
+
     height:34px;
 
     object-fit:contain;
 
-    border-radius:7px;
 }
 
-.payment-name{
-    font-size:12px;
-    font-weight:700;
-}
 
-.payment-value{
+.approval{
+
     font-size:11px;
-    font-weight:600;
-}
 
-.payment-success{
     color:var(--green);
+
+    font-weight:600;
+
 }
 
-.payment-amount{
+
+.value{
+
+    font-size:11px;
+
+    font-weight:600;
+
     text-align:right;
+
 }
 
-/* =========================
-   DESEMPENHO
-========================= */
+
+/* =================================
+   GRÁFICO
+================================= */
 
 .chart-card{
-    grid-column:span 6;
+
+    width:100%;
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
 
     padding:25px;
 
-    min-height:350px;
+    height:auto;
+
+    box-shadow:none !important;
+
 }
 
+
 .chart-header{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     margin-bottom:25px;
+
 }
 
-.chart-filter{
-    display:flex;
-    align-items:center;
-    gap:5px;
 
-    border:0;
-    background:var(--input-bg);
+.chart-title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+}
+
+
+.chart-filter{
 
     color:var(--muted);
 
-    padding:9px 12px;
+    font-size:11px;
 
-    border-radius:7px;
-
-    font-size:10px;
     font-weight:600;
 
-    cursor:pointer;
 }
 
-.chart-filter .material-icons-round{
-    font-size:16px;
-}
 
-.chart-area{
+.chart{
+
     position:relative;
 
     width:100%;
+
     height:220px;
 
-    display:flex;
 }
 
-.chart-y{
+
+.chart-labels{
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    bottom:25px;
+
     width:40px;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:space-between;
 
-    padding:0 0 20px;
-
     color:var(--muted);
+
     font-size:9px;
+
 }
 
-.chart-main{
-    position:relative;
 
-    flex:1;
-    height:100%;
+.chart-grid{
+
+    position:absolute;
+
+    left:45px;
+
+    right:0;
+
+    top:0;
+
+    bottom:25px;
+
 }
+
 
 .grid-line{
+
     position:absolute;
+
     left:0;
+
     right:0;
 
     border-top:1px dashed var(--border);
+
 }
 
-.grid-line.one{top:0;}
-.grid-line.two{top:25%;}
-.grid-line.three{top:50%;}
-.grid-line.four{top:75%;}
-.grid-line.five{top:100%;}
 
-.chart-svg{
-    position:absolute;
+.grid-line:nth-child(1){
 
-    left:0;
-    right:0;
     top:0;
 
-    width:100%;
-    height:190px;
-
-    overflow:visible;
 }
 
-.chart-labels{
+
+.grid-line:nth-child(2){
+
+    top:25%;
+
+}
+
+
+.grid-line:nth-child(3){
+
+    top:50%;
+
+}
+
+
+.grid-line:nth-child(4){
+
+    top:75%;
+
+}
+
+
+.grid-line:nth-child(5){
+
+    bottom:0;
+
+}
+
+
+.chart-area{
+
+    position:absolute;
+
+    left:45px;
+
+    right:0;
+
+    top:0;
+
+    bottom:25px;
+
+}
+
+
+.chart-line{
+
     position:absolute;
 
     left:0;
+
     right:0;
-    bottom:0;
+
+    top:78%;
+
+    height:3px;
+
+    background:var(--green);
+
+    border-radius:5px;
+
+}
+
+
+.chart-points{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    top:calc(78% - 3px);
 
     display:grid;
+
     grid-template-columns:repeat(7,1fr);
 
-    color:var(--muted);
-    font-size:9px;
-    text-align:center;
-}
-
-.chart-legend{
-    display:flex;
     align-items:center;
-    gap:8px;
 
-    margin-top:16px;
-
-    color:var(--muted);
-
-    font-size:10px;
 }
 
-.legend-dot{
+
+.point{
+
     width:8px;
+
     height:8px;
 
     border-radius:50%;
 
     background:var(--green);
+
+    justify-self:center;
+
 }
 
-/* =========================
-   LIGHT MODE
-========================= */
 
-body.light .side-menu{
-    border-right:0;
+.chart-days{
+
+    position:absolute;
+
+    left:45px;
+
+    right:0;
+
+    bottom:0;
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:9px;
+
 }
+
+
+.chart-legend{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:10px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+.legend-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+}
+
+
+/* =================================
+   TEMA CLARO
+================================= */
 
 body.light .dashboard-card,
 body.light .payment-card,
 body.light .chart-card{
+
     border-color:transparent;
+
 }
 
-body.light .payment-head,
+
+body.light .table-header,
 body.light .payment-row{
+
     border-color:#E8E8E8;
+
 }
+
 
 body.light .grid-line{
+
     border-color:#E5E5E5;
+
 }
 
-body.light .metric-icon{
-    background:#F1F1F1;
-}
 
-body.light .chart-filter{
-    background:#F1F1F1;
-}
-
-/* =========================
+/* =================================
    PC / NOTEBOOK
-========================= */
+================================= */
 
 @media (min-width:768px){
 
     body{
+
         padding-left:280px;
+
         padding-right:40px;
+
     }
+
 
     .menu-btn{
+
         display:none;
+
     }
 
-    .menu-close{
+
+    .close-menu{
+
         display:none;
+
     }
+
 
     .side-menu{
+
         transform:translateX(0);
+
     }
+
 
     .overlay{
+
         display:none;
+
     }
 
-    .main-content{
-        max-width:1200px;
+
+    /* SALDO */
+
+    .dashboard-card:nth-child(1){
+
+        grid-column:1 / 3;
+
+        grid-row:1;
+
     }
 
-    .dashboard-grid{
-        grid-template-columns:repeat(6,1fr);
+
+    /* VENDAS REALIZADAS */
+
+    .dashboard-card:nth-child(2){
+
+        grid-column:3 / 5;
+
+        grid-row:1;
+
+    }
+
+
+    /* VENDAS FALHADAS */
+
+    .dashboard-card:nth-child(3){
+
+        grid-column:1 / 3;
+
+        grid-row:2;
+
+    }
+
+
+    /* TAXA DE CONVERSÃO */
+
+    .dashboard-card:nth-child(4){
+
+        grid-column:3 / 5;
+
+        grid-row:2;
+
+    }
+
+
+    /* MEIOS DE PAGAMENTO */
+
+    .payment-card{
+
+        grid-column:5 / 7;
+
+        grid-row:1 / 3;
+
+    }
+
+
+    /* DESEMPENHO */
+
+    .chart-card{
+
+        grid-column:1 / 7;
+
+        grid-row:3;
+
     }
 
 }
 
-/* =========================
-   ECRÃ GRANDE
-========================= */
 
-@media (min-width:1400px){
-
-    body{
-        padding-right:60px;
-    }
-
-    .main-content{
-        max-width:1250px;
-    }
-
-}
-
-/* =========================
+/* =================================
    MOBILE
-========================= */
+================================= */
 
 @media (max-width:767px){
 
     body{
-        padding:80px 16px 25px;
+
+        padding:80px 16px 20px;
+
     }
 
-    .side-menu{
-        width:270px;
-    }
 
     .dashboard-grid{
+
         display:flex;
+
         flex-direction:column;
+
         gap:16px;
+
     }
 
-    .balance-card,
-    .metric-card,
+
+    .dashboard-card,
     .payment-card,
     .chart-card{
+
         width:100%;
-        grid-column:auto;
-        grid-row:auto;
+
     }
 
-    .balance-card,
-    .metric-card{
-        min-height:0;
-    }
 
     .payment-card{
-        min-height:0;
+
         height:auto;
-    }
 
-    .chart-card{
         min-height:0;
+
     }
 
-    .payment-head,
-    .payment-row{
-        grid-template-columns:1.4fr 1fr 1fr;
-    }
 
-    .chart-area{
-        height:190px;
-    }
+    .side-menu{
 
-    .chart-header{
-        gap:10px;
-    }
+        width:270px;
 
-    .card-title{
-        font-size:14px;
     }
 
 }
 
-/* =========================
+
+/* =================================
    MOBILE PEQUENO
-========================= */
+================================= */
 
 @media (max-width:400px){
 
+    .dashboard-card,
     .payment-card,
     .chart-card{
-        padding:20px 16px;
-    }
 
-    .metric-card{
         padding:22px 18px;
+
     }
 
-    .balance-card{
-        padding:25px 19px;
-    }
 
-    .payment-head,
-    .payment-row{
+    .payment-row,
+    .table-header{
+
         gap:6px;
-    }
 
-    .payment-name{
-        font-size:11px;
-    }
-
-    .payment-value{
-        font-size:10px;
     }
 
 }
@@ -896,383 +1317,603 @@ body.light .chart-filter{
 
 </head>
 
+
 <body>
 
-<!-- =========================
-     BOTÃO MENU MOBILE
-========================= -->
 
-<button class="menu-btn" onclick="openMenu()">
-    <span class="material-icons-round">menu</span>
+<!-- =================================
+     BOTÃO MENU
+================================= -->
+
+<button
+    class="menu-btn"
+    onclick="openMenu()"
+    aria-label="Abrir menu">
+
+    <span class="material-icons-round">
+        menu
+    </span>
+
 </button>
 
-<!-- =========================
-     AÇÕES DO TOPO
-========================= -->
+
+<!-- =================================
+     AÇÕES
+================================= -->
 
 <div class="top-actions">
 
-    <button class="top-action" onclick="showNotifications()">
-        <span class="material-icons-round">notifications_none</span>
+
+    <button
+        class="notification-btn"
+        onclick="openNotifications()"
+        aria-label="Notificações">
+
+        <span class="material-icons-round">
+            notifications_none
+        </span>
+
     </button>
 
-    <button class="top-action" onclick="toggleTheme()">
-        <span class="material-icons-round" id="themeIcon">
-            dark_mode
+
+    <button
+        class="theme-btn"
+        onclick="toggleTheme()"
+        aria-label="Alterar tema">
+
+        <span
+            class="material-symbols-outlined"
+            id="themeIcon">
+
+            wb_sunny
+
         </span>
+
     </button>
+
 
 </div>
 
-<!-- =========================
+
+<!-- =================================
      OVERLAY
-========================= -->
+================================= -->
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()">
+</div>
 
-<!-- =========================
+
+<!-- =================================
      MENU LATERAL
-========================= -->
+================================= -->
 
-<aside class="side-menu" id="sideMenu">
+<aside
+    class="side-menu"
+    id="sideMenu">
 
-    <button class="menu-close" onclick="closeMenu()">
-        <span class="material-icons-round">close</span>
-    </button>
 
-    <div class="menu-logo">
-        <img src="./assets/logo.png" alt="PRODUTIVA">
+    <div class="side-menu-header">
+
+
+        <div class="side-menu-logo">
+
+            <img
+                src="./assets/logo.png"
+                alt="PRODUTIVA">
+
+        </div>
+
+
+        <button
+            class="close-menu"
+            onclick="closeMenu()"
+            aria-label="Fechar menu">
+
+            <span class="material-icons-round">
+                close
+            </span>
+
+        </button>
+
+
     </div>
+
+
+    <!-- PRINCIPAL -->
 
     <div class="menu-section">
 
-        <div class="menu-title">
+        <div class="menu-section-title">
             Principal
         </div>
 
-        <button class="menu-item" onclick="goTo('dashboard.html')">
-            <span class="material-icons-round">dashboard</span>
-            Dashboard
+
+        <button
+            class="menu-item active"
+            onclick="menuAction('Dashboard')">
+
+            <span class="material-icons-round">
+                dashboard
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
         </button>
 
     </div>
 
+
+    <!-- PRODUTOS -->
+
     <div class="menu-section">
 
-        <div class="menu-title">
+        <div class="menu-section-title">
             Produtos
         </div>
 
-        <button class="menu-item" onclick="goTo('cadastrar-produto.html')">
-            <span class="material-icons-round">add_box</span>
-            Cadastrar produtos
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Cadastrar produtos')">
+
+            <span class="material-icons-round">
+                add_box
+            </span>
+
+            <span>
+                Cadastrar produtos
+            </span>
+
         </button>
 
-        <button class="menu-item" onclick="goTo('meus-produtos.html')">
-            <span class="material-icons-round">inventory_2</span>
-            Meus produtos
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Meus produtos')">
+
+            <span class="material-icons-round">
+                inventory_2
+            </span>
+
+            <span>
+                Meus produtos
+            </span>
+
         </button>
 
-        <button class="menu-item" onclick="goTo('pedidos.html')">
-            <span class="material-icons-round">shopping_bag</span>
-            Pedidos
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Pedidos')">
+
+            <span class="material-icons-round">
+                shopping_bag
+            </span>
+
+            <span>
+                Pedidos
+            </span>
+
         </button>
 
     </div>
 
+
+    <!-- FINANCEIRO -->
+
     <div class="menu-section">
 
-        <div class="menu-title">
+        <div class="menu-section-title">
             Financeiro
         </div>
 
-        <button class="menu-item" onclick="goTo('saques.html')">
-            <span class="material-icons-round">payments</span>
-            Saques
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Saques')">
+
+            <span class="material-icons-round">
+                payments
+            </span>
+
+            <span>
+                Saques
+            </span>
+
         </button>
 
-        <button class="menu-item" onclick="goTo('relatorios.html')">
-            <span class="material-icons-round">bar_chart</span>
-            Relatórios
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Relatórios')">
+
+            <span class="material-icons-round">
+                bar_chart
+            </span>
+
+            <span>
+                Relatórios
+            </span>
+
         </button>
 
     </div>
+
+
+    <!-- CONTA -->
 
     <div class="menu-section">
 
-        <div class="menu-title">
+        <div class="menu-section-title">
             Conta
         </div>
 
-        <button class="menu-item" onclick="goTo('perfil.html')">
-            <span class="material-icons-round">person</span>
-            Perfil
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Perfil')">
+
+            <span class="material-icons-round">
+                person_outline
+            </span>
+
+            <span>
+                Perfil
+            </span>
+
         </button>
 
     </div>
 
+
 </aside>
 
-<!-- =========================
+
+<!-- =================================
      CONTEÚDO
-========================= -->
+================================= -->
 
 <main class="main-content">
 
-    <section class="dashboard-grid">
 
-        <!-- SALDO -->
+    <div class="dashboard-grid">
 
-        <div class="dashboard-card balance-card">
 
-            <span class="material-icons-round wallet-icon">
-                account_balance_wallet
-            </span>
+        <!-- =================================
+             SALDO
+        ================================= -->
 
-            <div class="balance-title">
-                Saldo disponível
+        <div class="dashboard-card">
+
+
+            <div class="card-icon">
+
+                <span class="material-icons-round">
+                    account_balance_wallet
+                </span>
+
             </div>
 
-            <div class="balance-value">
-                <span id="balance">25.000 MT</span>
+
+            <div class="card-label">
+                Saldo Disponível
             </div>
 
-            <div class="balance-bottom">
 
-                <button class="eye-btn" onclick="toggleBalance()">
+            <div class="balance-value-row">
 
-                    <span class="material-icons-round" id="eyeIcon">
+
+                <button
+                    class="eye-btn"
+                    onclick="toggleBalance()"
+                    aria-label="Mostrar ou ocultar saldo">
+
+                    <span
+                        class="material-icons-round"
+                        id="eye">
+
                         visibility
+
                     </span>
 
                 </button>
 
-                <button class="withdraw-btn" onclick="withdraw()">
+
+                <div
+                    class="balance-value"
+                    id="balance">
+
+                    25.000 MT
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="withdraw-btn"
+                onclick="withdraw()">
+
+                <span>
                     Sacar
-                </button>
+                </span>
 
-            </div>
 
-        </div>
+                <span class="material-icons-round">
+                    chevron_right
+                </span>
 
-        <!-- VENDAS REALIZADAS -->
+            </button>
 
-        <div class="dashboard-card metric-card">
-
-            <div class="metric-top">
-
-                <div class="metric-title">
-                    Vendas realizadas
-                </div>
-
-                <div class="metric-icon">
-                    <span class="material-icons-round">
-                        shopping_cart
-                    </span>
-                </div>
-
-            </div>
-
-            <div>
-
-                <div class="metric-value">
-                    0
-                </div>
-
-                <div class="metric-sub">
-                    Total de vendas
-                </div>
-
-            </div>
 
         </div>
 
-        <!-- VENDAS FALHADAS -->
 
-        <div class="dashboard-card metric-card">
+        <!-- =================================
+             VENDAS REALIZADAS
+        ================================= -->
 
-            <div class="metric-top">
+        <div class="dashboard-card">
 
-                <div class="metric-title">
-                    Vendas falhadas
-                </div>
 
-                <div class="metric-icon">
-                    <span class="material-icons-round">
-                        cancel
-                    </span>
-                </div>
+            <div class="card-icon">
+
+                <span class="material-icons-round">
+                    shopping_cart
+                </span>
 
             </div>
 
-            <div>
 
-                <div class="metric-value">
-                    0
-                </div>
+            <div class="card-label">
+                Vendas realizadas
+            </div>
 
-                <div class="metric-sub">
-                    Total de falhas
-                </div>
+
+            <div
+                class="card-value sales-value"
+                id="salesCount">
+
+                0
 
             </div>
+
 
         </div>
 
-        <!-- TAXA DE CONVERSÃO -->
 
-        <div class="dashboard-card metric-card">
+        <!-- =================================
+             VENDAS FALHADAS
+        ================================= -->
 
-            <div class="metric-top">
+        <div class="dashboard-card">
 
-                <div class="metric-title">
-                    Taxa de conversão
-                </div>
 
-                <div class="metric-icon">
-                    <span class="material-icons-round">
-                        trending_up
-                    </span>
-                </div>
+            <div class="card-icon">
+
+                <span class="material-icons-round">
+                    cancel
+                </span>
 
             </div>
 
-            <div>
 
-                <div class="metric-value">
-                    0%
-                </div>
+            <div class="card-label">
+                Vendas falhadas
+            </div>
 
-                <div class="metric-sub">
-                    Conversão das vendas
-                </div>
+
+            <div
+                class="card-value failed-value"
+                id="failedCount">
+
+                0
 
             </div>
+
 
         </div>
 
-        <!-- MEIOS DE PAGAMENTO -->
 
-        <div class="payment-card">
+        <!-- =================================
+             TAXA DE CONVERSÃO
+        ================================= -->
 
-            <div class="card-header">
+        <div class="dashboard-card">
 
-                <div class="card-title">
+
+            <div class="card-icon">
+
+                <span class="material-icons-round">
+                    percent
+                </span>
+
+            </div>
+
+
+            <div class="card-label">
+                Taxa de conversão
+            </div>
+
+
+            <div
+                class="card-value conversion-value"
+                id="conversionRate">
+
+                0%
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================
+             MEIOS DE PAGAMENTO
+        ================================= -->
+
+        <section class="payment-card">
+
+
+            <div class="section-header">
+
+
+                <div class="section-title">
                     Meios de pagamento
                 </div>
 
-                <button class="see-all">
+
+                <div class="see-all">
+
                     Ver todos
-                    <span class="material-icons-round">
+
+                    <span
+                        class="material-icons-round"
+                        style="font-size:15px;">
+
                         chevron_right
+
                     </span>
-                </button>
-
-            </div>
-
-            <div class="payment-table">
-
-                <div class="payment-head">
-
-                    <div>
-                        Método
-                    </div>
-
-                    <div>
-                        Aprovação
-                    </div>
-
-                    <div style="text-align:right;">
-                        Valor
-                    </div>
 
                 </div>
 
-                <!-- M-PESA -->
 
-                <div class="payment-row">
+            </div>
 
-                    <div class="payment-method">
+
+            <div class="table-header">
+
+
+                <div>
+                    Método
+                </div>
+
+
+                <div>
+                    Aprovação
+                </div>
+
+
+                <div>
+                    Valor
+                </div>
+
+
+            </div>
+
+
+            <!-- M-PESA -->
+
+            <div class="payment-row">
+
+
+                <div class="payment-method">
+
+
+                    <div class="icon-box">
 
                         <img
                             src="./assets/mpesa.png"
-                            class="payment-logo"
-                            alt="M-Pesa"
-                        >
-
-                        <span class="payment-name">
-                            M-Pesa
-                        </span>
+                            alt="M-Pesa">
 
                     </div>
 
-                    <div class="payment-value payment-success">
-                        0%
-                    </div>
 
-                    <div class="payment-value payment-amount">
-                        0,00 MT
-                    </div>
+                    <span>
+                        M-Pesa
+                    </span>
+
 
                 </div>
 
-                <!-- E-MOLA -->
 
-                <div class="payment-row">
+                <div class="approval">
+                    0%
+                </div>
 
-                    <div class="payment-method">
+
+                <div class="value">
+                    0,00 MT
+                </div>
+
+
+            </div>
+
+
+            <!-- E-MOLA -->
+
+            <div class="payment-row">
+
+
+                <div class="payment-method">
+
+
+                    <div class="icon-box">
 
                         <img
                             src="./assets/emola.png"
-                            class="payment-logo"
-                            alt="e-Mola"
-                        >
-
-                        <span class="payment-name">
-                            e-Mola
-                        </span>
+                            alt="e-Mola">
 
                     </div>
 
-                    <div class="payment-value payment-success">
-                        0%
-                    </div>
 
-                    <div class="payment-value payment-amount">
-                        0,00 MT
-                    </div>
+                    <span>
+                        e-Mola
+                    </span>
+
 
                 </div>
 
+
+                <div class="approval">
+                    0%
+                </div>
+
+
+                <div class="value">
+                    0,00 MT
+                </div>
+
+
             </div>
 
-        </div>
 
-        <!-- DESEMPENHO DE VENDAS -->
+        </section>
 
-        <div class="chart-card">
+
+        <!-- =================================
+             DESEMPENHO DE VENDAS
+        ================================= -->
+
+        <section class="chart-card">
+
 
             <div class="chart-header">
 
-                <div class="card-title">
+
+                <div class="chart-title">
                     Desempenho de vendas
                 </div>
 
-                <button class="chart-filter">
 
+                <div class="chart-filter">
                     Últimos 7 dias
+                </div>
 
-                    <span class="material-icons-round">
-                        expand_more
-                    </span>
-
-                </button>
 
             </div>
 
-            <div class="chart-area">
 
-                <div class="chart-y">
+            <div class="chart">
+
+
+                <div class="chart-labels">
 
                     <span>1000</span>
                     <span>750</span>
@@ -1282,140 +1923,119 @@ body.light .chart-filter{
 
                 </div>
 
-                <div class="chart-main">
 
-                    <div class="grid-line one"></div>
-                    <div class="grid-line two"></div>
-                    <div class="grid-line three"></div>
-                    <div class="grid-line four"></div>
-                    <div class="grid-line five"></div>
+                <div class="chart-grid">
 
-                    <svg
-                        class="chart-svg"
-                        viewBox="0 0 700 190"
-                        preserveAspectRatio="none"
-                    >
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
 
-                        <polyline
-                            points="0,150 116,150 233,150 350,150 466,150 583,150 700,150"
-                            fill="none"
-                            stroke="var(--green)"
-                            stroke-width="3"
-                        />
+                </div>
 
-                        <circle
-                            cx="0"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
 
-                        <circle
-                            cx="116"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
+                <div class="chart-area">
 
-                        <circle
-                            cx="233"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
+                    <div class="chart-line"></div>
 
-                        <circle
-                            cx="350"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
 
-                        <circle
-                            cx="466"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
+                    <div class="chart-points">
 
-                        <circle
-                            cx="583"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
-
-                        <circle
-                            cx="700"
-                            cy="150"
-                            r="4"
-                            fill="var(--green)"
-                        />
-
-                    </svg>
-
-                    <div class="chart-labels">
-
-                        <span>27 Jul</span>
-                        <span>28 Jul</span>
-                        <span>29 Jul</span>
-                        <span>30 Jul</span>
-                        <span>31 Jul</span>
-                        <span>01 Ago</span>
-                        <span>02 Ago</span>
+                        <span class="point"></span>
+                        <span class="point"></span>
+                        <span class="point"></span>
+                        <span class="point"></span>
+                        <span class="point"></span>
+                        <span class="point"></span>
+                        <span class="point"></span>
 
                     </div>
 
                 </div>
 
+
+                <div class="chart-days">
+
+                    <span>27 Jul</span>
+                    <span>28 Jul</span>
+                    <span>29 Jul</span>
+                    <span>30 Jul</span>
+                    <span>31 Jul</span>
+                    <span>01 Ago</span>
+                    <span>02 Ago</span>
+
+                </div>
+
+
             </div>
+
 
             <div class="chart-legend">
 
                 <span class="legend-dot"></span>
 
-                Vendas (MT)
+                <span>
+                    Vendas (MT)
+                </span>
 
             </div>
 
-        </div>
 
-    </section>
+        </section>
+
+
+    </div>
+
 
 </main>
 
+
 <script>
 
-/* =========================
+/* =================================
    SALDO
-========================= */
+================================= */
 
 let balanceVisible = true;
 
+
 function toggleBalance(){
 
-    const balance = document.getElementById('balance');
-    const eye = document.getElementById('eyeIcon');
+    const balance =
+        document.getElementById('balance');
+
+    const eye =
+        document.getElementById('eye');
+
 
     balanceVisible = !balanceVisible;
 
+
     if(balanceVisible){
 
-        balance.textContent = '25.000 MT';
-        eye.textContent = 'visibility';
+        balance.textContent =
+            '25.000 MT';
+
+        eye.textContent =
+            'visibility';
 
     }else{
 
-        balance.textContent = '******';
-        eye.textContent = 'visibility_off';
+        balance.textContent =
+            '******';
+
+        eye.textContent =
+            'visibility_off';
 
     }
 
 }
 
-/* =========================
+
+/* =================================
    SAQUE
-========================= */
+================================= */
 
 function withdraw(){
 
@@ -1423,114 +2043,222 @@ function withdraw(){
 
 }
 
-/* =========================
-   MENU
-========================= */
 
-const sideMenu = document.getElementById('sideMenu');
-const overlay = document.getElementById('overlay');
+/* =================================
+   MENU
+================================= */
+
+const sideMenu =
+    document.getElementById('sideMenu');
+
+const overlay =
+    document.getElementById('overlay');
+
 
 function openMenu(){
 
-    if(window.innerWidth >= 768) return;
+    if(window.innerWidth >= 768){
+
+        return;
+
+    }
+
 
     sideMenu.classList.add('open');
+
     overlay.classList.add('show');
 
 }
+
 
 function closeMenu(){
 
     if(window.innerWidth >= 768){
 
         sideMenu.classList.add('open');
+
         overlay.classList.remove('show');
 
         return;
+
     }
 
+
     sideMenu.classList.remove('open');
+
     overlay.classList.remove('show');
 
 }
+
 
 function checkMenu(){
 
     if(window.innerWidth >= 768){
 
         sideMenu.classList.add('open');
+
         overlay.classList.remove('show');
 
     }else{
 
         sideMenu.classList.remove('open');
+
         overlay.classList.remove('show');
 
     }
 
 }
 
-window.addEventListener('resize',checkMenu);
+
+window.addEventListener(
+    'resize',
+    checkMenu
+);
+
 
 checkMenu();
 
-/* =========================
-   NAVEGAÇÃO
-========================= */
 
-function goTo(page){
+/* =================================
+   MENU ACTION
+================================= */
 
-    window.location.href = page;
+function menuAction(name){
+
+    if(name === 'Dashboard'){
+
+        window.location.href =
+            'dashboard.html';
+
+        return;
+
+    }
+
+
+    if(name === 'Cadastrar produtos'){
+
+        window.location.href =
+            'cadastrar-produto.html';
+
+        return;
+
+    }
+
+
+    if(name === 'Meus produtos'){
+
+        window.location.href =
+            'meus-produtos.html';
+
+        return;
+
+    }
+
+
+    if(name === 'Pedidos'){
+
+        window.location.href =
+            'pedidos.html';
+
+        return;
+
+    }
+
+
+    if(name === 'Saques'){
+
+        window.location.href =
+            'saques.html';
+
+        return;
+
+    }
+
+
+    if(name === 'Relatórios'){
+
+        window.location.href =
+            'relatorios.html';
+
+        return;
+
+    }
+
+
+    if(name === 'Perfil'){
+
+        window.location.href =
+            'perfil.html';
+
+        return;
+
+    }
 
 }
 
-/* =========================
+
+/* =================================
    NOTIFICAÇÕES
-========================= */
+================================= */
 
-function showNotifications(){
+function openNotifications(){
 
-    alert('Você não tem novas notificações.');
+    alert(
+        'Você não tem novas notificações.'
+    );
 
 }
 
-/* =========================
+
+/* =================================
    TEMA
-========================= */
+================================= */
 
 function toggleTheme(){
 
     document.body.classList.toggle('light');
 
+
     const isLight =
         document.body.classList.contains('light');
+
 
     localStorage.setItem(
         'produtiva-theme',
         isLight ? 'light' : 'dark'
     );
 
+
     updateThemeIcon();
 
 }
+
 
 function updateThemeIcon(){
 
     const icon =
         document.getElementById('themeIcon');
 
+
     const isLight =
         document.body.classList.contains('light');
 
+
     icon.textContent =
-        isLight ? 'light_mode' : 'dark_mode';
+        isLight
+            ? 'dark_mode'
+            : 'wb_sunny';
 
 }
+
 
 function loadTheme(){
 
     const theme =
-        localStorage.getItem('produtiva-theme');
+        localStorage.getItem(
+            'produtiva-theme'
+        );
+
 
     if(theme === 'light'){
 
@@ -1538,13 +2266,16 @@ function loadTheme(){
 
     }
 
+
     updateThemeIcon();
 
 }
 
+
 loadTheme();
 
 </script>
+
 
 </body>
 </html>
