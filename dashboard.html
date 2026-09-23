@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | PRODUTIVA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+<link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+    rel="stylesheet">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    rel="stylesheet">
+
+
+<style>
+
+/* =================================
+   RESET
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+/* =================================
+   CORES
+================================= */
+
+:root{
+
+    --body-bg:#000;
+
+    --card-bg:#0A0A0A;
+
+    --input-bg:#111;
+
+    --border:#242424;
+
+    --text:#fff;
+
+    --muted:#777;
+
+    --placeholder:#666;
+
+    --green:#6EDC82;
+
+    --yellow:#F5C542;
+
+}
+
+
+/* =================================
+   MODO CLARO
+================================= */
+
+body.light{
+
+    --body-bg:#F5F5F5;
+
+    --card-bg:#FFFFFF;
+
+    --input-bg:#F1F1F1;
+
+    --border:transparent;
+
+    --text:#111;
+
+    --muted:#666;
+
+    --placeholder:#888;
+
+}
+
+
+/* =================================
+   BODY
+================================= */
+
+body{
+
+    background:var(--body-bg);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    color:var(--text);
+
+    padding:80px 16px 20px;
+
+    min-height:100vh;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+/* =================================
+   MENU LATERAL
+================================= */
+
+.side-menu{
+
+    position:fixed !important;
+
+    top:0 !important;
+
+    left:0 !important;
+
+    width:240px !important;
+
+    height:100vh !important;
+
+    background:var(--card-bg) !important;
+
+    border-right:1px solid var(--border);
+
+    z-index:99999 !important;
+
+    transform:translateX(-100%) !important;
+
+    transition:transform .25s ease;
+
+    padding:24px 16px;
+
+    overflow-y:auto !important;
+
+    overflow-x:hidden !important;
+
+    display:block !important;
+
+    visibility:hidden;
+
+    opacity:1;
+
+    isolation:isolate;
+
+}
+
+
+.side-menu.open{
+
+    transform:translateX(0) !important;
+
+    visibility:visible !important;
+
+    opacity:1 !important;
+
+}
+
+
+/* =================================
+   CABEÇALHO MENU
+================================= */
+
+.side-menu-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:30px;
+
+}
+
+
+.side-menu-logo{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+
+.side-menu-logo img{
+
+    width:110px;
+
+    height:auto;
+
+    display:block;
+
+    object-fit:contain;
+
+}
+
+
+.close-menu{
+
+    width:40px;
+
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:0;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.close-menu:hover,
+.close-menu:active,
+.close-menu:focus,
+.close-menu:focus-visible{
+
+    background:transparent !important;
+
+    color:var(--muted);
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.close-menu .material-icons-round{
+
+    font-size:24px;
+
+}
+
+
+/* =================================
+   SEÇÕES MENU
+================================= */
+
+.menu-section{
+
+    margin-bottom:27px;
+
+}
+
+
+.menu-section-title{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+
+    margin:0 10px 9px;
+
+}
+
+
+/* =================================
+   ITEM MENU
+================================= */
+
+.menu-item{
+
+    width:100%;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:transparent;
+
+    border:0;
+
+    border-radius:9px;
+
+    color:var(--text);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-align:left;
+
+    padding:0 10px;
+
+    cursor:pointer;
+
+    outline:0;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.menu-item .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:21px;
+
+}
+
+
+.menu-item.active{
+
+    background:var(--input-bg);
+
+}
+
+
+.menu-item.active .material-icons-round{
+
+    color:var(--text);
+
+}
+
+
+.menu-item:hover,
+.menu-item:active,
+.menu-item:focus,
+.menu-item:focus-visible{
+
+    background:var(--input-bg);
+
+    color:var(--text);
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+/* =================================
+   OVERLAY
+================================= */
+
+.menu-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    z-index:99998;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease;
+
+}
+
+
+.menu-overlay.open{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* =================================
+   HAMBÚRGUER
+================================= */
+
+.menu-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:16px;
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    border-radius:11px;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:0;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    filter:none !important;
+
+    text-shadow:none !important;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.menu-btn:hover,
+.menu-btn:active,
+.menu-btn:focus,
+.menu-btn:focus-visible{
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.menu-btn .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:28px;
+
+    line-height:1;
+
+}
+
+
+body.menu-open .menu-btn{
+
+    display:none !important;
+
+}
+
+
+/* =================================
+   BOTÕES SUPERIORES
+================================= */
+
+.notification-btn,
+.theme-btn{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    border-radius:11px;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+    padding:0;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    filter:none !important;
+
+    text-shadow:none !important;
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.notification-btn:hover,
+.notification-btn:active,
+.notification-btn:focus,
+.notification-btn:focus-visible,
+.theme-btn:hover,
+.theme-btn:active,
+.theme-btn:focus,
+.theme-btn:focus-visible{
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.notification-btn .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:24px;
+
+}
+
+
+.theme-btn .material-symbols-outlined{
+
+    color:var(--muted);
+
+    font-size:24px;
+
+}
+
+
+.top-actions{
+
+    position:absolute;
+
+    top:20px;
+
+    right:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+}
+
+
+/* =================================
+   CONTAINER
+================================= */
+
+.dashboard-cards{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:0 auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+
+/* =================================
+   CARDS
+================================= */
+
+.dashboard-card{
+
+    width:100%;
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:28px 22px;
+
+    position:relative;
+
+    box-shadow:none !important;
+
+}
+
+
+.card-icon{
+
+    position:absolute;
+
+    top:22px;
+
+    right:22px;
+
+    width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--muted);
+
+}
+
+
+.card-icon .material-icons-round{
+
+    font-size:29px;
+
+}
+
+
+.card-label{
+
+    color:var(--text);
+
+    font-size:15px;
+
+    font-weight:900;
+
+}
+
+
+.card-value{
+
+    margin-top:12px;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    line-height:1.2;
+
+}
+
+
+/* =================================
+   LINHA DE VALOR + OLHO
+================================= */
+
+.balance-value-row{
+
+    display:flex;
+
+    align-items:center;
+
+    margin-top:12px;
+
+}
+
+
+.eye-btn{
+
+    width:30px;
+
+    height:30px;
+
+    margin-right:12px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent !important;
+
+    color:var(--muted);
+
+    border:0 !important;
+
+    padding:0;
+
+    cursor:pointer;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.eye-btn:hover,
+.eye-btn:active,
+.eye-btn:focus,
+.eye-btn:focus-visible{
+
+    background:transparent !important;
+
+    color:var(--muted);
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.eye-btn .material-icons-round{
+
+    font-size:21px;
+
+}
+
+
+/* =================================
+   SALDO
+================================= */
+
+.balance-value{
+
+    width:150px;
+
+    flex-shrink:0;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    color:var(--green);
+
+    white-space:nowrap;
+
+}
+
+
+/* =================================
+   RECEITA TOTAL
+================================= */
+
+.revenue-value{
+
+    width:150px;
+
+    flex-shrink:0;
+
+    font-size:21px;
+
+    font-weight:900;
+
+    color:var(--text);
+
+    white-space:nowrap;
+
+}
+
+
+/* =================================
+   SACAR
+================================= */
+
+.withdraw-btn{
+
+    margin-top:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    padding:0;
+
+    color:var(--yellow);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+.withdraw-btn:hover,
+.withdraw-btn:active,
+.withdraw-btn:focus,
+.withdraw-btn:focus-visible{
+
+    background:transparent !important;
+
+    color:var(--yellow);
+
+    border:0 !important;
+
+    outline:0 !important;
+
+    box-shadow:none !important;
+
+}
+
+
+.withdraw-btn .material-icons-round{
+
+    font-size:18px;
+
+}
+
+
+/* =================================
+   CORES
+================================= */
+
+.sales-value{
+
+    color:var(--text);
+
+}
+
+
+.failed-value{
+
+    color:#ff5555;
+
+}
+
+
+.conversion-value{
+
+    color:var(--text);
+
+}
+
+
+/* =================================
+   NOVOS CARDS
+================================= */
+
+.payment-card,
+.chart-card{
+
+    width:100%;
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:25px;
+
+    min-height:330px;
+
+    box-shadow:none !important;
+
+}
+
+
+/* =================================
+   CABEÇALHO PAGAMENTOS
+================================= */
+
+.section-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:25px;
+
+}
+
+
+.section-title{
+
+    font-size:16px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+}
+
+
+.see-all{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:3px;
+
+    padding:8px 10px;
+
+    background:transparent;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+/* =================================
+   TABELA PAGAMENTOS
+================================= */
+
+.table-header,
+.payment-row{
+
+    display:grid;
+
+    grid-template-columns:1.6fr 1fr 1fr;
+
+    align-items:center;
+
+    column-gap:15px;
+
+}
+
+
+.table-header{
+
+    padding-bottom:13px;
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    font-weight:750;
+
+}
+
+
+.payment-row{
+
+    min-height:72px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+.payment-row:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* =================================
+   MÉTODO PAGAMENTO
+================================= */
+
+.payment-method{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.payment-method span{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+
+.icon-box{
+
+    width:32px;
+
+    height:32px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+
+.icon-box img{
+
+    width:30px;
+
+    height:30px;
+
+    object-fit:contain;
+
+}
+
+
+/* =================================
+   APROVAÇÃO / VALOR
+================================= */
+
+.approval,
+.value{
+
+    text-align:center;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+
+.approval{
+
+    position:relative;
+
+}
+
+
+.approval::after{
+
+    content:"";
+
+    display:block;
+
+    width:75px;
+
+    height:5px;
+
+    margin:6px auto 0;
+
+    background:var(--input-bg);
+
+    border-radius:10px;
+
+}
+
+
+/* =================================
+   DESEMPENHO
+================================= */
+
+.chart-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+
+.chart-title{
+
+    font-size:16px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+}
+
+
+.chart-filter{
+
+    padding:8px 10px;
+
+    background:var(--input-bg);
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+/* =================================
+   GRÁFICO
+================================= */
+
+.chart{
+
+    position:relative;
+
+    height:210px;
+
+    padding:15px 0 0 38px;
+
+}
+
+
+.chart-grid{
+
+    position:absolute;
+
+    top:15px;
+
+    left:38px;
+
+    right:0;
+
+    bottom:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+}
+
+
+.grid-line{
+
+    width:100%;
+
+    border-top:1px dashed var(--border);
+
+}
+
+
+.chart-labels{
+
+    position:absolute;
+
+    left:0;
+
+    top:7px;
+
+    bottom:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+.chart-area{
+
+    position:absolute;
+
+    left:38px;
+
+    right:0;
+
+    top:15px;
+
+    bottom:35px;
+
+}
+
+
+.chart-line{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:8px;
+
+    height:2px;
+
+    background:var(--green);
+
+}
+
+
+.chart-points{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:3px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+
+.point{
+
+    width:8px;
+
+    height:8px;
+
+    background:var(--green);
+
+    border-radius:50%;
+
+}
+
+
+.chart-days{
+
+    position:absolute;
+
+    left:38px;
+
+    right:0;
+
+    bottom:0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+.chart-legend{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:10px;
+
+    font-size:11px;
+
+    color:var(--muted);
+
+}
+
+
+.legend-dot{
+
+    width:9px;
+
+    height:9px;
+
+    background:var(--green);
+
+    border-radius:50%;
+
+}
+
+
+/* =================================
+   MODO CLARO
+================================= */
+
+body.light .dashboard-card,
+body.light .payment-card,
+body.light .chart-card{
+
+    border:2px solid transparent;
+
+}
+
+
+body.light .see-all{
+
+    border-color:transparent;
+
+    background:var(--input-bg);
+
+}
+
+
+body.light .chart-filter{
+
+    border-color:transparent;
+
+}
+
+
+/* =================================
+   CELULAR
+================================= */
+
+@media(max-width:767px){
+
+    body{
+
+        padding:80px 14px 20px;
+
+    }
+
+
+    .menu-btn{
+
+        left:14px;
+
+        display:flex;
+
+    }
+
+
+    .top-actions{
+
+        right:14px;
+
+    }
+
+
+    .dashboard-cards{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:14px;
+
+    }
+
+
+    .dashboard-card{
+
+        padding:26px 20px;
+
+    }
+
+
+    .payment-card,
+    .chart-card{
+
+        padding:18px;
+
+        min-height:330px;
+
+    }
+
+}
+
+
+/* =================================
+   TELAS PEQUENAS
+================================= */
+
+@media(max-width:450px){
+
+    .table-header,
+    .payment-row{
+
+        grid-template-columns:1.5fr 1fr 1fr;
+
+        column-gap:5px;
+
+    }
+
+
+    .payment-method{
+
+        gap:6px;
+
+    }
+
+
+    .payment-method span,
+    .approval,
+    .value{
+
+        font-size:10px;
+
+    }
+
+
+    .icon-box,
+    .icon-box img{
+
+        width:27px;
+
+        height:27px;
+
+    }
+
+
+    .section-title,
+    .chart-title{
+
+        font-size:14px;
+
+    }
+
+}
+
+
+/* =================================
+   PC / NOTEBOOK
+================================= */
+
+@media(min-width:768px){
+
+    body{
+
+        padding-top:80px;
+
+        padding-left:280px;
+
+        padding-right:40px;
+
+    }
+
+
+    .side-menu{
+
+        transform:translateX(0) !important;
+
+        visibility:visible !important;
+
+        opacity:1 !important;
+
+    }
+
+
+    .menu-overlay{
+
+        display:none !important;
+
+        visibility:hidden !important;
+
+        opacity:0 !important;
+
+    }
+
+
+    .menu-btn{
+
+        display:none !important;
+
+    }
+
+
+    .close-menu{
+
+        display:none !important;
+
+    }
+
+
+    .dashboard-cards{
+
+        max-width:1100px;
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(6,minmax(0,1fr));
+
+        gap:16px;
+
+    }
+
+
+    .dashboard-cards > .dashboard-card:nth-child(1){
+
+        grid-column:span 3;
+
+    }
+
+
+    .dashboard-cards > .dashboard-card:nth-child(2){
+
+        grid-column:span 3;
+
+    }
+
+
+    .dashboard-cards > .dashboard-card:nth-child(3){
+
+        grid-column:span 2;
+
+    }
+
+
+    .dashboard-cards > .dashboard-card:nth-child(4){
+
+        grid-column:span 2;
+
+    }
+
+
+    .dashboard-cards > .dashboard-card:nth-child(5){
+
+        grid-column:span 2;
+
+    }
+
+
+    .dashboard-cards > .payment-card{
+
+        grid-column:span 3;
+
+    }
+
+
+    .dashboard-cards > .chart-card{
+
+        grid-column:span 3;
+
+    }
+
+
+    .dashboard-card{
+
+        padding:28px 26px;
+
+    }
+
+}
+
+
+/* =================================
+   DESKTOP GRANDE
+================================= */
+
+@media(min-width:1400px){
+
+    .dashboard-cards{
+
+        max-width:1200px;
+
+    }
+
+}
+
+
+/* =================================
+   PROTEÇÃO
+================================= */
+
+.dashboard-card,
+.payment-card,
+.chart-card{
+
+    min-width:0;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     MENU OVERLAY
+================================= -->
+
+<div
+    class="menu-overlay"
+    id="menuOverlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- =================================
+     MENU LATERAL
+================================= -->
+
+<aside
+    class="side-menu"
+    id="sideMenu">
+
+
+    <div class="side-menu-header">
+
+
+        <div class="side-menu-logo">
+
+            <img
+                src="./assets/logo.png"
+                alt="PRODUTIVA">
+
+        </div>
+
+
+        <button
+            class="close-menu"
+            onclick="closeMenu()"
+            aria-label="Fechar menu">
+
+            <span class="material-icons-round">
+                close
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- PRINCIPAL -->
+
+    <div class="menu-section">
+
+        <div class="menu-section-title">
+            Principal
+        </div>
+
+
+        <button
+            class="menu-item active"
+            onclick="menuAction('Dashboard')">
+
+            <span class="material-icons-round">
+                dashboard
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- GESTÃO -->
+
+    <div class="menu-section">
+
+        <div class="menu-section-title">
+            Gestão
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Produtos')">
+
+            <span class="material-icons-round">
+                inventory_2
+            </span>
+
+            <span>
+                Produtos
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Marketplace')">
+
+            <span class="material-icons-round">
+                storefront
+            </span>
+
+            <span>
+                Marketplace
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Afiliados')">
+
+            <span class="material-icons-round">
+                groups
+            </span>
+
+            <span>
+                Afiliados
+            </span>
+
+        </button>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Financeiro')">
+
+            <span class="material-icons-round">
+                account_balance_wallet
+            </span>
+
+            <span>
+                Financeiro
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- CONTA -->
+
+    <div class="menu-section">
+
+        <div class="menu-section-title">
+            Conta
+        </div>
+
+
+        <button
+            class="menu-item"
+            onclick="menuAction('Perfil')">
+
+            <span class="material-icons-round">
+                person_outline
+            </span>
+
+            <span>
+                Perfil
+            </span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =================================
+     HAMBÚRGUER
+================================= -->
+
+<button
+    class="menu-btn"
+    onclick="openMenu()"
+    aria-label="Abrir menu">
+
+    <span class="material-icons-round">
+        menu
+    </span>
+
+</button>
+
+
+<!-- =================================
+     AÇÕES DO TOPO
+================================= -->
+
+<div class="top-actions">
+
+
+    <button
+        class="notification-btn"
+        onclick="openNotifications()"
+        aria-label="Notificações">
+
+        <span class="material-icons-round">
+            notifications_none
+        </span>
+
+    </button>
+
+
+    <button
+        class="theme-btn"
+        onclick="toggleTheme()"
+        aria-label="Alterar tema">
+
+        <span
+            class="material-symbols-outlined"
+            id="themeIcon">
+
+            wb_sunny
+
+        </span>
+
+    </button>
+
+</div>
+
+
+<!-- =================================
+     CARDS
+================================= -->
+
+<div class="dashboard-cards">
+
+
+    <!-- SALDO -->
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                account_balance_wallet
+            </span>
+
+        </div>
+
+
+        <div class="card-label">
+            Saldo Disponível
+        </div>
+
+
+        <div class="balance-value-row">
+
+
+            <button
+                class="eye-btn"
+                onclick="toggleBalance()"
+                aria-label="Mostrar ou ocultar saldo">
+
+                <span
+                    class="material-icons-round"
+                    id="balanceEye">
+
+                    visibility
+
+                </span>
+
+            </button>
+
+
+            <div
+                class="balance-value"
+                id="balance">
+
+                25.000 MT
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="withdraw-btn"
+            onclick="withdraw()">
+
+            <span>
+                Sacar
+            </span>
+
+
+            <span class="material-icons-round">
+                chevron_right
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- RECEITA -->
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                payments
+            </span>
+
+        </div>
+
+
+        <div class="card-label">
+            Receita Total
+        </div>
+
+
+        <div class="balance-value-row">
+
+
+            <button
+                class="eye-btn"
+                onclick="toggleRevenue()"
+                aria-label="Mostrar ou ocultar receita total">
+
+                <span
+                    class="material-icons-round"
+                    id="revenueEye">
+
+                    visibility
+
+                </span>
+
+            </button>
+
+
+            <div
+                class="revenue-value"
+                id="revenue">
+
+                30.000 MT
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- VENDAS -->
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                shopping_cart
+            </span>
+
+        </div>
+
+
+        <div class="card-label">
+            Vendas realizadas
+        </div>
+
+
+        <div
+            class="card-value sales-value"
+            id="salesCount">
+
+            0
+
+        </div>
+
+    </div>
+
+
+    <!-- FALHAS -->
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                cancel
+            </span>
+
+        </div>
+
+
+        <div class="card-label">
+            Vendas falhadas
+        </div>
+
+
+        <div
+            class="card-value failed-value"
+            id="failedCount">
+
+            0
+
+        </div>
+
+    </div>
+
+
+    <!-- CONVERSÃO -->
+
+    <div class="dashboard-card">
+
+        <div class="card-icon">
+
+            <span class="material-icons-round">
+                percent
+            </span>
+
+        </div>
+
+
+        <div class="card-label">
+            Taxa de conversão
+        </div>
+
+
+        <div
+            class="card-value conversion-value"
+            id="conversionRate">
+
+            0%
+
+        </div>
+
+    </div>
+
+
+    <!-- MEIOS DE PAGAMENTO -->
+
+    <section class="payment-card">
+
+
+        <div class="section-header">
+
+            <div class="section-title">
+                Meios de pagamento
+            </div>
+
+
+            <div class="see-all">
+
+                Ver todos
+
+                <span
+                    class="material-icons-round"
+                    style="font-size:15px;">
+
+                    chevron_right
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-header">
+
+            <div>
+                Método
+            </div>
+
+            <div>
+                Aprovação
+            </div>
+
+            <div>
+                Valor
+            </div>
+
+        </div>
+
+
+        <div class="payment-row">
+
+            <div class="payment-method">
+
+                <div class="icon-box">
+
+                    <img
+                        src="./assets/mpesa.png"
+                        alt="M-Pesa">
+
+                </div>
+
+                <span>
+                    M-Pesa
+                </span>
+
+            </div>
+
+
+            <div class="approval">
+                0%
+            </div>
+
+
+            <div class="value">
+                0,00 MT
+            </div>
+
+        </div>
+
+
+        <div class="payment-row">
+
+            <div class="payment-method">
+
+                <div class="icon-box">
+
+                    <img
+                        src="./assets/emola.png"
+                        alt="e-Mola">
+
+                </div>
+
+                <span>
+                    e-Mola
+                </span>
+
+            </div>
+
+
+            <div class="approval">
+                0%
+            </div>
+
+
+            <div class="value">
+                0,00 MT
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- DESEMPENHO -->
+
+    <section class="chart-card">
+
+
+        <div class="chart-header">
+
+            <div class="chart-title">
+                Desempenho de vendas
+            </div>
+
+
+            <div class="chart-filter">
+                Últimos 7 dias
+            </div>
+
+        </div>
+
+
+        <div class="chart">
+
+
+            <div class="chart-labels">
+
+                <span>1000</span>
+                <span>750</span>
+                <span>500</span>
+                <span>250</span>
+                <span>0</span>
+
+            </div>
+
+
+            <div class="chart-grid">
+
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+                <div class="grid-line"></div>
+
+            </div>
+
+
+            <div class="chart-area">
+
+                <div class="chart-line"></div>
+
+
+                <div class="chart-points">
+
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+                    <span class="point"></span>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-days">
+
+                <span>27 Jul</span>
+                <span>28 Jul</span>
+                <span>29 Jul</span>
+                <span>30 Jul</span>
+                <span>31 Jul</span>
+                <span>01 Ago</span>
+                <span>02 Ago</span>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="chart-legend">
+
+            <span class="legend-dot"></span>
+
+            <span>
+                Vendas (MT)
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+<!-- =================================
+     TEMA GLOBAL
+================================= -->
+
+<script src="./js/theme.js"></script>
+
+
+<script>
+
+/* =================================
+   SALDO
+================================= */
+
+let balanceVisible = true;
+
+
+function toggleBalance(){
+
+    const balance =
+        document.getElementById("balance");
+
+    const eye =
+        document.getElementById("balanceEye");
+
+
+    balanceVisible =
+        !balanceVisible;
+
+
+    if(balanceVisible){
+
+        balance.textContent =
+            "25.000 MT";
+
+        eye.textContent =
+            "visibility";
+
+    }else{
+
+        balance.textContent =
+            "******";
+
+        eye.textContent =
+            "visibility_off";
+
+    }
+
+}
+
+
+/* =================================
+   RECEITA TOTAL
+================================= */
+
+let revenueVisible = true;
+
+
+function toggleRevenue(){
+
+    const revenue =
+        document.getElementById("revenue");
+
+    const eye =
+        document.getElementById("revenueEye");
+
+
+    revenueVisible =
+        !revenueVisible;
+
+
+    if(revenueVisible){
+
+        revenue.textContent =
+            "30.000 MT";
+
+        eye.textContent =
+            "visibility";
+
+    }else{
+
+        revenue.textContent =
+            "******";
+
+        eye.textContent =
+            "visibility_off";
+
+    }
+
+}
+
+
+/* =================================
+   SAQUE
+================================= */
+
+function withdraw(){
+
+    alert("Área de saque");
+
+}
+
+
+/* =================================
+   MENU
+================================= */
+
+function openMenu(){
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+
+    if(window.innerWidth >= 768){
+
+        sideMenu.classList.add("open");
+
+        sideMenu.style.visibility =
+            "visible";
+
+        sideMenu.style.opacity =
+            "1";
+
+        overlay.classList.remove("open");
+
+        document.body.classList.remove(
+            "menu-open"
+        );
+
+        return;
+
+    }
+
+
+    sideMenu.style.visibility =
+        "visible";
+
+    sideMenu.style.opacity =
+        "1";
+
+    sideMenu.classList.add("open");
+
+    overlay.classList.add("open");
+
+    document.body.classList.add(
+        "menu-open"
+    );
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function closeMenu(){
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+
+    if(window.innerWidth >= 768){
+
+        sideMenu.classList.add("open");
+
+        sideMenu.style.visibility =
+            "visible";
+
+        sideMenu.style.opacity =
+            "1";
+
+        overlay.classList.remove("open");
+
+        document.body.classList.remove(
+            "menu-open"
+        );
+
+        document.body.style.overflow =
+            "";
+
+        return;
+
+    }
+
+
+    sideMenu.classList.remove("open");
+
+    overlay.classList.remove("open");
+
+    document.body.classList.remove(
+        "menu-open"
+    );
+
+    document.body.style.overflow =
+        "";
+
+
+    setTimeout(function(){
+
+        if(!sideMenu.classList.contains("open")){
+
+            sideMenu.style.visibility =
+                "hidden";
+
+        }
+
+    },260);
+
+}
+
+
+/* =================================
+   NAVEGAÇÃO
+================================= */
+
+function menuAction(item){
+
+    const routes = {
+
+        Dashboard:
+            "./dashboard.html",
+
+        Produtos:
+            "./produtos.html",
+
+        Marketplace:
+            "./marketplace.html",
+
+        Afiliados:
+            "./afiliados.html",
+
+        Financeiro:
+            "./financeiro.html",
+
+        Perfil:
+            "./perfil.html"
+
+    };
+
+
+    if(routes[item]){
+
+        closeMenu();
+
+        window.location.href =
+            routes[item];
+
+    }
+
+}
+
+
+/* =================================
+   NOTIFICAÇÕES
+================================= */
+
+function openNotifications(){
+
+    alert("Notificações");
+
+}
+
+
+/* =================================
+   ÍCONE DO TEMA
+================================= */
+
+function updateThemeIcon(){
+
+    const icon =
+        document.getElementById("themeIcon");
+
+
+    if(!icon){
+
+        return;
+
+    }
+
+
+    const isLight =
+        document.body.classList.contains(
+            "light"
+        );
+
+
+    icon.textContent =
+        isLight
+            ? "dark_mode"
+            : "wb_sunny";
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        updateThemeIcon();
+
+    }
+);
+
+
+const themeObserver =
+    new MutationObserver(function(){
+
+        updateThemeIcon();
+
+    });
+
+
+themeObserver.observe(
+    document.body,
+    {
+        attributes:true,
+        attributeFilter:["class"]
+    }
+);
+
+
+/* =================================
+   GARANTIR MENU CORRETO
+================================= */
+
+function checkMenu(){
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("menuOverlay");
+
+
+    if(window.innerWidth >= 768){
+
+        sideMenu.classList.add("open");
+
+        sideMenu.style.transform =
+            "translateX(0)";
+
+        sideMenu.style.visibility =
+            "visible";
+
+        sideMenu.style.opacity =
+            "1";
+
+        overlay.classList.remove("open");
+
+        document.body.classList.remove(
+            "menu-open"
+        );
+
+        document.body.style.overflow =
+            "";
+
+    }else{
+
+        sideMenu.classList.remove("open");
+
+        sideMenu.style.transform =
+            "";
+
+        sideMenu.style.visibility =
+            "hidden";
+
+        sideMenu.style.opacity =
+            "1";
+
+        overlay.classList.remove("open");
+
+        document.body.classList.remove(
+            "menu-open"
+        );
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+}
+
+
+/* =================================
+   INICIAR
+================================= */
+
+checkMenu();
+
+
+/* =================================
+   REDIMENSIONAMENTO
+================================= */
+
+window.addEventListener(
+    "resize",
+    checkMenu
+);
+
+
+/* =================================
+   ESC
+================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
