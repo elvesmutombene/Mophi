@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Afiliados | PRODUTIVA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+rel="stylesheet">
+
+
+<style>
+
+/* =================================
+   RESET
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+
+    --body-bg:#000;
+
+    --card-bg:#0A0A0A;
+
+    --input-bg:#111;
+
+    --border:#242424;
+
+    --text:#fff;
+
+    --muted:#777;
+
+    --placeholder:#666;
+
+    --green:#6EDC82;
+
+    --yellow:#F5C542;
+
+}
+
+
+/* =================================
+   MODO CLARO
+================================= */
+
+body.light{
+
+    --body-bg:#F5F5F5;
+
+    --card-bg:#fff;
+
+    --input-bg:#F1F1F1;
+
+    --border:transparent;
+
+    --text:#111;
+
+    --muted:#666;
+
+    --placeholder:#888;
+
+}
+
+
+/* =================================
+   BODY
+================================= */
+
+body{
+
+    background:var(--body-bg);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    color:var(--text);
+
+    padding:80px 16px 30px;
+
+    min-height:100vh;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+/* =================================
+   MENU
+================================= */
+
+.side-menu{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:240px;
+    height:100vh;
+
+    background:var(--card-bg);
+
+    border-right:1px solid var(--border);
+
+    z-index:99999;
+
+    transform:translateX(-100%);
+
+    transition:transform .25s ease;
+
+    padding:24px 16px;
+
+    overflow-y:auto;
+
+    visibility:hidden;
+
+}
+
+
+.side-menu.open{
+
+    transform:translateX(0);
+
+    visibility:visible;
+
+}
+
+
+/* =================================
+   MENU HEADER
+================================= */
+
+.side-menu-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:30px;
+
+}
+
+
+.side-menu-logo img{
+
+    width:110px;
+
+    height:auto;
+
+    display:block;
+
+}
+
+
+.close-menu{
+
+    width:40px;
+
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent;
+
+    border:0;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+}
+
+
+/* =================================
+   MENU
+================================= */
+
+.menu-section{
+
+    margin-bottom:27px;
+
+}
+
+
+.menu-section-title{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+
+    margin:0 10px 9px;
+
+}
+
+
+.menu-item{
+
+    width:100%;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:transparent;
+
+    border:0;
+
+    border-radius:9px;
+
+    color:var(--text);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-align:left;
+
+    padding:0 10px;
+
+    cursor:pointer;
+
+}
+
+
+.menu-item .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:21px;
+
+}
+
+
+.menu-item.active{
+
+    background:var(--input-bg);
+
+}
+
+
+.menu-item.active .material-icons-round{
+
+    color:var(--text);
+
+}
+
+
+/* =================================
+   OVERLAY
+================================= */
+
+.menu-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    z-index:99998;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.25s;
+
+}
+
+
+.menu-overlay.open{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* =================================
+   HAMBURGUER
+================================= */
+
+.menu-btn{
+
+    position:absolute;
+
+    top:20px;
+
+    left:16px;
+
+    width:50px;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent;
+
+    border:0;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+}
+
+
+.menu-btn .material-icons-round{
+
+    font-size:28px;
+
+}
+
+
+/* =================================
+   TOP ACTIONS
+================================= */
+
+.top-actions{
+
+    position:absolute;
+
+    top:20px;
+
+    right:16px;
+
+    display:flex;
+
+    gap:9px;
+
+}
+
+
+.notification-btn,
+.theme-btn{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent;
+
+    border:0;
+
+    color:var(--muted);
+
+    cursor:pointer;
+
+}
+
+
+.notification-btn .material-icons-round,
+.theme-btn .material-symbols-outlined{
+
+    font-size:24px;
+
+}
+
+
+/* =================================
+   CONTAINER
+================================= */
+
+.affiliates-container{
+
+    width:100%;
+
+    max-width:1100px;
+
+    margin:0 auto;
+
+}
+
+
+/* =================================
+   CABEÇALHO
+================================= */
+
+.page-header{
+
+    margin-bottom:25px;
+
+}
+
+
+.page-title{
+
+    font-size:23px;
+
+    font-weight:800;
+
+}
+
+
+.page-subtitle{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+/* =================================
+   RESUMO
+================================= */
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+
+.summary-card{
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:22px;
+
+    min-width:0;
+
+}
+
+
+.summary-icon{
+
+    width:34px;
+
+    height:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--muted);
+
+    margin-bottom:15px;
+
+}
+
+
+.summary-icon .material-icons-round{
+
+    font-size:26px;
+
+}
+
+
+.summary-label{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+
+.summary-value{
+
+    margin-top:7px;
+
+    font-size:21px;
+
+    font-weight:900;
+
+}
+
+
+.summary-value.green{
+
+    color:var(--green);
+
+}
+
+
+/* =================================
+   TABS
+================================= */
+
+.tabs{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-bottom:15px;
+
+}
+
+
+.tab-btn{
+
+    height:42px;
+
+    padding:0 15px;
+
+    background:var(--card-bg);
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--muted);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.tab-btn.active{
+
+    background:var(--text);
+
+    color:var(--body-bg);
+
+}
+
+
+/* =================================
+   SEARCH
+================================= */
+
+.search-box{
+
+    width:100%;
+
+    height:48px;
+
+    background:var(--card-bg);
+
+    border:1px solid var(--border);
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 14px;
+
+    margin-bottom:20px;
+
+}
+
+
+.search-box .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:21px;
+
+}
+
+
+.search-box input{
+
+    width:100%;
+
+    height:100%;
+
+    background:transparent;
+
+    border:0;
+
+    outline:0;
+
+    color:var(--text);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:12px;
+
+}
+
+
+.search-box input::placeholder{
+
+    color:var(--placeholder);
+
+}
+
+
+/* =================================
+   SECTION CARD
+================================= */
+
+.section-card{
+
+    background:var(--card-bg);
+
+    border:2px solid var(--border);
+
+    border-radius:11px;
+
+    padding:22px;
+
+}
+
+
+.section-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+
+.section-title{
+
+    font-size:15px;
+
+    font-weight:800;
+
+}
+
+
+.section-count{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =================================
+   PRODUTOS AFILIADOS
+================================= */
+
+.products-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.affiliate-product{
+
+    display:grid;
+
+    grid-template-columns:55px 1fr auto;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+.affiliate-product:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.product-image{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:9px;
+
+    background:#151515;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+
+.product-image img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+.product-image .material-icons-round{
+
+    color:var(--muted);
+
+    font-size:25px;
+
+}
+
+
+.product-name{
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+
+.product-price{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+.product-commission{
+
+    margin-top:5px;
+
+    font-size:10px;
+
+}
+
+
+.product-commission strong{
+
+    color:var(--green);
+
+}
+
+
+.product-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+}
+
+
+.copy-btn{
+
+    height:38px;
+
+    padding:0 12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:5px;
+
+    background:transparent;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--text);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:10px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+
+.copy-btn .material-icons-round{
+
+    font-size:17px;
+
+}
+
+
+/* =================================
+   HISTÓRICO
+================================= */
+
+.history-table{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+.history-header,
+.history-row{
+
+    min-width:600px;
+
+    display:grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.history-header{
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    font-weight:700;
+
+}
+
+
+.history-row{
+
+    min-height:68px;
+
+    border-bottom:1px solid var(--border);
+
+    font-size:11px;
+
+}
+
+
+.history-row:last-child{
+
+    border-bottom:0;
+
+}
+
+
+.history-product{
+
+    font-weight:800;
+
+}
+
+
+.history-sales{
+
+    font-weight:700;
+
+}
+
+
+.history-commission{
+
+    color:var(--green);
+
+    font-weight:800;
+
+}
+
+
+.history-status{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =================================
+   EMPTY
+================================= */
+
+.empty-state{
+
+    min-height:250px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+
+.empty-state .material-icons-round{
+
+    font-size:42px;
+
+    color:var(--muted);
+
+    margin-bottom:12px;
+
+}
+
+
+.empty-title{
+
+    font-size:14px;
+
+    font-weight:800;
+
+}
+
+
+.empty-text{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =================================
+   HIDDEN
+================================= */
+
+.hidden{
+
+    display:none !important;
+
+}
+
+
+/* =================================
+   DESKTOP
+================================= */
+
+@media(min-width:768px){
+
+    body{
+
+        padding-left:280px;
+
+        padding-right:40px;
+
+    }
+
+
+    .side-menu{
+
+        transform:translateX(0);
+
+        visibility:visible;
+
+    }
+
+
+    .menu-btn{
+
+        display:none;
+
+    }
+
+
+    .close-menu{
+
+        display:none;
+
+    }
+
+
+    .menu-overlay{
+
+        display:none;
+
+    }
+
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media(max-width:767px){
+
+    .affiliates-container{
+
+        max-width:600px;
+
+    }
+
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+    }
+
+
+    .summary-card:last-child{
+
+        grid-column:span 2;
+
+    }
+
+}
+
+
+/* =================================
+   CELULAR
+================================= */
+
+@media(max-width:520px){
+
+    body{
+
+        padding:80px 14px 25px;
+
+    }
+
+
+    .top-actions{
+
+        right:14px;
+
+    }
+
+
+    .page-title{
+
+        font-size:20px;
+
+    }
+
+
+    .summary-grid{
+
+        grid-template-columns:1fr 1fr;
+
+        gap:10px;
+
+    }
+
+
+    .summary-card{
+
+        padding:17px;
+
+    }
+
+
+    .summary-card:last-child{
+
+        grid-column:span 2;
+
+    }
+
+
+    .summary-value{
+
+        font-size:17px;
+
+    }
+
+
+    .tabs{
+
+        overflow-x:auto;
+
+    }
+
+
+    .tab-btn{
+
+        white-space:nowrap;
+
+    }
+
+
+    .section-card{
+
+        padding:17px;
+
+    }
+
+
+    .affiliate-product{
+
+        grid-template-columns:48px 1fr;
+
+        gap:11px;
+
+    }
+
+
+    .product-image{
+
+        width:48px;
+
+        height:48px;
+
+    }
+
+
+    .product-actions{
+
+        grid-column:2;
+
+        justify-content:flex-start;
+
+    }
+
+
+    .copy-btn{
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     OVERLAY
+================================= -->
+
+<div
+class="menu-overlay"
+id="menuOverlay"
+onclick="closeMenu()">
+</div>
+
+
+<!-- =================================
+     MENU
+================================= -->
+
+<aside
+class="side-menu"
+id="sideMenu">
+
+
+<div class="side-menu-header">
+
+<div class="side-menu-logo">
+
+<img
+src="./assets/logo.png"
+alt="PRODUTIVA">
+
+</div>
+
+
+<button
+class="close-menu"
+onclick="closeMenu()">
+
+<span class="material-icons-round">
+close
+</span>
+
+</button>
+
+</div>
+
+
+<!-- PRINCIPAL -->
+
+<div class="menu-section">
+
+<div class="menu-section-title">
+Principal
+</div>
+
+
+<button
+class="menu-item"
+onclick="menuAction('Dashboard')">
+
+<span class="material-icons-round">
+dashboard
+</span>
+
+<span>
+Dashboard
+</span>
+
+</button>
+
+</div>
+
+
+<!-- GESTÃO -->
+
+<div class="menu-section">
+
+<div class="menu-section-title">
+Gestão
+</div>
+
+
+<button
+class="menu-item"
+onclick="menuAction('Produtos')">
+
+<span class="material-icons-round">
+inventory_2
+</span>
+
+<span>
+Produtos
+</span>
+
+</button>
+
+
+<button
+class="menu-item"
+onclick="menuAction('Marketplace')">
+
+<span class="material-icons-round">
+storefront
+</span>
+
+<span>
+Marketplace
+</span>
+
+</button>
+
+
+<button
+class="menu-item active">
+
+<span class="material-icons-round">
+groups
+</span>
+
+<span>
+Afiliados
+</span>
+
+</button>
+
+
+<button
+class="menu-item"
+onclick="menuAction('Financeiro')">
+
+<span class="material-icons-round">
+account_balance_wallet
+</span>
+
+<span>
+Financeiro
+</span>
+
+</button>
+
+</div>
+
+
+<!-- CONTA -->
+
+<div class="menu-section">
+
+<div class="menu-section-title">
+Conta
+</div>
+
+
+<button
+class="menu-item"
+onclick="menuAction('Perfil')">
+
+<span class="material-icons-round">
+person_outline
+</span>
+
+<span>
+Perfil
+</span>
+
+</button>
+
+</div>
+
+
+</aside>
+
+
+<!-- =================================
+     HAMBURGUER
+================================= -->
+
+<button
+class="menu-btn"
+onclick="openMenu()">
+
+<span class="material-icons-round">
+menu
+</span>
+
+</button>
+
+
+<!-- =================================
+     AÇÕES
+================================= -->
+
+<div class="top-actions">
+
+
+<button
+class="notification-btn"
+onclick="openNotifications()">
+
+<span class="material-icons-round">
+notifications_none
+</span>
+
+</button>
+
+
+<button
+class="theme-btn"
+onclick="toggleTheme()">
+
+<span
+class="material-symbols-outlined"
+id="themeIcon">
+
+wb_sunny
+
+</span>
+
+</button>
+
+</div>
+
+
+<!-- =================================
+     CONTEÚDO
+================================= -->
+
+<main class="affiliates-container">
+
+
+<!-- CABEÇALHO -->
+
+<div class="page-header">
+
+<div class="page-title">
+Afiliados
+</div>
+
+<div class="page-subtitle">
+Acompanhe seus produtos afiliados e o histórico das suas vendas.
+</div>
+
+</div>
+
+
+<!-- =================================
+     RESUMO
+================================= -->
+
+<div class="summary-grid">
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+
+<span class="material-icons-round">
+link
+</span>
+
+</div>
+
+<div class="summary-label">
+Produtos afiliados
+</div>
+
+<div
+class="summary-value"
+id="affiliateProducts">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+
+<span class="material-icons-round">
+shopping_cart
+</span>
+
+</div>
+
+<div class="summary-label">
+Vendas por afiliação
+</div>
+
+<div
+class="summary-value"
+id="affiliateSales">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+
+<span class="material-icons-round">
+payments
+</span>
+
+</div>
+
+<div class="summary-label">
+Comissões recebidas
+</div>
+
+<div
+class="summary-value green"
+id="affiliateCommission">
+
+0 MT
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =================================
+     TABS
+================================= -->
+
+<div class="tabs">
+
+
+<button
+class="tab-btn active"
+id="productsTab"
+onclick="showProducts()">
+
+Meus produtos afiliados
+
+</button>
+
+
+<button
+class="tab-btn"
+id="historyTab"
+onclick="showHistory()">
+
+Histórico
+
+</button>
+
+
+</div>
+
+
+<!-- =================================
+     PESQUISA
+================================= -->
+
+<div class="search-box">
+
+<span class="material-icons-round">
+search
+</span>
+
+
+<input
+type="search"
+id="searchInput"
+placeholder="Pesquisar...">
+
+</div>
+
+
+<!-- =================================
+     MEUS PRODUTOS
+================================= -->
+
+<section
+class="section-card"
+id="productsSection">
+
+
+<div class="section-header">
+
+<div class="section-title">
+Meus produtos afiliados
+</div>
+
+
+<div
+class="section-count"
+id="productsCount">
+
+0 produtos
+
+</div>
+
+</div>
+
+
+<div
+class="products-list"
+id="affiliateProductsList">
+
+
+<!-- PRODUTO 1 -->
+
+<div
+class="affiliate-product"
+data-name="Curso de Marketing Digital">
+
+
+<div class="product-image">
+
+<span class="material-icons-round">
+image
+</span>
+
+</div>
+
+
+<div>
+
+<div class="product-name">
+Curso de Marketing Digital
+</div>
+
+
+<div class="product-price">
+Preço: 2.000 MT
+</div>
+
+
+<div class="product-commission">
+
+Comissão:
+<strong>
+30% — 600 MT por venda
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="product-actions">
+
+<button
+class="copy-btn"
+onclick="copyLink('https://produtiva.com/checkout/curso-marketing?ref=AFI001')">
+
+<span class="material-icons-round">
+content_copy
+</span>
+
+<span>
+Copiar link
+</span>
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<!-- PRODUTO 2 -->
+
+<div
+class="affiliate-product"
+data-name="E-book de Tráfego Pago">
+
+
+<div class="product-image">
+
+<span class="material-icons-round">
+image
+</span>
+
+</div>
+
+
+<div>
+
+<div class="product-name">
+E-book de Tráfego Pago
+</div>
+
+
+<div class="product-price">
+Preço: 500 MT
+</div>
+
+
+<div class="product-commission">
+
+Comissão:
+<strong>
+20% — 100 MT por venda
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="product-actions">
+
+<button
+class="copy-btn"
+onclick="copyLink('https://produtiva.com/checkout/ebook-trafego?ref=AFI002')">
+
+<span class="material-icons-round">
+content_copy
+</span>
+
+<span>
+Copiar link
+</span>
+
+</button>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =================================
+     HISTÓRICO
+================================= -->
+
+<section
+class="section-card hidden"
+id="historySection">
+
+
+<div class="section-header">
+
+<div class="section-title">
+Histórico de afiliações
+</div>
+
+
+<div class="section-count">
+Vendas geradas pelos seus links
+</div>
+
+</div>
+
+
+<div class="history-table">
+
+
+<div class="history-header">
+
+<div>
+Produto
+</div>
+
+<div>
+Vendas
+</div>
+
+<div>
+Comissão
+</div>
+
+<div>
+Status
+</div>
+
+</div>
+
+
+<!-- HISTÓRICO 1 -->
+
+<div
+class="history-row"
+data-name="Curso de Marketing Digital">
+
+
+<div class="history-product">
+Curso de Marketing Digital
+</div>
+
+
+<div class="history-sales">
+5
+</div>
+
+
+<div class="history-commission">
+3.000 MT
+</div>
+
+
+<div class="history-status">
+Ativo
+</div>
+
+</div>
+
+
+<!-- HISTÓRICO 2 -->
+
+<div
+class="history-row"
+data-name="E-book de Tráfego Pago">
+
+
+<div class="history-product">
+E-book de Tráfego Pago
+</div>
+
+
+<div class="history-sales">
+2
+</div>
+
+
+<div class="history-commission">
+200 MT
+</div>
+
+
+<div class="history-status">
+Ativo
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- =================================
+     TEMA
+================================= -->
+
+<script src="./js/theme.js"></script>
+
+
+<script>
+
+/* =================================
+   MENU
+================================= */
+
+function openMenu(){
+
+    document
+    .getElementById("sideMenu")
+    .classList.add("open");
+
+    document
+    .getElementById("menuOverlay")
+    .classList.add("open");
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeMenu(){
+
+    document
+    .getElementById("sideMenu")
+    .classList.remove("open");
+
+    document
+    .getElementById("menuOverlay")
+    .classList.remove("open");
+
+    document.body.style.overflow="";
+
+}
+
+
+/* =================================
+   NAVEGAÇÃO
+================================= */
+
+function menuAction(item){
+
+    const routes={
+
+        Dashboard:"./dashboard.html",
+
+        Produtos:"./produtos.html",
+
+        Marketplace:"./marketplace.html",
+
+        Afiliados:"./afiliados.html",
+
+        Financeiro:"./financeiro.html",
+
+        Perfil:"./perfil.html"
+
+    };
+
+
+    if(routes[item]){
+
+        window.location.href=routes[item];
+
+    }
+
+}
+
+
+/* =================================
+   TABS
+================================= */
+
+function showProducts(){
+
+    document
+    .getElementById("productsSection")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("historySection")
+    .classList.add("hidden");
+
+
+    document
+    .getElementById("productsTab")
+    .classList.add("active");
+
+    document
+    .getElementById("historyTab")
+    .classList.remove("active");
+
+
+    document
+    .getElementById("searchInput")
+    .value="";
+
+
+    filterCurrentSection();
+
+}
+
+
+function showHistory(){
+
+    document
+    .getElementById("productsSection")
+    .classList.add("hidden");
+
+    document
+    .getElementById("historySection")
+    .classList.remove("hidden");
+
+
+    document
+    .getElementById("productsTab")
+    .classList.remove("active");
+
+    document
+    .getElementById("historyTab")
+    .classList.add("active");
+
+
+    document
+    .getElementById("searchInput")
+    .value="";
+
+
+    filterCurrentSection();
+
+}
+
+
+/* =================================
+   PESQUISA
+================================= */
+
+const searchInput =
+document.getElementById("searchInput");
+
+
+searchInput.addEventListener(
+    "input",
+    filterCurrentSection
+);
+
+
+function filterCurrentSection(){
+
+    const search =
+        searchInput.value
+        .toLowerCase()
+        .trim();
+
+
+    const productsSection =
+        document.getElementById(
+            "productsSection"
+        );
+
+
+    const historySection =
+        document.getElementById(
+            "historySection"
+        );
+
+
+    if(
+        !productsSection.classList.contains(
+            "hidden"
+        )
+    ){
+
+        const products =
+            document.querySelectorAll(
+                ".affiliate-product"
+            );
+
+
+        products.forEach(function(product){
+
+            const name =
+                product.dataset.name
+                .toLowerCase();
+
+
+            product.style.display =
+                name.includes(search)
+                ? "grid"
+                : "none";
+
+        });
+
+    }else{
+
+        const rows =
+            document.querySelectorAll(
+                ".history-row"
+            );
+
+
+        rows.forEach(function(row){
+
+            const name =
+                row.dataset.name
+                .toLowerCase();
+
+
+            row.style.display =
+                name.includes(search)
+                ? "grid"
+                : "none";
+
+        });
+
+    }
+
+}
+
+
+/* =================================
+   COPIAR LINK
+================================= */
+
+function copyLink(link){
+
+    navigator.clipboard.writeText(link)
+
+    .then(function(){
+
+        alert("Link de afiliado copiado!");
+
+    })
+
+    .catch(function(){
+
+        alert(
+            "Não foi possível copiar automaticamente."
+        );
+
+    });
+
+}
+
+
+/* =================================
+   NOTIFICAÇÕES
+================================= */
+
+function openNotifications(){
+
+    alert("Notificações");
+
+}
+
+
+/* =================================
+   TEMA
+================================= */
+
+function updateThemeIcon(){
+
+    const icon =
+        document.getElementById(
+            "themeIcon"
+        );
+
+
+    if(!icon)return;
+
+
+    const light =
+        document.body.classList.contains(
+            "light"
+        );
+
+
+    icon.textContent =
+        light
+        ? "dark_mode"
+        : "wb_sunny";
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    updateThemeIcon
+);
+
+
+const observer =
+new MutationObserver(
+    updateThemeIcon
+);
+
+
+observer.observe(
+    document.body,
+    {
+        attributes:true,
+        attributeFilter:["class"]
+    }
+);
+
+
+/* =================================
+   ESC
+================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
