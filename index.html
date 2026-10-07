@@ -1,1 +1,2212 @@
+<!DOCTYPE html>
+<html lang="pt">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PRODUTIVA | Venda mais. Cresça mais.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* ==================================================
+   RESET
+================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+
+    --black:#000000;
+
+    --panel:#0A0A0A;
+
+    --panel2:#101010;
+
+    --border:#242424;
+
+    --text:#FFFFFF;
+
+    --muted:#858585;
+
+    --yellow:#F5C400;
+
+}
+
+body{
+
+    background:var(--black);
+
+    color:var(--text);
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    min-height:100vh;
+
+}
+
+button{
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+header{
+
+    width:100%;
+
+    height:78px;
+
+    padding:0 7%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    border-bottom:1px solid #171717;
+
+    background:#000;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+.logo img{
+
+    width:125px;
+
+    display:block;
+
+}
+
+.header-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.header-btn{
+
+    height:40px;
+
+    padding:0 18px;
+
+    border-radius:8px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+.login-btn{
+
+    background:transparent;
+
+    border:1px solid #333;
+
+    color:#fff;
+
+}
+
+.register-btn{
+
+    background:var(--yellow);
+
+    border:0;
+
+    color:#000;
+
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:85px 25px 90px;
+
+    text-align:center;
+
+}
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border:1px solid #5d4b00;
+
+    border-radius:30px;
+
+    color:var(--yellow);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    margin-bottom:22px;
+
+}
+
+.badge-dot{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--yellow);
+
+}
+
+.hero h1{
+
+    max-width:850px;
+
+    margin:auto;
+
+    font-size:clamp(40px,7vw,72px);
+
+    line-height:1.02;
+
+    font-weight:800;
+
+    letter-spacing:-3px;
+
+}
+
+.hero h1 span{
+
+    color:var(--yellow);
+
+}
+
+
+/* ==================================================
+   IMAGEM ÚNICA
+================================================== */
+
+.gallery{
+
+    width:100%;
+
+    max-width:1050px;
+
+    margin:55px auto 0;
+
+}
+
+.image-box{
+
+    width:100%;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+}
+
+.image-box img{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+    object-fit:contain;
+
+}
+
+
+/* ==================================================
+   TEXTO HERO
+================================================== */
+
+.hero-text{
+
+    max-width:680px;
+
+    margin:30px auto 0;
+
+    color:#999;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+
+/* ==================================================
+   BOTÕES HERO
+================================================== */
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-top:32px;
+
+}
+
+.hero-btn{
+
+    height:50px;
+
+    padding:0 27px;
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+.hero-primary{
+
+    background:var(--yellow);
+
+    color:#000;
+
+    border:0;
+
+}
+
+.hero-secondary{
+
+    background:transparent;
+
+    color:#fff;
+
+    border:1px solid #333;
+
+}
+
+.hero-note{
+
+    margin-top:18px;
+
+    color:#555;
+
+    font-size:10px;
+
+}
+
+
+/* ==================================================
+   SEÇÕES
+================================================== */
+
+.section{
+
+    max-width:1050px;
+
+    margin:0 auto;
+
+    padding:100px 25px 0;
+
+}
+
+.section-label{
+
+    color:var(--yellow);
+
+    font-size:10px;
+
+    font-weight:800;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+
+}
+
+.section-title{
+
+    margin-top:10px;
+
+    font-size:35px;
+
+    line-height:1.2;
+
+    letter-spacing:-1px;
+
+    font-weight:800;
+
+}
+
+.section-title span{
+
+    color:var(--yellow);
+
+}
+
+.section-description{
+
+    max-width:600px;
+
+    margin-top:15px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==================================================
+   COMO FUNCIONA
+================================================== */
+
+.steps{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+}
+
+.step{
+
+    padding:27px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+}
+
+.step-number{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:#181500;
+
+    color:var(--yellow);
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+.step h3{
+
+    margin-top:22px;
+
+    font-size:15px;
+
+}
+
+.step p{
+
+    margin-top:9px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==================================================
+   RECURSOS
+================================================== */
+
+.features{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.feature{
+
+    padding:27px;
+
+    background:var(--panel);
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+}
+
+.feature-number{
+
+    color:var(--yellow);
+
+    font-size:11px;
+
+    font-weight:800;
+
+}
+
+.feature h3{
+
+    margin-top:17px;
+
+    font-size:15px;
+
+}
+
+.feature p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==================================================
+   BENEFÍCIOS
+================================================== */
+
+.benefits{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+}
+
+.benefit{
+
+    padding:25px;
+
+    background:#080808;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+}
+
+.benefit h3{
+
+    font-size:14px;
+
+}
+
+.benefit p{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==================================================
+   PARA QUEM É
+================================================== */
+
+.audience{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+}
+
+.audience-card{
+
+    padding:28px;
+
+    border:1px solid var(--border);
+
+    background:var(--panel);
+
+    border-radius:14px;
+
+}
+
+.audience-card strong{
+
+    font-size:14px;
+
+}
+
+.audience-card p{
+
+    margin-top:9px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==================================================
+   FAQ
+================================================== */
+
+.faq-section{
+
+    max-width:850px;
+
+    margin:0 auto;
+
+    padding:110px 25px 0;
+
+}
+
+.faq-header{
+
+    text-align:center;
+
+}
+
+.faq-header .section-description{
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+.faq-list{
+
+    margin-top:40px;
+
+}
+
+.faq-item{
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.faq-question{
+
+    width:100%;
+
+    padding:22px 5px;
+
+    background:none;
+
+    border:0;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    text-align:left;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+}
+
+.faq-icon{
+
+    width:25px;
+
+    height:25px;
+
+    min-width:25px;
+
+    border:1px solid #333;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--yellow);
+
+    font-size:17px;
+
+    transition:.3s;
+
+}
+
+.faq-answer{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:max-height .3s ease;
+
+}
+
+.faq-answer p{
+
+    padding:0 40px 22px 5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+}
+
+.faq-item.active .faq-answer{
+
+    max-height:300px;
+
+}
+
+.faq-item.active .faq-icon{
+
+    transform:rotate(45deg);
+
+    color:#fff;
+
+    border-color:var(--yellow);
+
+}
+
+
+/* ==================================================
+   CTA
+================================================== */
+
+.cta{
+
+    max-width:1050px;
+
+    margin:110px auto 90px;
+
+    padding:65px 30px;
+
+    border:1px solid #514500;
+
+    border-radius:20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #211c00,
+            #050505 68%
+        );
+
+    text-align:center;
+
+}
+
+.cta h2{
+
+    font-size:35px;
+
+    line-height:1.2;
+
+    font-weight:800;
+
+}
+
+.cta h2 span{
+
+    color:var(--yellow);
+
+}
+
+.cta p{
+
+    max-width:560px;
+
+    margin:15px auto 27px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.7;
+
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer{
+
+    border-top:1px solid #171717;
+
+    padding:40px 7%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:#666;
+
+    font-size:9px;
+
+}
+
+.footer-logo img{
+
+    width:105px;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:767px){
+
+    header{
+
+        height:70px;
+
+        padding:0 18px;
+
+    }
+
+    .logo img{
+
+        width:105px;
+
+    }
+
+    .login-btn{
+
+        display:none;
+
+    }
+
+    .header-btn{
+
+        height:38px;
+
+        padding:0 14px;
+
+        font-size:10px;
+
+    }
+
+
+    .hero{
+
+        padding:55px 16px 60px;
+
+    }
+
+    .hero h1{
+
+        font-size:39px;
+
+        letter-spacing:-1.8px;
+
+    }
+
+
+    /* IMAGEM ÚNICA NO CELULAR */
+
+    .gallery{
+
+        margin-top:40px;
+
+        width:100%;
+
+    }
+
+    .image-box{
+
+        width:100%;
+
+        border-radius:10px;
+
+    }
+
+    .image-box img{
+
+        width:100%;
+
+        height:auto;
+
+        object-fit:contain;
+
+    }
+
+
+    .hero-text{
+
+        font-size:13px;
+
+        line-height:1.7;
+
+    }
+
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        padding:0 15px;
+
+    }
+
+
+    .hero-btn{
+
+        width:100%;
+
+    }
+
+
+    .section{
+
+        padding:75px 18px 0;
+
+    }
+
+
+    .section-title{
+
+        font-size:27px;
+
+    }
+
+
+    .steps{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .features{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .benefits{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .audience{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .faq-section{
+
+        padding:80px 18px 0;
+
+    }
+
+
+    .faq-question{
+
+        font-size:12px;
+
+        padding:20px 0;
+
+    }
+
+
+    .faq-answer p{
+
+        padding-left:0;
+
+    }
+
+
+    .cta{
+
+        margin:80px 15px 60px;
+
+        padding:45px 20px;
+
+    }
+
+
+    .cta h2{
+
+        font-size:27px;
+
+    }
+
+
+    footer{
+
+        padding:28px 18px;
+
+        gap:20px;
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+
+/* ==================================================
+   PEQUENO CELULAR
+================================================== */
+
+@media(max-width:380px){
+
+    .hero h1{
+
+        font-size:34px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header>
+
+    <div class="logo">
+
+        <img
+        src="./assets/logo.png"
+        alt="PRODUTIVA">
+
+    </div>
+
+
+    <div class="header-buttons">
+
+        <button
+        class="header-btn login-btn"
+        onclick="login()">
+
+            Entrar
+
+        </button>
+
+
+        <button
+        class="header-btn register-btn"
+        onclick="register()">
+
+            Criar conta
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<main>
+
+<section class="hero">
+
+
+    <div class="badge">
+
+        <span class="badge-dot"></span>
+
+        PLATAFORMA PARA VENDER ONLINE
+
+    </div>
+
+
+    <h1>
+
+        Venda mais.
+        <br>
+
+        <span>Cresça mais.</span>
+
+    </h1>
+
+
+    <!-- ==================================================
+         IMAGEM ÚNICA
+    ================================================== -->
+
+    <div class="gallery">
+
+        <div class="image-box">
+
+            <img
+            src="./assets/apresentacao.png"
+            alt="PRODUTIVA">
+
+        </div>
+
+    </div>
+
+
+    <p class="hero-text">
+
+        A PRODUTIVA reúne as ferramentas que você precisa
+        para vender produtos online, criar seus checkouts,
+        acompanhar suas vendas e organizar o seu negócio
+        em um único lugar.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+
+        <button
+        class="hero-btn hero-primary"
+        onclick="register()">
+
+            Começar agora →
+
+        </button>
+
+
+        <button
+        class="hero-btn hero-secondary"
+        onclick="login()">
+
+            Já tenho uma conta
+
+        </button>
+
+
+    </div>
+
+
+    <div class="hero-note">
+
+        Comece a organizar suas vendas de forma simples.
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     COMO FUNCIONA
+================================================== -->
+
+<section class="section">
+
+
+    <div class="section-label">
+        COMO FUNCIONA
+    </div>
+
+
+    <h2 class="section-title">
+
+        Comece a vender em
+        <span>poucos passos.</span>
+
+    </h2>
+
+
+    <p class="section-description">
+
+        A PRODUTIVA foi pensada para deixar sua operação
+        mais simples, desde o cadastro do produto até
+        o acompanhamento das suas vendas.
+
+    </p>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Crie sua conta
+            </h3>
+
+            <p>
+
+                Cadastre-se e tenha acesso ao seu
+                painel de controle.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Cadastre seus produtos
+            </h3>
+
+            <p>
+
+                Adicione seus produtos, preços, imagens
+                e informações para seus clientes.
+
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Comece a vender
+            </h3>
+
+            <p>
+
+                Compartilhe seus links de checkout,
+                receba pedidos e acompanhe seus resultados.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     RECURSOS
+================================================== -->
+
+<section class="section">
+
+
+    <div class="section-label">
+        RECURSOS
+    </div>
+
+
+    <h2 class="section-title">
+
+        Tudo para deixar sua
+        <span>operação organizada.</span>
+
+    </h2>
+
+
+    <p class="section-description">
+
+        Tenha ferramentas essenciais para administrar
+        seus produtos, vendas e resultados em um
+        único lugar.
+
+    </p>
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <h3>
+                Gestão de produtos
+            </h3>
+
+            <p>
+
+                Cadastre, organize e gerencie seus produtos
+                diretamente pelo seu painel.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <h3>
+                Links de checkout
+            </h3>
+
+            <p>
+
+                Tenha um checkout próprio para cada produto
+                e compartilhe o link com seus clientes.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <h3>
+                Dashboard completo
+            </h3>
+
+            <p>
+
+                Visualize informações importantes sobre
+                suas vendas e o desempenho do seu negócio.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                04
+            </div>
+
+            <h3>
+                Controle financeiro
+            </h3>
+
+            <p>
+
+                Acompanhe faturamento, saldo disponível
+                e movimentações financeiras.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                05
+            </div>
+
+            <h3>
+                Gestão de vendas
+            </h3>
+
+            <p>
+
+                Tenha uma visão organizada das vendas
+                realizadas através da plataforma.
+
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-number">
+                06
+            </div>
+
+            <h3>
+                Solicitação de saque
+            </h3>
+
+            <p>
+
+                Quando houver saldo disponível, você poderá
+                solicitar o saque através dos métodos disponíveis.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     BENEFÍCIOS
+================================================== -->
+
+<section class="section">
+
+
+    <div class="section-label">
+        POR QUE PRODUTIVA
+    </div>
+
+
+    <h2 class="section-title">
+
+        Mais organização.
+        <br>
+
+        <span>Mais controle.</span>
+
+    </h2>
+
+
+    <div class="benefits">
+
+
+        <div class="benefit">
+
+            <h3>
+                Tudo em um só lugar
+            </h3>
+
+            <p>
+
+                Produtos, vendas e informações financeiras
+                organizados em uma única plataforma.
+
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <h3>
+                Fácil de usar
+            </h3>
+
+            <p>
+
+                Uma interface simples para administrar
+                sua operação sem complicação.
+
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <h3>
+                Feito para crescer
+            </h3>
+
+            <p>
+
+                Uma estrutura preparada para acompanhar
+                o crescimento do seu negócio online.
+
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <h3>
+                Economize tempo
+            </h3>
+
+            <p>
+
+                Reduza tarefas desnecessárias e concentre-se
+                mais no que realmente importa: vender.
+
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <h3>
+                Tenha mais controle
+            </h3>
+
+            <p>
+
+                Acompanhe seus números e tenha uma visão
+                mais clara do seu negócio.
+
+            </p>
+
+        </div>
+
+
+        <div class="benefit">
+
+            <h3>
+                Venda de qualquer lugar
+            </h3>
+
+            <p>
+
+                Gerencie sua operação pelo celular ou
+                computador sempre que precisar.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     PARA QUEM É
+================================================== -->
+
+<section class="section">
+
+
+    <div class="section-label">
+        PARA QUEM É
+    </div>
+
+
+    <h2 class="section-title">
+
+        A PRODUTIVA é para
+        <span>quem quer vender.</span>
+
+    </h2>
+
+
+    <div class="audience">
+
+
+        <div class="audience-card">
+
+            <strong>
+                Empreendedores
+            </strong>
+
+            <p>
+
+                Para quem possui um negócio e quer
+                começar ou melhorar suas vendas online.
+
+            </p>
+
+        </div>
+
+
+        <div class="audience-card">
+
+            <strong>
+                Vendedores online
+            </strong>
+
+            <p>
+
+                Para quem já vende pela internet e quer
+                uma estrutura mais organizada.
+
+            </p>
+
+        </div>
+
+
+        <div class="audience-card">
+
+            <strong>
+                Criadores de produtos
+            </strong>
+
+            <p>
+
+                Para quem possui produtos e quer
+                disponibilizá-los para venda online.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     FAQ
+================================================== -->
+
+<section class="faq-section">
+
+
+    <div class="faq-header">
+
+
+        <div class="section-label">
+            PERGUNTAS FREQUENTES
+        </div>
+
+
+        <h2 class="section-title">
+
+            Ainda tem alguma
+            <span>dúvida?</span>
+
+        </h2>
+
+
+        <p class="section-description">
+
+            Confira algumas das perguntas mais frequentes
+            sobre a PRODUTIVA.
+
+        </p>
+
+
+    </div>
+
+
+    <div class="faq-list">
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    O que é a PRODUTIVA?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    A PRODUTIVA é uma plataforma para vender
+                    produtos online e organizar sua operação
+                    em um único lugar. Você pode cadastrar
+                    produtos, criar links de checkout, acompanhar
+                    vendas e visualizar informações financeiras.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Preciso ter um site para usar a PRODUTIVA?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Não. Você não precisa ter um site próprio.
+                    A PRODUTIVA permite que seus produtos tenham
+                    links de checkout que podem ser compartilhados
+                    diretamente com seus clientes.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Posso cadastrar vários produtos?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. Você pode cadastrar e organizar seus
+                    produtos dentro do seu painel, adicionando
+                    nome, descrição, preço e imagem.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Cada produto pode ter seu próprio checkout?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. Cada produto pode possuir seu próprio
+                    link de checkout, facilitando o compartilhamento
+                    e a apresentação do produto ao cliente.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Consigo acompanhar minhas vendas?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. O painel permite acompanhar suas vendas,
+                    faturamento e outras informações importantes
+                    da sua operação.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Consigo acompanhar meu saldo?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. A área financeira permite visualizar
+                    informações relacionadas ao seu saldo e
+                    às movimentações disponíveis.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Posso solicitar um saque?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. Quando houver saldo disponível para
+                    saque, você poderá solicitar o levantamento
+                    através dos métodos disponibilizados pela
+                    PRODUTIVA.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    A PRODUTIVA funciona no celular?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. A plataforma foi pensada para funcionar
+                    em dispositivos móveis e computadores.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Quem pode usar a PRODUTIVA?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    A PRODUTIVA pode ser utilizada por empreendedores,
+                    vendedores online e pessoas que desejam vender
+                    produtos pela internet e organizar melhor sua
+                    operação.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    É necessário conhecimento técnico?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Não. A plataforma foi desenvolvida para ser
+                    simples e fácil de utilizar, mesmo para quem
+                    não possui conhecimentos técnicos.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Posso começar mesmo sendo iniciante?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Sim. A PRODUTIVA foi pensada para facilitar
+                    o início das vendas online e oferecer uma
+                    estrutura organizada para quem está começando.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Como começo a utilizar a PRODUTIVA?
+                </span>
+
+                <span class="faq-icon">
+                    +
+                </span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+
+                    Basta criar sua conta, acessar seu painel,
+                    cadastrar seus produtos e começar a configurar
+                    sua operação de vendas.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CTA FINAL
+================================================== -->
+
+<section class="cta">
+
+
+    <h2>
+
+        Seu negócio pode
+        <span>começar agora.</span>
+
+    </h2>
+
+
+    <p>
+
+        Crie sua conta na PRODUTIVA e tenha uma
+        estrutura simples para vender seus produtos,
+        acompanhar suas vendas e organizar seu negócio.
+
+    </p>
+
+
+    <button
+    class="hero-btn hero-primary"
+    onclick="register()">
+
+        Criar minha conta →
+
+    </button>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+
+    <div class="footer-logo">
+
+        <img
+        src="./assets/logo.png"
+        alt="PRODUTIVA">
+
+    </div>
+
+
+    <div>
+
+        © 2026 PRODUTIVA. Todos os direitos reservados.
+
+    </div>
+
+
+</footer>
+
+
+
+<script>
+
+/* ==================================================
+   NAVEGAÇÃO
+================================================== */
+
+function login(){
+
+    window.location.href="./login.html";
+
+}
+
+
+function register(){
+
+    window.location.href="./cadastro.html";
+
+}
+
+
+/* ==================================================
+   FAQ
+================================================== */
+
+const faqQuestions =
+document.querySelectorAll(".faq-question");
+
+
+faqQuestions.forEach(function(question){
+
+    question.addEventListener("click",function(){
+
+        const item =
+        this.parentElement;
+
+        const isActive =
+        item.classList.contains("active");
+
+
+        document
+        .querySelectorAll(".faq-item")
+        .forEach(function(other){
+
+            other.classList.remove("active");
+
+        });
+
+
+        if(!isActive){
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+});
+
+</script>
+
+
+</body>
+
+</html>
