@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Criar conta | PRODUTIVA</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+<style>
+:root{
+    --black:#000000;
+    --card:#0A0A0A;
+    --input:#111111;
+    --border:#242424;
+    --white:#ffffff;
+    --muted:#888888;
+    --green:#6EDC82;
+    --yellow:#F5C542;
+    --danger:#ff4d4d;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:var(--black);
+    color:var(--white);
+    font-family:"Plus Jakarta Sans",sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
+
+.auth-container{
+    width:100%;
+    max-width:430px;
+}
+
+.logo{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-bottom:28px;
+}
+
+.logo img{
+    width:145px;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
+
+.auth-card{
+    width:100%;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:32px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.auth-header{
+    margin-bottom:28px;
+}
+
+.auth-header h1{
+    font-size:26px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.input-wrapper{
+    position:relative;
+    width:100%;
+}
+
+.input-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+    font-size:20px;
+    pointer-events:none;
+}
+
+.input-wrapper input{
+    width:100%;
+    height:52px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:var(--input);
+    color:var(--white);
+    outline:none;
+    font-family:inherit;
+    font-size:14px;
+    padding:0 48px 0 46px;
+    transition:.2s;
+}
+
+.input-wrapper input:focus{
+    border-color:var(--yellow);
+    box-shadow:0 0 0 3px rgba(245,197,66,.08);
+}
+
+.password-toggle{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+    font-size:20px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.password-toggle:hover{
+    color:var(--yellow);
+}
+
+.login-link{
+    margin-top:4px;
+    margin-bottom:22px;
+    text-align:right;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.login-link a{
+    color:var(--yellow);
+    text-decoration:none;
+    font-weight:700;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
+}
+
+.checkboxes{
+    margin-bottom:20px;
+}
+
+.checkbox-item{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:12px;
+    cursor:pointer;
+}
+
+.checkbox-item input{
+    width:17px;
+    height:17px;
+    margin-top:2px;
+    flex-shrink:0;
+    accent-color:var(--yellow);
+    cursor:pointer;
+}
+
+.checkbox-item span{
+    color:#888;
+    font-size:12px;
+    line-height:1.55;
+}
+
+.checkbox-item a{
+    color:var(--yellow);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.checkbox-item a:hover{
+    text-decoration:underline;
+}
+
+.create-button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:11px;
+    background:var(--yellow);
+    color:#000;
+    font-family:inherit;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.create-button:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.05);
+}
+
+.create-button:disabled{
+    background:#705f25;
+    color:#17130a;
+    cursor:not-allowed;
+    transform:none;
+    filter:none;
+}
+
+.message{
+    display:none;
+    margin-top:16px;
+    padding:12px 14px;
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.message.error{
+    display:block;
+    background:rgba(255,77,77,.08);
+    border:1px solid rgba(255,77,77,.20);
+    color:#ff7777;
+}
+
+.message.success{
+    display:block;
+    background:rgba(110,220,130,.08);
+    border:1px solid rgba(110,220,130,.20);
+    color:var(--green);
+}
+
+@media(max-width:480px){
+    body{
+        padding:16px;
+    }
+
+    .logo{
+        margin-bottom:22px;
+    }
+
+    .logo img{
+        width:135px;
+    }
+
+    .auth-card{
+        padding:27px 20px;
+        border-radius:18px;
+    }
+
+    .auth-header h1{
+        font-size:23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="logo">
+        <img src="./assets/logo.png" alt="PRODUTIVA">
+    </div>
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <h1>Criar conta</h1>
+        </div>
+
+        <form id="registerForm">
+
+            <div class="form-group">
+                <label for="name">Nome completo</label>
+
+                <div class="input-wrapper">
+                    <span class="material-icons-round input-icon">person</span>
+
+                    <input
+                        type="text"
+                        id="name"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <div class="input-wrapper">
+                    <span class="material-icons-round input-icon">mail</span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha</label>
+
+                <div class="input-wrapper">
+                    <span class="material-icons-round input-icon">lock</span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <span
+                        class="material-icons-round password-toggle"
+                        id="togglePassword"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Mostrar ou esconder senha"
+                    >visibility</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar senha</label>
+
+                <div class="input-wrapper">
+                    <span class="material-icons-round input-icon">lock</span>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <span
+                        class="material-icons-round password-toggle"
+                        id="toggleConfirmPassword"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Mostrar ou esconder confirmação da senha"
+                    >visibility</span>
+                </div>
+            </div>
+
+            <div class="login-link">
+                Já possui uma conta?
+                <a href="./entrar.html">Entrar</a>
+            </div>
+
+            <div class="checkboxes">
+
+                <label class="checkbox-item">
+                    <input type="checkbox" id="terms" required>
+
+                    <span>
+                        Aceito os
+                        <a href="./termos.html">Termos de Uso</a>
+                        da PRODUTIVA.
+                    </span>
+                </label>
+
+                <label class="checkbox-item">
+                    <input type="checkbox" id="privacy" required>
+
+                    <span>
+                        Aceito a
+                        <a href="./privacidade.html">Política de Privacidade</a>
+                        da PRODUTIVA.
+                    </span>
+                </label>
+
+            </div>
+
+            <button
+                type="submit"
+                class="create-button"
+                id="createButton"
+                disabled
+            >
+                Criar conta
+            </button>
+
+        </form>
+
+        <div class="message" id="message" role="status" aria-live="polite"></div>
+
+    </div>
+</div>
+
+<script type="module">
+import {
+    createUserWithEmailAndPassword,
+    updateProfile
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+import { auth } from "./js/firebase.js";
+
+const form = document.getElementById("registerForm");
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirmPassword");
+const terms = document.getElementById("terms");
+const privacy = document.getElementById("privacy");
+const createButton = document.getElementById("createButton");
+const message = document.getElementById("message");
+
+function checkCheckboxes() {
+    createButton.disabled = !terms.checked || !privacy.checked;
+}
+
+terms.addEventListener("change", checkCheckboxes);
+privacy.addEventListener("change", checkCheckboxes);
+
+function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+}
+
+function setupPasswordToggle(toggleId, inputId) {
+    const toggle = document.getElementById(toggleId);
+    const input = document.getElementById(inputId);
+
+    function togglePassword() {
+        const showing = input.type === "password";
+        input.type = showing ? "text" : "password";
+        toggle.textContent = showing ? "visibility_off" : "visibility";
+    }
+
+    toggle.addEventListener("click", togglePassword);
+
+    toggle.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            togglePassword();
+        }
+    });
+}
+
+setupPasswordToggle("togglePassword", "password");
+setupPasswordToggle("toggleConfirmPassword", "confirmPassword");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (!terms.checked || !privacy.checked) {
+        showMessage(
+            "Aceite os Termos de Uso e a Política de Privacidade.",
+            "error"
+        );
+        return;
+    }
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (!name) {
+        showMessage("Digite o seu nome completo.", "error");
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        showMessage("As senhas não coincidem.", "error");
+        return;
+    }
+
+    createButton.disabled = true;
+    createButton.textContent = "Criando conta...";
+
+    try {
+        const credential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        await updateProfile(credential.user, {
+            displayName: name
+        });
+
+        showMessage(
+            "Conta criada com sucesso! A entrar...",
+            "success"
+        );
+
+        window.setTimeout(() => {
+            window.location.href = "./dashboard.html";
+        }, 1000);
+
+    } catch (error) {
+        console.error("Erro no cadastro:", error);
+
+        const errors = {
+            "auth/email-already-in-use":
+                "Este email já está cadastrado.",
+            "auth/invalid-email":
+                "Digite um email válido.",
+            "auth/weak-password":
+                "A senha deve ter pelo menos 6 caracteres.",
+            "auth/network-request-failed":
+                "Verifique a sua conexão com a internet.",
+            "auth/operation-not-allowed":
+                "Ative Email/Senha no Firebase Authentication.",
+            "auth/too-many-requests":
+                "Muitas tentativas. Aguarde e tente novamente.",
+            "auth/invalid-api-key":
+                "A configuração do Firebase está incorreta."
+        };
+
+        showMessage(
+            errors[error.code] ||
+            "Não foi possível criar a conta. Verifique a conexão e a configuração do Firebase.",
+            "error"
+        );
+
+        createButton.textContent = "Criar conta";
+        checkCheckboxes();
+    }
+});
+</script>
+
+</body>
+</html>
