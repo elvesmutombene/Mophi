@@ -1,1 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>PRODUTIVA | Venda mais. Cresça mais.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background: #080808;
+            --surface: #111111;
+            --surface-light: #181818;
+            --text: #ffffff;
+            --muted: #a1a1a1;
+            --yellow: #F5C400;
+            --border: #282828;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1180px;
+            padding: 0 24px;
+            margin: auto;
+        }
+
+        /* CABEÇALHO */
+
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(8, 8, 8, 0.96);
+        }
+
+        .navbar {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            min-height: 46px;
+            padding: 12px 20px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: #3a3a3a;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--yellow);
+        }
+
+        .btn-yellow {
+            background: var(--yellow);
+            color: #080808;
+        }
+
+        .btn-yellow:hover {
+            background: #ffda35;
+        }
+
+        /* APRESENTAÇÃO */
+
+        .hero {
+            padding: 95px 0 75px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 8px 14px;
+            border: 1px solid #3b351a;
+            border-radius: 30px;
+            color: var(--yellow);
+            background: #151207;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            max-width: 850px;
+            margin: 0 auto 22px;
+            font-size: clamp(38px, 6vw, 66px);
+            line-height: 1.12;
+            letter-spacing: -3px;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--yellow);
+        }
+
+        .hero-description {
+            max-width: 680px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            margin-top: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .hero-actions .btn {
+            min-height: 52px;
+            padding: 14px 24px;
+        }
+
+        .hero-image {
+            max-width: 1000px;
+            margin: 60px auto 0;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .hero-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* BENEFÍCIOS */
+
+        .section {
+            padding: 75px 0;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.25;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-card {
+            padding: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+        }
+
+        .benefit-icon {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #24200e;
+            border: 1px solid #393016;
+            border-radius: 10px;
+            color: var(--yellow);
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 22px;
+        }
+
+        .benefit-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .benefit-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* COMO FUNCIONA */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .step {
+            padding: 25px;
+            border-top: 1px solid var(--border);
+        }
+
+        .step-number {
+            color: var(--yellow);
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+        .step h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* PERGUNTAS FREQUENTES */
+
+        .faq-list {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            color: var(--yellow);
+            font-size: 23px;
+            flex-shrink: 0;
+        }
+
+        .faq-item[open] summary::after {
+            content: "−";
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* CHAMADA FINAL */
+
+        .final-cta {
+            padding: 65px 25px;
+            border: 1px solid #383016;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #17150d, #0e0e0e);
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(27px, 4vw, 40px);
+            line-height: 1.25;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
+        }
+
+        .final-cta p {
+            color: var(--muted);
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-content p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+
+        /* TELEMÓVEIS */
+
+        @media (max-width: 760px) {
+            .container {
+                padding: 0 18px;
+            }
+
+            .navbar {
+                min-height: 70px;
+            }
+
+            .logo img {
+                width: 39px;
+                height: 39px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
+            .nav-actions {
+                gap: 7px;
+            }
+
+            .nav-actions .btn {
+                min-height: 39px;
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 70px 0 50px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1.8px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+                border-radius: 10px;
+            }
+
+            .section {
+                padding: 55px 0;
+            }
+
+            .benefits-grid,
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .benefit-card {
+                padding: 23px;
+            }
+
+            .step {
+                padding: 20px 10px;
+            }
+
+            .final-cta {
+                padding: 45px 20px;
+                margin-bottom: 55px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .logo-text {
+                font-size: 17px;
+            }
+
+            .logo img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-actions .btn {
+                padding: 8px 9px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header>
+        <div class="container navbar">
+
+            <a href="./index.html" class="logo">
+                <img src="./assets/logo.png" alt="Logo PRODUTIVA">
+                <div class="logo-text">PRODUTI<span>VA</span></div>
+            </a>
+
+            <nav class="nav-actions">
+                <button type="button" class="btn btn-outline" onclick="login()">
+                    Entrar
+                </button>
+
+                <button type="button" class="btn btn-yellow" onclick="register()">
+                    Criar conta
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- APRESENTAÇÃO -->
+
+        <section class="hero">
+            <div class="container">
+
+                <div class="eyebrow">
+                    A plataforma para crescer
+                </div>
+
+                <h1>
+                    Venda mais.<br>
+                    <span>Cresça mais.</span>
+                </h1>
+
+                <p class="hero-description">
+                    A PRODUTIVA reúne as ferramentas necessárias para
+                    vender produtos, gerir pedidos e acompanhar o seu
+                    negócio num só lugar.
+                </p>
+
+                <div class="hero-actions">
+                    <button type="button" class="btn btn-yellow" onclick="register()">
+                        Começar agora
+                    </button>
+
+                    <button type="button" class="btn btn-outline" onclick="login()">
+                        Já tenho uma conta
+                    </button>
+                </div>
+
+                <div class="hero-image">
+                    <img
+                        src="./assets/apresentacao.png"
+                        alt="Apresentação da plataforma PRODUTIVA"
+                    >
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BENEFÍCIOS -->
+
+        <section class="section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <h2>Tudo para o seu negócio crescer</h2>
+                    <p>
+                        Organize as suas operações e acompanhe o seu
+                        negócio com mais facilidade.
+                    </p>
+                </div>
+
+                <div class="benefits-grid">
+
+                    <article class="benefit-card">
+                        <div class="benefit-icon">01</div>
+                        <h3>Gestão de produtos</h3>
+                        <p>
+                            Organize os seus produtos e acompanhe o stock
+                            disponível para as vendas.
+                        </p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <div class="benefit-icon">02</div>
+                        <h3>Gestão de pedidos</h3>
+                        <p>
+                            Acompanhe os pedidos e organize as etapas
+                            necessárias para a entrega.
+                        </p>
+                    </article>
+
+                    <article class="benefit-card">
+                        <div class="benefit-icon">03</div>
+                        <h3>Controlo financeiro</h3>
+                        <p>
+                            Consulte as vendas, as comissões e os saldos
+                            apresentados na sua conta.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA -->
+
+        <section class="section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <h2>Comece em poucos passos</h2>
+                    <p>
+                        Crie a sua conta e prepare-se para utilizar
+                        as ferramentas da PRODUTIVA.
+                    </p>
+                </div>
+
+                <div class="steps">
+
+                    <article class="step">
+                        <div class="step-number">PASSO 01</div>
+                        <h3>Crie a sua conta</h3>
+                        <p>
+                            Registe os seus dados para começar a utilizar
+                            a plataforma.
+                        </p>
+                    </article>
+
+                    <article class="step">
+                        <div class="step-number">PASSO 02</div>
+                        <h3>Organize o seu negócio</h3>
+                        <p>
+                            Aceda ao painel e utilize as ferramentas
+                            disponíveis para a sua atividade.
+                        </p>
+                    </article>
+
+                    <article class="step">
+                        <div class="step-number">PASSO 03</div>
+                        <h3>Acompanhe os resultados</h3>
+                        <p>
+                            Consulte as informações e acompanhe a evolução
+                            das suas operações.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PERGUNTAS FREQUENTES -->
+
+        <section class="section">
+            <div class="container">
+
+                <div class="section-heading">
+                    <h2>Perguntas frequentes</h2>
+                    <p>
+                        Esclareça algumas dúvidas sobre a PRODUTIVA.
+                    </p>
+                </div>
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+                        <summary>O que é a PRODUTIVA?</summary>
+                        <div class="faq-answer">
+                            A PRODUTIVA é uma plataforma concebida para
+                            ajudar a organizar atividades de venda,
+                            produtos, pedidos e entregas.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Como posso criar uma conta?</summary>
+                        <div class="faq-answer">
+                            Clique em “Criar conta” ou “Começar agora”,
+                            preencha os dados solicitados e aceite os
+                            termos e a política de privacidade.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Já tenho uma conta. Como entro?</summary>
+                        <div class="faq-answer">
+                            Clique em “Entrar”, introduza o seu endereço
+                            de e-mail e a palavra-passe utilizada no
+                            registo.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Posso gerir produtos e pedidos?</summary>
+                        <div class="faq-answer">
+                            A plataforma foi concebida para reunir
+                            ferramentas de gestão de produtos e pedidos.
+                            As opções disponíveis dependem da conta e
+                            das funcionalidades configuradas.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Esqueci-me da minha palavra-passe. O que faço?</summary>
+                        <div class="faq-answer">
+                            Acede à página de entrada e utiliza a opção
+                            de recuperação de palavra-passe, caso já esteja
+                            configurada.
+                        </div>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CHAMADA FINAL -->
+
+        <section class="container">
+            <div class="final-cta">
+
+                <h2>O próximo passo começa aqui.</h2>
+
+                <p>
+                    Crie a sua conta na PRODUTIVA e comece a explorar
+                    as ferramentas disponíveis para o seu negócio.
+                </p>
+
+                <button type="button" class="btn btn-yellow" onclick="register()">
+                    Criar a minha conta
+                </button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+        <div class="container footer-content">
+
+            <p>
+                © <span id="currentYear"></span> PRODUTIVA. Todos os direitos reservados.
+            </p>
+
+            <div class="footer-links">
+                <a href="./termos.html">Termos de uso</a>
+                <a href="./privacidade.html">Privacidade</a>
+                <a href="mailto:suporte@produtiva.co.mz">Contactar</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- NAVEGAÇÃO DOS BOTÕES -->
+
+    <script>
+        function login() {
+            window.location.href = "./entrar.html";
+        }
+
+        function register() {
+            window.location.href = "./criar-conta.html";
+        }
+
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
