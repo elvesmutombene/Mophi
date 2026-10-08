@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar | PRODUTIVA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: #080808;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-area a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .logo-area img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            color: #F5C400;
+        }
+
+        .card {
+            padding: 32px;
+            background: #111111;
+            border: 1px solid #292929;
+            border-radius: 16px;
+        }
+
+        h1 {
+            font-size: 27px;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #999999;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        input {
+            width: 100%;
+            height: 49px;
+            padding: 0 14px;
+            background: #080808;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            outline: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #F5C400;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 75px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            color: #F5C400;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .forgot {
+            display: block;
+            text-align: right;
+            color: #F5C400;
+            font-size: 12px;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .submit-button {
+            width: 100%;
+            min-height: 50px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #F5C400;
+            color: #080808;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            display: none;
+            padding: 12px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .message.error {
+            display: block;
+            color: #ffb5b5;
+            background: #281313;
+            border: 1px solid #542222;
+        }
+
+        .message.success {
+            display: block;
+            color: #b8ffc4;
+            background: #102416;
+            border: 1px solid #245a32;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 24px;
+            color: #999999;
+            font-size: 13px;
+        }
+
+        .register-link a {
+            color: #F5C400;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 24px;
+            color: #888888;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .back-home:hover,
+        .register-link a:hover,
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 24px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <div class="logo-area">
+            <a href="./index.html">
+                <img src="./assets/logo.png" alt="Logo PRODUTIVA">
+                <div class="logo-text">PRODUTI<span>VA</span></div>
+            </a>
+        </div>
+
+        <section class="card">
+
+            <h1>Bem-vindo de volta!</h1>
+
+            <p class="subtitle">
+                Introduza os seus dados para entrar na sua conta.
+            </p>
+
+            <div id="message" class="message" role="alert" aria-live="polite"></div>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="exemplo@email.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Palavra-passe</label>
+
+                    <div class="password-box">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Introduza a sua palavra-passe"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            id="togglePassword"
+                        >
+                            Mostrar
+                        </button>
+                    </div>
+
+                    <a class="forgot" href="./recuperar-senha.html">
+                        Esqueci-me da palavra-passe
+                    </a>
+                </div>
+
+                <button type="submit" class="submit-button" id="loginButton">
+                    Entrar na minha conta
+                </button>
+
+            </form>
+
+            <div class="register-link">
+                Ainda não tens uma conta?
+                <a href="./criar-conta.html">Criar conta</a>
+            </div>
+
+        </section>
+
+        <a href="./index.html" class="back-home">
+            ← Voltar à página inicial
+        </a>
+
+    </main>
+
+    <script type="module">
+        import { auth } from "./js/firebase.js";
+
+        import {
+            signInWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+        const form = document.getElementById("loginForm");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const loginButton = document.getElementById("loginButton");
+        const message = document.getElementById("message");
+        const togglePassword = document.getElementById("togglePassword");
+
+        function showMessage(text, type = "error") {
+            message.textContent = text;
+            message.className = "message " + type;
+        }
+
+        togglePassword.addEventListener("click", () => {
+            const isPassword = passwordInput.type === "password";
+
+            passwordInput.type = isPassword ? "text" : "password";
+            togglePassword.textContent = isPassword ? "Ocultar" : "Mostrar";
+        });
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            message.className = "message";
+            message.textContent = "";
+
+            loginButton.disabled = true;
+            loginButton.textContent = "A entrar...";
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+
+                showMessage("Entrada realizada com sucesso!", "success");
+
+                window.location.href = "./dashboard.html";
+
+            } catch (error) {
+                let text = "Não foi possível entrar. Verifica os teus dados e tenta novamente.";
+
+                if (
+                    error.code === "auth/invalid-credential" ||
+                    error.code === "auth/wrong-password" ||
+                    error.code === "auth/user-not-found"
+                ) {
+                    text = "E-mail ou palavra-passe incorretos.";
+                } else if (error.code === "auth/invalid-email") {
+                    text = "Introduz um endereço de e-mail válido.";
+                } else if (error.code === "auth/user-disabled") {
+                    text = "Esta conta foi desativada.";
+                } else if (error.code === "auth/too-many-requests") {
+                    text = "Demasiadas tentativas. Aguarda um pouco e tenta novamente.";
+                } else if (error.code === "auth/network-request-failed") {
+                    text = "Falha de ligação. Verifica a tua internet.";
+                } else if (error.code === "auth/operation-not-allowed") {
+                    text = "O acesso por e-mail e palavra-passe não está ativado no Firebase.";
+                } else if (error.code === "auth/unauthorized-domain") {
+                    text = "Este domínio ainda não está autorizado nas definições do Firebase.";
+                } else if (
+                    error.code === "auth/invalid-api-key" ||
+                    error.code === "auth/api-key-not-valid"
+                ) {
+                    text = "A chave do Firebase não é válida. Verifica o ficheiro js/firebase.js.";
+                }
+
+                showMessage(text);
+
+            } finally {
+                loginButton.disabled = false;
+                loginButton.textContent = "Entrar na minha conta";
+            }
+        });
+    </script>
+
+</body>
+</html>
