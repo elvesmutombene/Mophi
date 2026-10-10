@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recuperar senha | PRODUTIVA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: #080808;
+            --card: #111111;
+            --input: #181818;
+            --border: #292929;
+            --text: #ffffff;
+            --muted: #888888;
+            --yellow: #F5C542;
+            --green: #6EDC82;
+            --danger: #ff5252;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            background: var(--background);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-area a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo-area img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            color: var(--yellow);
+        }
+
+        .card {
+            width: 100%;
+            padding: 30px 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+        }
+
+        .icon-box {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245, 197, 66, 0.10);
+            border: 1px solid rgba(245, 197, 66, 0.20);
+            border-radius: 16px;
+            margin-bottom: 22px;
+        }
+
+        .icon-box .material-icons-round {
+            color: var(--yellow);
+            font-size: 29px;
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.6px;
+        }
+
+        .description {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 27px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777777;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        input {
+            width: 100%;
+            height: 52px;
+            padding: 0 15px 0 46px;
+            background: var(--input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            color: white;
+            font-family: inherit;
+            font-size: 13px;
+            transition: border-color 0.2s;
+        }
+
+        input::placeholder {
+            color: #777777;
+        }
+
+        input:focus {
+            border-color: var(--yellow);
+        }
+
+        .message {
+            display: none;
+            padding: 13px;
+            margin-bottom: 18px;
+            border-radius: 9px;
+            font-size: 12px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .message.error {
+            color: var(--danger);
+            background: rgba(255, 82, 82, 0.08);
+            border: 1px solid rgba(255, 82, 82, 0.25);
+        }
+
+        .message.success {
+            color: var(--green);
+            background: rgba(110, 220, 130, 0.08);
+            border: 1px solid rgba(110, 220, 130, 0.25);
+        }
+
+        .submit-button {
+            width: 100%;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            border: none;
+            border-radius: 10px;
+            background: var(--yellow);
+            color: #111111;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .submit-button:hover {
+            opacity: 0.9;
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            margin-top: 24px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .back-link .material-icons-round {
+            font-size: 17px;
+        }
+
+        .back-link:hover {
+            color: var(--yellow);
+        }
+
+        .bottom-text {
+            text-align: center;
+            color: #666666;
+            font-size: 11px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 360px) {
+            .card {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+<div class="logo-area">
+    <a href="./index.html">
+        <img src="./assets/logo.png" alt="Logo PRODUTIVA">
+    </a>
+</div>
+
+        <section class="card">
+
+            <div class="icon-box">
+                <span class="material-icons-round">lock_reset</span>
+            </div>
+
+            <h1>Recuperar senha</h1>
+
+            <p class="description">
+                Esqueceste a tua senha? Não te preocupes.
+                Introduz o e-mail associado à tua conta e enviaremos
+                instruções para criares uma nova senha.
+            </p>
+
+            <div
+                id="errorMessage"
+                class="message error"
+                role="alert"
+                aria-live="polite"
+            ></div>
+
+            <div
+                id="successMessage"
+                class="message success"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+            <form id="recoveryForm">
+
+                <div class="form-group">
+                    <label for="email">E-mail da tua conta</label>
+
+                    <div class="input-wrapper">
+                        <span class="material-icons-round input-icon">mail</span>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="exemplo@email.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                    id="submitButton"
+                >
+                    <span class="material-icons-round">send</span>
+                    Enviar link de recuperação
+                </button>
+
+            </form>
+
+            <a href="./entrar.html" class="back-link">
+                <span class="material-icons-round">arrow_back</span>
+                Voltar para entrar
+            </a>
+
+        </section>
+
+        <p class="bottom-text">
+            © PRODUTIVA — Venda mais. Cresça mais.
+        </p>
+
+    </main>
+
+    <script type="module">
+        import {
+            sendPasswordResetEmail
+        } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+        import { auth } from "./js/firebase.js";
+
+        const form = document.getElementById("recoveryForm");
+        const emailInput = document.getElementById("email");
+        const submitButton = document.getElementById("submitButton");
+        const errorMessage = document.getElementById("errorMessage");
+        const successMessage = document.getElementById("successMessage");
+
+        function hideMessages() {
+            errorMessage.style.display = "none";
+            successMessage.style.display = "none";
+            errorMessage.textContent = "";
+            successMessage.textContent = "";
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = "block";
+            successMessage.style.display = "none";
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = "block";
+            errorMessage.style.display = "none";
+        }
+
+        function getErrorMessage(error) {
+            switch (error.code) {
+                case "auth/invalid-email":
+                    return "O endereço de e-mail não é válido.";
+
+                case "auth/missing-email":
+                    return "Introduz o teu endereço de e-mail.";
+
+                case "auth/too-many-requests":
+                    return "Foram feitas muitas tentativas. Aguarda um pouco e tenta novamente.";
+
+                case "auth/network-request-failed":
+                    return "Não foi possível ligar ao servidor. Verifica a tua internet.";
+
+                case "auth/operation-not-allowed":
+                    return "A recuperação de senha por e-mail não está ativada no Firebase.";
+
+                default:
+                    return "Não foi possível enviar o link. Verifica a ligação e tenta novamente.";
+            }
+        }
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            hideMessages();
+
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                showError("Introduz o e-mail associado à tua conta.");
+                emailInput.focus();
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.innerHTML =
+                '<span class="material-icons-round">hourglass_top</span> A enviar...';
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+
+                showSuccess(
+                    "Se existir uma conta associada a este e-mail, receberás uma mensagem com as instruções para redefinir a senha. Verifica também a pasta de spam."
+                );
+
+                form.reset();
+
+            } catch (error) {
+                console.error("Erro na recuperação de senha:", error);
+                showError(getErrorMessage(error));
+
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML =
+                    '<span class="material-icons-round">send</span> Enviar link de recuperação';
+            }
+        });
+    </script>
+
+</body>
+</html>
