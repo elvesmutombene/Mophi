@@ -1,393 +1,568 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Entrar | PRODUTIVA</title>
+<title>Entrar | PRODUTIVA</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            background: #080808;
-            color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+<style>
+:root{
+    --black:#000000;
+    --card:#0A0A0A;
+    --input:#111111;
+    --border:#242424;
+    --white:#ffffff;
+    --muted:#888888;
+    --yellow:#F5C542;
+    --green:#6EDC82;
+    --danger:#ff4d4d;
+}
 
-        .login-container {
-            width: 100%;
-            max-width: 430px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .logo-area {
-            text-align: center;
-            margin-bottom: 32px;
-        }
+body{
+    min-height:100vh;
+    background:var(--black);
+    color:var(--white);
+    font-family:"Plus Jakarta Sans",sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
 
-        .logo-area a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #ffffff;
-        }
+.auth-container{
+    width:100%;
+    max-width:430px;
+}
 
-        .logo-area img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-        }
+.logo{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-bottom:28px;
+}
 
-        .logo-text {
-            font-size: 25px;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+.logo img{
+    width:145px;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
 
-        .logo-text span {
-            color: #F5C400;
-        }
+.auth-card{
+    width:100%;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:32px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
 
-        .card {
-            padding: 32px;
-            background: #111111;
-            border: 1px solid #292929;
-            border-radius: 16px;
-        }
+.auth-header{
+    margin-bottom:28px;
+}
 
-        h1 {
-            font-size: 27px;
-            letter-spacing: -1px;
-            margin-bottom: 8px;
-        }
+.auth-header h1{
+    font-size:26px;
+    font-weight:700;
+    line-height:1.3;
+    margin-bottom:9px;
+}
 
-        .subtitle {
-            color: #999999;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 28px;
-        }
+.auth-header p{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.6;
+}
 
-        .form-group {
-            margin-bottom: 19px;
-        }
+.form-group{
+    margin-bottom:19px;
+}
 
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 9px;
-        }
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:13px;
+    font-weight:600;
+}
 
-        input {
-            width: 100%;
-            height: 49px;
-            padding: 0 14px;
-            background: #080808;
-            border: 1px solid #333333;
-            border-radius: 8px;
-            outline: none;
-            color: #ffffff;
-            font-family: inherit;
-            font-size: 14px;
-        }
+.input-wrapper{
+    position:relative;
+    width:100%;
+}
 
-        input:focus {
-            border-color: #F5C400;
-        }
+.input-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+    font-size:20px;
+    pointer-events:none;
+}
 
-        .password-box {
-            position: relative;
-        }
+.input-wrapper input{
+    width:100%;
+    height:52px;
+    border-radius:11px;
+    border:1px solid var(--border);
+    background:var(--input);
+    color:var(--white);
+    outline:none;
+    font-family:inherit;
+    font-size:14px;
+    padding:0 48px 0 46px;
+    transition:border-color .2s;
+}
 
-        .password-box input {
-            padding-right: 75px;
-        }
+.input-wrapper input::placeholder{
+    color:#666;
+}
 
-        .toggle-password {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: transparent;
-            color: #F5C400;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-        }
+.input-wrapper input:focus{
+    border-color:var(--yellow);
+    box-shadow:0 0 0 3px rgba(245,197,66,.08);
+}
 
-        .forgot {
-            display: block;
-            text-align: right;
-            color: #F5C400;
-            font-size: 12px;
-            margin-top: 10px;
-            text-decoration: none;
-        }
+.password-toggle{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#777;
+    font-size:20px;
+    cursor:pointer;
+    user-select:none;
+}
 
-        .submit-button {
-            width: 100%;
-            min-height: 50px;
-            margin-top: 8px;
-            border: none;
-            border-radius: 8px;
-            background: #F5C400;
-            color: #080808;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-        }
+.password-toggle:hover{
+    color:var(--yellow);
+}
 
-        .submit-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+.form-options{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    margin-top:-3px;
+    margin-bottom:24px;
+}
 
-        .message {
-            display: none;
-            padding: 12px;
-            margin-bottom: 18px;
-            border-radius: 8px;
-            font-size: 12px;
-            line-height: 1.6;
-            overflow-wrap: anywhere;
-        }
+.form-options a{
+    color:var(--yellow);
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
+}
 
-        .message.error {
-            display: block;
-            color: #ffb5b5;
-            background: #281313;
-            border: 1px solid #542222;
-        }
+.form-options a:hover{
+    text-decoration:underline;
+}
 
-        .message.success {
-            display: block;
-            color: #b8ffc4;
-            background: #102416;
-            border: 1px solid #245a32;
-        }
+.login-button{
+    width:100%;
+    height:52px;
+    border:none;
+    border-radius:11px;
+    background:var(--yellow);
+    color:#000;
+    font-family:inherit;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:background .2s;
+}
 
-        .register-link {
-            text-align: center;
-            margin-top: 24px;
-            color: #999999;
-            font-size: 13px;
-        }
+.login-button:hover{
+    filter:brightness(1.05);
+}
 
-        .register-link a {
-            color: #F5C400;
-            font-weight: 700;
-            text-decoration: none;
-        }
+.login-button:disabled{
+    background:#705f25;
+    color:#17130a;
+    cursor:not-allowed;
+    filter:none;
+}
 
-        .back-home {
-            display: block;
-            text-align: center;
-            margin-top: 24px;
-            color: #888888;
-            font-size: 12px;
-            text-decoration: none;
-        }
+.register-link{
+    margin-top:23px;
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.8;
+}
 
-        .back-home:hover,
-        .register-link a:hover,
-        .forgot:hover {
-            text-decoration: underline;
-        }
+.register-link a{
+    color:var(--yellow);
+    text-decoration:none;
+    font-weight:700;
+    margin-left:3px;
+}
 
-        @media (max-width: 480px) {
-            .card {
-                padding: 24px 20px;
-            }
+.register-link a:hover{
+    text-decoration:underline;
+}
 
-            h1 {
-                font-size: 25px;
-            }
-        }
-    </style>
+.message{
+    display:none;
+    margin-top:16px;
+    padding:12px 14px;
+    border-radius:10px;
+    font-size:13px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+}
+
+.message.error{
+    display:block;
+    background:rgba(255,77,77,.08);
+    border:1px solid rgba(255,77,77,.20);
+    color:#ff7777;
+}
+
+.message.success{
+    display:block;
+    background:rgba(110,220,130,.08);
+    border:1px solid rgba(110,220,130,.20);
+    color:var(--green);
+}
+
+@media(max-width:480px){
+    body{
+        padding:16px;
+    }
+
+    .logo{
+        margin-bottom:22px;
+    }
+
+    .logo img{
+        width:135px;
+    }
+
+    .auth-card{
+        padding:27px 20px;
+        border-radius:18px;
+    }
+
+    .auth-header h1{
+        font-size:23px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        transition:none !important;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <main class="login-container">
+<div class="auth-container">
 
-        <div class="logo-area">
-            <a href="./index.html">
-                <img src="./assets/logo.png" alt="Logo PRODUTIVA">
-                <div class="logo-text">PRODUTI<span>VA</span></div>
-            </a>
+    <div class="logo">
+        <img src="./assets/logo.png" alt="PRODUTIVA">
+    </div>
+
+    <div class="auth-card">
+
+        <div class="auth-header">
+            <h1>Bem-vindo de volta</h1>
+            <p>Entre na sua conta para continuar.</p>
         </div>
 
-        <section class="card">
+        <form id="loginForm">
 
-            <h1>Bem-vindo de volta!</h1>
+            <div class="form-group">
+                <label for="email">Email</label>
 
-            <p class="subtitle">
-                Introduza os seus dados para entrar na sua conta.
-            </p>
-
-            <div id="message" class="message" role="alert" aria-live="polite"></div>
-
-            <form id="loginForm">
-
-                <div class="form-group">
-                    <label for="email">E-mail</label>
+                <div class="input-wrapper">
+                    <span class="material-icons-round input-icon">mail</span>
 
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="exemplo@email.com"
+                        placeholder="Digite o seu email"
                         autocomplete="email"
                         required
                     >
                 </div>
-
-                <div class="form-group">
-                    <label for="password">Palavra-passe</label>
-
-                    <div class="password-box">
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Introduza a sua palavra-passe"
-                            autocomplete="current-password"
-                            required
-                        >
-
-                        <button
-                            type="button"
-                            class="toggle-password"
-                            id="togglePassword"
-                        >
-                            Mostrar
-                        </button>
-                    </div>
-
-                    <a class="forgot" href="./recuperar-senha.html">
-                        Esqueci-me da palavra-passe
-                    </a>
-                </div>
-
-                <button type="submit" class="submit-button" id="loginButton">
-                    Entrar na minha conta
-                </button>
-
-            </form>
-
-            <div class="register-link">
-                Ainda não tens uma conta?
-                <a href="./criar-conta.html">Criar conta</a>
             </div>
 
-        </section>
+            <div class="form-group">
+                <label for="password">Senha</label>
 
-        <a href="./index.html" class="back-home">
-            ← Voltar à página inicial
-        </a>
+                <div class="input-wrapper">
+                    <span class="material-icons-round input-icon">lock</span>
 
-    </main>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Digite a sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
 
-    <script type="module">
-        import { auth } from "./js/firebase.js";
+                    <span
+                        class="material-icons-round password-toggle"
+                        id="togglePassword"
+                        role="button"
+                        tabindex="0"
+                        aria-label="Mostrar senha"
+                    >visibility</span>
+                </div>
+            </div>
 
-        import {
-            signInWithEmailAndPassword
-        } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+            <div class="form-options">
+                <a href="./recuperar-senha.html" id="forgotPassword">
+                    Esqueceu a senha?
+                </a>
+            </div>
 
-        const form = document.getElementById("loginForm");
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
-        const loginButton = document.getElementById("loginButton");
-        const message = document.getElementById("message");
-        const togglePassword = document.getElementById("togglePassword");
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton"
+            >
+                Entrar
+            </button>
 
-        function showMessage(text, type = "error") {
-            message.textContent = text;
-            message.className = "message " + type;
-        }
+        </form>
 
-        togglePassword.addEventListener("click", () => {
-            const isPassword = passwordInput.type === "password";
+        <div
+            class="message"
+            id="message"
+            role="status"
+            aria-live="polite"
+        ></div>
 
-            passwordInput.type = isPassword ? "text" : "password";
-            togglePassword.textContent = isPassword ? "Ocultar" : "Mostrar";
-        });
+        <div class="register-link">
+            Ainda não possui uma conta?
+            <a href="./criar-conta.html">Criar conta</a>
+        </div>
 
-        form.addEventListener("submit", async (event) => {
+    </div>
+</div>
+
+<!-- OLHINHO DA SENHA -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("togglePassword");
+
+    if (!passwordInput || !togglePassword) {
+        console.error("Campo de senha ou olhinho não encontrado.");
+        return;
+    }
+
+    function toggleVisibility() {
+        const isHidden = passwordInput.type === "password";
+
+        passwordInput.type = isHidden ? "text" : "password";
+
+        togglePassword.textContent = isHidden
+            ? "visibility_off"
+            : "visibility";
+
+        togglePassword.setAttribute(
+            "aria-label",
+            isHidden ? "Esconder senha" : "Mostrar senha"
+        );
+    }
+
+    togglePassword.addEventListener("click", toggleVisibility);
+
+    togglePassword.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
+            toggleVisibility();
+        }
+    });
+});
+</script>
 
-            const email = emailInput.value.trim();
-            const password = passwordInput.value;
 
-            message.className = "message";
-            message.textContent = "";
+<!-- FIREBASE: LOGIN E RECUPERAÇÃO DE SENHA -->
+<script type="module">
+import {
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
-            loginButton.disabled = true;
-            loginButton.textContent = "A entrar...";
+import { auth } from "./js/firebase.js";
 
-            try {
-                await signInWithEmailAndPassword(auth, email, password);
+const form = document.getElementById("loginForm");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const loginButton = document.getElementById("loginButton");
+const forgotPassword = document.getElementById("forgotPassword");
+const message = document.getElementById("message");
 
-                showMessage("Entrada realizada com sucesso!", "success");
+function showMessage(text, type) {
+    message.textContent = text;
+    message.className = "message " + type;
+}
 
-                window.location.href = "./dashboard.html";
+function setLoading(loading) {
+    loginButton.disabled = loading;
+    loginButton.textContent = loading ? "A entrar..." : "Entrar";
+}
 
-            } catch (error) {
-                let text = "Não foi possível entrar. Verifica os teus dados e tenta novamente.";
+/* =========================
+   ENTRAR NA CONTA
+========================= */
 
-                if (
-                    error.code === "auth/invalid-credential" ||
-                    error.code === "auth/wrong-password" ||
-                    error.code === "auth/user-not-found"
-                ) {
-                    text = "E-mail ou palavra-passe incorretos.";
-                } else if (error.code === "auth/invalid-email") {
-                    text = "Introduz um endereço de e-mail válido.";
-                } else if (error.code === "auth/user-disabled") {
-                    text = "Esta conta foi desativada.";
-                } else if (error.code === "auth/too-many-requests") {
-                    text = "Demasiadas tentativas. Aguarda um pouco e tenta novamente.";
-                } else if (error.code === "auth/network-request-failed") {
-                    text = "Falha de ligação. Verifica a tua internet.";
-                } else if (error.code === "auth/operation-not-allowed") {
-                    text = "O acesso por e-mail e palavra-passe não está ativado no Firebase.";
-                } else if (error.code === "auth/unauthorized-domain") {
-                    text = "Este domínio ainda não está autorizado nas definições do Firebase.";
-                } else if (
-                    error.code === "auth/invalid-api-key" ||
-                    error.code === "auth/api-key-not-valid"
-                ) {
-                    text = "A chave do Firebase não é válida. Verifica o ficheiro js/firebase.js.";
-                }
+form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-                showMessage(text);
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
-            } finally {
-                loginButton.disabled = false;
-                loginButton.textContent = "Entrar na minha conta";
-            }
-        });
-    </script>
+    if (!email || !password) {
+        showMessage(
+            "Preencha o email e a senha para continuar.",
+            "error"
+        );
+        return;
+    }
+
+    setLoading(true);
+    message.className = "message";
+
+    try {
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        showMessage(
+            "Entrada realizada com sucesso! A abrir o dashboard...",
+            "success"
+        );
+
+        window.setTimeout(function () {
+            window.location.replace("./dashboard.html");
+        }, 700);
+
+    } catch (error) {
+        console.error("Erro ao entrar:", error);
+
+        const errors = {
+            "auth/invalid-email":
+                "Digite um endereço de email válido.",
+
+            "auth/user-not-found":
+                "Não foi encontrada uma conta com estes dados.",
+
+            "auth/wrong-password":
+                "Email ou senha incorretos.",
+
+            "auth/invalid-credential":
+                "Email ou senha incorretos. Verifique os seus dados.",
+
+            "auth/user-disabled":
+                "Esta conta foi desativada. Contacte o suporte.",
+
+            "auth/too-many-requests":
+                "Muitas tentativas. Aguarde um pouco e tente novamente.",
+
+            "auth/network-request-failed":
+                "Verifique a sua ligação à internet.",
+
+            "auth/operation-not-allowed":
+                "Ative o método Email/Senha no Firebase Authentication.",
+
+            "auth/invalid-api-key":
+                "A configuração do Firebase está incorreta."
+        };
+
+        showMessage(
+            errors[error.code] ||
+            "Não foi possível entrar. Verifique os seus dados e tente novamente.",
+            "error"
+        );
+
+        setLoading(false);
+    }
+});
+
+
+/* =========================
+   RECUPERAR SENHA
+========================= */
+
+forgotPassword.addEventListener("click", async function (event) {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+
+    if (!email) {
+        showMessage(
+            "Digite o seu email no campo acima para recuperar a senha.",
+            "error"
+        );
+
+        emailInput.focus();
+        return;
+    }
+
+    forgotPassword.style.pointerEvents = "none";
+
+    try {
+        await sendPasswordResetEmail(auth, email);
+
+        showMessage(
+            "Se existir uma conta com este email, receberá as instruções para redefinir a senha. Verifique também o spam.",
+            "success"
+        );
+
+    } catch (error) {
+        console.error("Erro ao recuperar senha:", error);
+
+        const errors = {
+            "auth/invalid-email":
+                "Digite um endereço de email válido.",
+
+            "auth/user-not-found":
+                "Não foi encontrada uma conta com este email.",
+
+            "auth/network-request-failed":
+                "Verifique a sua ligação à internet.",
+
+            "auth/too-many-requests":
+                "Muitas tentativas. Aguarde antes de tentar novamente."
+        };
+
+        showMessage(
+            errors[error.code] ||
+            "Não foi possível recuperar a senha. Tente novamente.",
+            "error"
+        );
+
+    } finally {
+        forgotPassword.style.pointerEvents = "";
+    }
+});
+</script>
 
 </body>
 </html>
