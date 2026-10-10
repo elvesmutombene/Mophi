@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+
+  <title>Redefinir senha | PRODUTIVA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080808;
+      --card: #111111;
+      --border: #292929;
+      --text: #ffffff;
+      --muted: #969696;
+      --yellow: #F5C542;
+      --green: #6EDC82;
+      --red: #ff6262;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 18px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 27px;
+      font-weight: 800;
+      letter-spacing: -1.2px;
+    }
+
+    .logo span {
+      color: var(--yellow);
+    }
+
+    .card {
+      padding: 30px 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(245, 197, 66, .10);
+      border: 1px solid rgba(245, 197, 66, .25);
+      border-radius: 15px;
+      margin-bottom: 22px;
+    }
+
+    .icon-box .material-icons-round {
+      color: var(--yellow);
+      font-size: 28px;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.4;
+      font-weight: 800;
+      letter-spacing: -.6px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+      margin-bottom: 26px;
+    }
+
+    .field {
+      margin-bottom: 19px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      height: 51px;
+      padding: 0 46px 0 14px;
+      border: 1px solid #343434;
+      border-radius: 10px;
+      background: #090909;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--yellow);
+    }
+
+    input::placeholder {
+      color: #696969;
+    }
+
+    .toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 45px;
+      height: 51px;
+      border: none;
+      background: transparent;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .toggle .material-icons-round {
+      font-size: 21px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .message {
+      display: none;
+      margin-bottom: 17px;
+      padding: 12px;
+      border-radius: 9px;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .message.error {
+      display: block;
+      color: #ff9696;
+      background: rgba(255, 98, 98, .08);
+      border: 1px solid rgba(255, 98, 98, .22);
+    }
+
+    .message.success {
+      display: block;
+      color: var(--green);
+      background: rgba(110, 220, 130, .08);
+      border: 1px solid rgba(110, 220, 130, .22);
+    }
+
+    .submit-btn {
+      width: 100%;
+      height: 52px;
+      margin-top: 7px;
+      border: none;
+      border-radius: 10px;
+      background: var(--yellow);
+      color: #111;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .submit-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .submit-btn .material-icons-round {
+      font-size: 19px;
+    }
+
+    .back {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 25px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .back:hover {
+      color: var(--yellow);
+    }
+
+    .back .material-icons-round {
+      font-size: 17px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: #555;
+      text-align: center;
+      font-size: 10px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 360px) {
+      .card {
+        padding: 25px 18px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <div class="logo">PRODUTI<span>VA</span></div>
+
+    <section class="card">
+
+      <div class="icon-box">
+        <span class="material-icons-round">lock_reset</span>
+      </div>
+
+      <h1 id="pageTitle">Cria uma nova senha</h1>
+
+      <p class="subtitle" id="pageSubtitle">
+        Escolhe uma nova senha segura para voltares a aceder à tua conta PRODUTIVA.
+      </p>
+
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+
+      <form id="resetForm" class="hidden">
+
+        <div class="field">
+          <label for="newPassword">Nova senha</label>
+
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="newPassword"
+              placeholder="Introduz a nova senha"
+              minlength="6"
+              autocomplete="new-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle"
+              data-target="newPassword"
+              aria-label="Mostrar senha"
+            >
+              <span class="material-icons-round">visibility</span>
+            </button>
+          </div>
+
+          <p class="hint">Utiliza pelo menos 6 caracteres.</p>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirmar nova senha</label>
+
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Repete a nova senha"
+              minlength="6"
+              autocomplete="new-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="toggle"
+              data-target="confirmPassword"
+              aria-label="Mostrar senha"
+            >
+              <span class="material-icons-round">visibility</span>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="material-icons-round">lock</span>
+          <span id="btnText">Guardar nova senha</span>
+        </button>
+
+      </form>
+
+      <a href="./entrar.html" class="back">
+        <span class="material-icons-round">arrow_back</span>
+        Voltar para iniciar sessão
+      </a>
+
+    </section>
+
+    <p class="footer">© PRODUTIVA — Venda mais. Cresça mais.</p>
+
+  </main>
+
+  <script type="module">
+    import {
+      verifyPasswordResetCode,
+      confirmPasswordReset
+    } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+    import { auth } from "./js/firebase.js";
+
+    const form = document.getElementById("resetForm");
+    const message = document.getElementById("message");
+    const pageTitle = document.getElementById("pageTitle");
+    const pageSubtitle = document.getElementById("pageSubtitle");
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = document.getElementById("btnText");
+    const newPassword = document.getElementById("newPassword");
+    const confirmPassword = document.getElementById("confirmPassword");
+
+    const params = new URLSearchParams(window.location.search);
+    const mode = params.get("mode");
+    const oobCode = params.get("oobCode");
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    function friendlyError(error) {
+      switch (error.code) {
+        case "auth/expired-action-code":
+          return "Este link expirou. Solicita um novo e-mail de recuperação.";
+        case "auth/invalid-action-code":
+          return "Este link é inválido ou já foi utilizado. Solicita outro.";
+        case "auth/weak-password":
+          return "A senha é demasiado fraca. Escolhe uma senha mais segura.";
+        case "auth/network-request-failed":
+          return "Sem ligação à internet. Verifica a conexão e tenta novamente.";
+        case "auth/too-many-requests":
+          return "Demasiadas tentativas. Aguarda um pouco antes de tentar novamente.";
+        default:
+          return "Não foi possível atualizar a senha. Tenta novamente ou solicita outro link.";
+      }
+    }
+
+    document.querySelectorAll(".toggle").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.target);
+        const icon = button.querySelector(".material-icons-round");
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.textContent = "visibility_off";
+          button.setAttribute("aria-label", "Ocultar senha");
+        } else {
+          input.type = "password";
+          icon.textContent = "visibility";
+          button.setAttribute("aria-label", "Mostrar senha");
+        }
+      });
+    });
+
+    async function initializePage() {
+      if (mode !== "resetPassword" || !oobCode) {
+        pageTitle.textContent = "Link inválido";
+        pageSubtitle.textContent =
+          "O endereço aberto não contém um código de recuperação válido.";
+
+        showMessage(
+          "Volta à página de recuperação e solicita um novo e-mail.",
+          "error"
+        );
+        return;
+      }
+
+      try {
+        await verifyPasswordResetCode(auth, oobCode);
+        form.classList.remove("hidden");
+      } catch (error) {
+        pageTitle.textContent = "Link expirado ou inválido";
+        pageSubtitle.textContent =
+          "Por segurança, precisas de um link de recuperação válido.";
+
+        showMessage(friendlyError(error), "error");
+      }
+    }
+
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+
+      const password = newPassword.value;
+      const confirmation = confirmPassword.value;
+
+      if (password.length < 6) {
+        showMessage(
+          "A nova senha deve ter pelo menos 6 caracteres.",
+          "error"
+        );
+        return;
+      }
+
+      if (password !== confirmation) {
+        showMessage(
+          "As senhas não coincidem. Confirma os dois campos.",
+          "error"
+        );
+        confirmPassword.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      btnText.textContent = "A guardar...";
+
+      try {
+        await confirmPasswordReset(auth, oobCode, password);
+
+        form.classList.add("hidden");
+        pageTitle.textContent = "Senha atualizada!";
+        pageSubtitle.textContent =
+          "A tua senha foi alterada com sucesso. Já podes entrar na PRODUTIVA.";
+
+        showMessage(
+          "Nova senha guardada com sucesso. Podes iniciar sessão.",
+          "success"
+        );
+
+      } catch (error) {
+        showMessage(friendlyError(error), "error");
+        submitBtn.disabled = false;
+        btnText.textContent = "Guardar nova senha";
+      }
+    });
+
+    initializePage();
+  </script>
+
+</body>
+</html>
