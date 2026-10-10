@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -14,259 +15,259 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
 <style>
-:root{
-    --black:#000000;
-    --card:#0A0A0A;
-    --input:#111111;
-    --border:#242424;
-    --white:#ffffff;
-    --muted:#888888;
-    --yellow:#F5C542;
-    --green:#6EDC82;
-    --danger:#ff4d4d;
+:root {
+    --black: #000000;
+    --card: #0A0A0A;
+    --input: #111111;
+    --border: #242424;
+    --white: #ffffff;
+    --muted: #888888;
+    --yellow: #F5C542;
+    --green: #6EDC82;
+    --danger: #ff4d4d;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    min-height:100vh;
-    background:var(--black);
-    color:var(--white);
-    font-family:"Plus Jakarta Sans",sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:25px;
+body {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--white);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
 }
 
-.auth-container{
-    width:100%;
-    max-width:430px;
+.auth-container {
+    width: 100%;
+    max-width: 430px;
 }
 
-.logo{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-bottom:28px;
+.logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
 }
 
-.logo img{
-    width:145px;
-    height:auto;
-    display:block;
-    object-fit:contain;
+.logo img {
+    width: 145px;
+    height: auto;
+    display: block;
+    object-fit: contain;
 }
 
-.auth-card{
-    width:100%;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:32px;
-    box-shadow:0 20px 60px rgba(0,0,0,.35);
+.auth-card {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
 }
 
-.auth-header{
-    margin-bottom:28px;
+.auth-header {
+    margin-bottom: 28px;
 }
 
-.auth-header h1{
-    font-size:26px;
-    font-weight:700;
-    line-height:1.3;
-    margin-bottom:9px;
+.auth-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 9px;
 }
 
-.auth-header p{
-    color:var(--muted);
-    font-size:13px;
-    line-height:1.6;
+.auth-header p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
 }
 
-.form-group{
-    margin-bottom:19px;
+.form-group {
+    margin-bottom: 19px;
 }
 
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-size:13px;
-    font-weight:600;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
 }
 
-.input-wrapper{
-    position:relative;
-    width:100%;
+.input-wrapper {
+    position: relative;
+    width: 100%;
 }
 
-.input-icon{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#777;
-    font-size:20px;
-    pointer-events:none;
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 20px;
+    pointer-events: none;
 }
 
-.input-wrapper input{
-    width:100%;
-    height:52px;
-    border-radius:11px;
-    border:1px solid var(--border);
-    background:var(--input);
-    color:var(--white);
-    outline:none;
-    font-family:inherit;
-    font-size:14px;
-    padding:0 48px 0 46px;
-    transition:border-color .2s;
+.input-wrapper input {
+    width: 100%;
+    height: 52px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--white);
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 0 48px 0 46px;
+    transition: border-color .2s;
 }
 
-.input-wrapper input::placeholder{
-    color:#666;
+.input-wrapper input::placeholder {
+    color: #666;
 }
 
-.input-wrapper input:focus{
-    border-color:var(--yellow);
-    box-shadow:0 0 0 3px rgba(245,197,66,.08);
+.input-wrapper input:focus {
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 3px rgba(245,197,66,.08);
 }
 
-.password-toggle{
-    position:absolute;
-    right:15px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#777;
-    font-size:20px;
-    cursor:pointer;
-    user-select:none;
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
 }
 
-.password-toggle:hover{
-    color:var(--yellow);
+.password-toggle:hover {
+    color: var(--yellow);
 }
 
-.form-options{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    margin-top:-3px;
-    margin-bottom:24px;
+.form-options {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: -3px;
+    margin-bottom: 24px;
 }
 
-.form-options a{
-    color:var(--yellow);
-    text-decoration:none;
-    font-size:12px;
-    font-weight:600;
+.form-options a {
+    color: var(--yellow);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
 }
 
-.form-options a:hover{
-    text-decoration:underline;
+.form-options a:hover {
+    text-decoration: underline;
 }
 
-.login-button{
-    width:100%;
-    height:52px;
-    border:none;
-    border-radius:11px;
-    background:var(--yellow);
-    color:#000;
-    font-family:inherit;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
-    transition:background .2s;
+.login-button {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 11px;
+    background: var(--yellow);
+    color: #000;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s;
 }
 
-.login-button:hover{
-    filter:brightness(1.05);
+.login-button:hover {
+    filter: brightness(1.05);
 }
 
-.login-button:disabled{
-    background:#705f25;
-    color:#17130a;
-    cursor:not-allowed;
-    filter:none;
+.login-button:disabled {
+    background: #705f25;
+    color: #17130a;
+    cursor: not-allowed;
+    filter: none;
 }
 
-.register-link{
-    margin-top:23px;
-    text-align:center;
-    font-size:12px;
-    color:var(--muted);
-    line-height:1.8;
+.register-link {
+    margin-top: 23px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
 }
 
-.register-link a{
-    color:var(--yellow);
-    text-decoration:none;
-    font-weight:700;
-    margin-left:3px;
+.register-link a {
+    color: var(--yellow);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 3px;
 }
 
-.register-link a:hover{
-    text-decoration:underline;
+.register-link a:hover {
+    text-decoration: underline;
 }
 
-.message{
-    display:none;
-    margin-top:16px;
-    padding:12px 14px;
-    border-radius:10px;
-    font-size:13px;
-    line-height:1.6;
-    overflow-wrap:anywhere;
+.message {
+    display: none;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
-.message.error{
-    display:block;
-    background:rgba(255,77,77,.08);
-    border:1px solid rgba(255,77,77,.20);
-    color:#ff7777;
+.message.error {
+    display: block;
+    background: rgba(255,77,77,.08);
+    border: 1px solid rgba(255,77,77,.20);
+    color: #ff7777;
 }
 
-.message.success{
-    display:block;
-    background:rgba(110,220,130,.08);
-    border:1px solid rgba(110,220,130,.20);
-    color:var(--green);
+.message.success {
+    display: block;
+    background: rgba(110,220,130,.08);
+    border: 1px solid rgba(110,220,130,.20);
+    color: var(--green);
 }
 
-@media(max-width:480px){
-    body{
-        padding:16px;
+@media(max-width:480px) {
+    body {
+        padding: 16px;
     }
 
-    .logo{
-        margin-bottom:22px;
+    .logo {
+        margin-bottom: 22px;
     }
 
-    .logo img{
-        width:135px;
+    .logo img {
+        width: 135px;
     }
 
-    .auth-card{
-        padding:27px 20px;
-        border-radius:18px;
+    .auth-card {
+        padding: 27px 20px;
+        border-radius: 18px;
     }
 
-    .auth-header h1{
-        font-size:23px;
+    .auth-header h1 {
+        font-size: 23px;
     }
 }
 
-@media(prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce) {
     *,
     *::before,
-    *::after{
-        transition:none !important;
+    *::after {
+        transition: none !important;
     }
 }
 </style>
@@ -277,7 +278,9 @@ body{
 <div class="auth-container">
 
     <div class="logo">
-        <img src="./assets/logo.png" alt="PRODUTIVA">
+        <a href="./index.html" aria-label="Página inicial da PRODUTIVA">
+            <img src="./assets/logo.png" alt="PRODUTIVA">
+        </a>
     </div>
 
     <div class="auth-card">
@@ -332,7 +335,7 @@ body{
             </div>
 
             <div class="form-options">
-                <a href="./recuperar-senha.html" id="forgotPassword">
+                <a href="./esqueceu-senha.html">
                     Esqueceu a senha?
                 </a>
             </div>
@@ -362,18 +365,15 @@ body{
     </div>
 </div>
 
-<!-- OLHINHO DA SENHA -->
+<!-- MOSTRAR OU ESCONDER A SENHA -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
     const passwordInput = document.getElementById("password");
     const togglePassword = document.getElementById("togglePassword");
 
-    if (!passwordInput || !togglePassword) {
-        console.error("Campo de senha ou olhinho não encontrado.");
-        return;
-    }
-
     function toggleVisibility() {
+
         const isHidden = passwordInput.type === "password";
 
         passwordInput.type = isHidden ? "text" : "password";
@@ -391,29 +391,31 @@ document.addEventListener("DOMContentLoaded", function () {
     togglePassword.addEventListener("click", toggleVisibility);
 
     togglePassword.addEventListener("keydown", function (event) {
+
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             toggleVisibility();
         }
     });
+
 });
 </script>
 
-
-<!-- FIREBASE: LOGIN E RECUPERAÇÃO DE SENHA -->
+<!-- FIREBASE: LOGIN -->
 <script type="module">
+
 import {
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail
+    signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
-import { auth } from "./js/firebase.js";
+import {
+    auth
+} from "./js/firebase.js";
 
 const form = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginButton = document.getElementById("loginButton");
-const forgotPassword = document.getElementById("forgotPassword");
 const message = document.getElementById("message");
 
 function showMessage(text, type) {
@@ -426,11 +428,8 @@ function setLoading(loading) {
     loginButton.textContent = loading ? "A entrar..." : "Entrar";
 }
 
-/* =========================
-   ENTRAR NA CONTA
-========================= */
-
 form.addEventListener("submit", async function (event) {
+
     event.preventDefault();
 
     const email = emailInput.value.trim();
@@ -448,6 +447,7 @@ form.addEventListener("submit", async function (event) {
     message.className = "message";
 
     try {
+
         await signInWithEmailAndPassword(
             auth,
             email,
@@ -464,6 +464,7 @@ form.addEventListener("submit", async function (event) {
         }, 700);
 
     } catch (error) {
+
         console.error("Erro ao entrar:", error);
 
         const errors = {
@@ -503,65 +504,9 @@ form.addEventListener("submit", async function (event) {
 
         setLoading(false);
     }
+
 });
 
-
-/* =========================
-   RECUPERAR SENHA
-========================= */
-
-forgotPassword.addEventListener("click", async function (event) {
-    event.preventDefault();
-
-    const email = emailInput.value.trim();
-
-    if (!email) {
-        showMessage(
-            "Digite o seu email no campo acima para recuperar a senha.",
-            "error"
-        );
-
-        emailInput.focus();
-        return;
-    }
-
-    forgotPassword.style.pointerEvents = "none";
-
-    try {
-        await sendPasswordResetEmail(auth, email);
-
-        showMessage(
-            "Se existir uma conta com este email, receberá as instruções para redefinir a senha. Verifique também o spam.",
-            "success"
-        );
-
-    } catch (error) {
-        console.error("Erro ao recuperar senha:", error);
-
-        const errors = {
-            "auth/invalid-email":
-                "Digite um endereço de email válido.",
-
-            "auth/user-not-found":
-                "Não foi encontrada uma conta com este email.",
-
-            "auth/network-request-failed":
-                "Verifique a sua ligação à internet.",
-
-            "auth/too-many-requests":
-                "Muitas tentativas. Aguarde antes de tentar novamente."
-        };
-
-        showMessage(
-            errors[error.code] ||
-            "Não foi possível recuperar a senha. Tente novamente.",
-            "error"
-        );
-
-    } finally {
-        forgotPassword.style.pointerEvents = "";
-    }
-});
 </script>
 
 </body>
